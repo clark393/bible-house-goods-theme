@@ -1,0 +1,108 @@
+<section class="hero">
+  <div class="page-width">
+    <span class="eyebrow">{{ section.settings.kicker }}</span>
+    <div class="hero__grid">
+      <div class="hero__content">
+        <h1 class="display-title">{{ section.settings.heading }}</h1>
+        <div class="hero__copy">
+          <p>{{ section.settings.copy }}</p>
+          <a class="button" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label }}</a>
+        </div>
+        <div class="hero__features">
+          {% assign feature_index = 0 %}
+          {% for block in section.blocks %}
+            {% if block.type == 'feature' %}
+              {% assign feature_index = feature_index | plus: 1 %}
+              <div class="hero-feature" {{ block.shopify_attributes }}>
+                <div class="hero-feature__number">0{{ feature_index }}</div>
+                <h3>{{ block.settings.heading }}</h3>
+                <p>{{ block.settings.copy }}</p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="hero__media">
+        {% if section.settings.hero_video != blank %}
+          {{ section.settings.hero_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, preload: 'metadata', image_size: '1400x' }}
+        {% elsif section.settings.hero_image != blank %}
+          {{ section.settings.hero_image | image_url: width: 1400 | image_tag: widths: '500,750,1000,1400', fetchpriority: 'high', alt: section.settings.hero_image.alt | default: section.settings.heading }}
+        {% elsif section.settings.featured_product != blank and section.settings.featured_product.featured_image != blank %}
+          {{ section.settings.featured_product.featured_image | image_url: width: 1400 | image_tag: widths: '500,750,1000,1400', fetchpriority: 'high', alt: section.settings.featured_product.title }}
+        {% else %}<span>Add a Bible Band image</span>{% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section">
+  <div class="page-width">
+    <span class="eyebrow">How it works</span><h2 class="section-title">Simple Daily Discipleship</h2>
+    <div class="steps-grid">
+      <div class="step"><div class="step__number">1</div><h3>Wear It</h3><p>Put on your Bible Band as a daily reminder.</p></div>
+      <div class="step"><div class="step__number">2</div><h3>Tap It</h3><p>Your compatible phone opens today's content.</p></div>
+      <div class="step"><div class="step__number">3</div><h3>Read &amp; Pray</h3><p>Scripture, devotion, prayer, audio, and a Bible reading plan.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="products-section">
+  <div class="page-width">
+    <div class="section-head"><h2 class="section-title">{{ section.settings.products_heading }}</h2><a href="{{ section.settings.collection.url | default: routes.all_products_collection_url }}">View all →</a></div>
+    <div class="product-grid">
+      {% assign source_collection = section.settings.collection | default: collections.all %}
+      {% for product in source_collection.products limit: 4 %}{% render 'product-card', product: product %}{% else %}<p>Your products will appear here automatically.</p>{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="collections-section">
+  <div class="page-width">
+    <span class="eyebrow">Beyond The Bible Band</span><h2 class="section-title">More Ways To Engage Your Faith</h2>
+    <div class="collection-cards">
+      {% for block in section.blocks %}
+        {% if block.type == 'collection' %}
+          <a class="collection-card" href="{{ block.settings.collection.url | default: routes.collections_url }}" {{ block.shopify_attributes }}><h3>{{ block.settings.heading | default: block.settings.collection.title }}</h3><p>{{ block.settings.copy }}</p><span>Explore →</span></a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="quote-section"><div class="page-width"><blockquote>“{{ section.settings.quote }}”<cite>{{ section.settings.quote_cite }}</cite></blockquote></div></section>
+
+<section class="founder"><div class="page-width founder__grid">
+  <div class="founder__photo">{% if section.settings.founder_image != blank %}{{ section.settings.founder_image | image_url: width: 1200 | image_tag: widths: '500,800,1200', loading: 'lazy', alt: section.settings.founder_image.alt | default: 'Bible House Goods founder' }}{% else %}<img src="{{ 'founders.jpeg' | asset_url }}" alt="Clark Whitney and his wife" width="1200" height="900" loading="lazy">{% endif %}</div>
+  <div class="founder__copy"><span class="eyebrow">Our Story</span><h2 class="section-title">{{ section.settings.founder_heading }}</h2><p>{{ section.settings.founder_copy }}</p><a class="button" href="{{ section.settings.founder_link }}">Read Our Story</a></div>
+</div></section>
+
+<section class="final-cta"><div class="page-width"><h2 class="display-title">Every Day.<br>One Tap.</h2><p>Start your wearable discipleship journey with The Bible Band.</p><div class="button-row"><a class="button button--gold" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">Get The Bible Band</a><a class="button button--outline" href="{{ routes.all_products_collection_url }}">Shop All</a></div></div></section>
+
+{% schema %}
+{
+  "name":"Editorial homepage",
+  "settings":[
+    {"type":"text","id":"kicker","label":"Kicker","default":"Bible House Goods Presents · The Bible Band"},
+    {"type":"html","id":"heading","label":"Heading","default":"Keep God's<br>Word <em>Close</em>"},
+    {"type":"textarea","id":"copy","label":"Intro","default":"Daily Scripture, prayer, and devotion on your wrist. One simple tap — no app, no subscription."},
+    {"type":"text","id":"button_label","label":"Button label","default":"Get Your Bible Band"},
+    {"type":"url","id":"button_link","label":"Button link"},
+    {"type":"product","id":"featured_product","label":"Bible Band product"},
+    {"type":"video","id":"hero_video","label":"Hero video","info":"Recommended for animation. Upload an MP4, MOV, or WebM; it plays muted and loops automatically."},
+    {"type":"image_picker","id":"hero_image","label":"Hero image"},
+    {"type":"text","id":"products_heading","label":"Products heading","default":"From Our Shop"},
+    {"type":"collection","id":"collection","label":"Featured collection"},
+    {"type":"textarea","id":"quote","label":"Quote","default":"Keep God's Word close to your heart and carry it with you daily."},
+    {"type":"text","id":"quote_cite","label":"Citation","default":"Inspired by Deuteronomy 11:18"},
+    {"type":"image_picker","id":"founder_image","label":"Founder image"},
+    {"type":"text","id":"founder_heading","label":"Founder heading","default":"Started By A Pastor, Not A Company"},
+    {"type":"textarea","id":"founder_copy","label":"Founder copy","default":"Bible House Goods was started by Clark Whitney — pastor, husband, and dad — to help families keep God's Word close in the middle of everyday life. Every product is built the same way: faithful, useful, and simple."},
+    {"type":"url","id":"founder_link","label":"Founder page"}
+  ],
+  "blocks":[
+    {"type":"feature","name":"Feature","limit":3,"settings":[{"type":"text","id":"heading","label":"Heading"},{"type":"textarea","id":"copy","label":"Copy"}]},
+    {"type":"collection","name":"Collection card","limit":3,"settings":[{"type":"collection","id":"collection","label":"Collection"},{"type":"text","id":"heading","label":"Custom heading"},{"type":"textarea","id":"copy","label":"Copy"}]}
+  ],
+  "presets":[{"name":"Editorial homepage","blocks":[{"type":"feature","settings":{"heading":"Pastor-Written","copy":"Real biblical insight. No AI. Practical encouragement for daily faith, written by a real pastor."}},{"type":"feature","settings":{"heading":"No App Needed","copy":"Just tap your phone. Scripture, prayer, devotion, audio, and a one-year Bible reading plan — all in one tap."}},{"type":"feature","settings":{"heading":"Works Everywhere","copy":"iPhone and Android compatible. A QR code backup ships in every package, just in case."}},{"type":"collection","settings":{"heading":"Devotionals & Prayer","copy":"Bible studies, prayer journals, and workbooks for deeper engagement with God's Word."}},{"type":"collection","settings":{"heading":"Printables & Resources","copy":"Downloadable guides for Bible study, family discipleship, and church leadership."}},{"type":"collection","settings":{"heading":"Faith Apparel","copy":"Christian apparel designed to spark conversations about Christ."}}]}]
+}
+{% endschema %}

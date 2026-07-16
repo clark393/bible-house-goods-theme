@@ -1,0 +1,22 @@
+<section class="product-page page-width">
+  <div class="product-layout">
+    <div class="product-gallery">
+      {% for media in product.media %}<div class="product-gallery__item">{% if media.media_type == 'image' %}{{ media | image_url: width: 1600 | image_tag: widths: '400,700,1000,1600', loading: 'lazy', alt: media.alt | default: product.title }}{% else %}{{ media | media_tag }}{% endif %}</div>{% else %}{{ 'product-1' | placeholder_svg_tag }}{% endfor %}
+    </div>
+    <div class="product-info">
+      {% if product.vendor != blank %}<span class="eyebrow">{{ product.vendor }}</span>{% endif %}
+      <h1>{{ product.title }}</h1>
+      <p class="product-price" data-product-price>{{ product.selected_or_first_available_variant.price | money }}</p>
+      {% form 'product', product, class: 'product-form' %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        {% unless product.has_only_default_variant %}<div><label class="field-label" for="Variant-{{ section.id }}">Choose an option</label><select id="Variant-{{ section.id }}" data-variant-select>{% for variant in product.variants %}<option value="{{ variant.id }}" data-available="{{ variant.available }}" data-price="{{ variant.price | money }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}>{{ variant.title }}{% unless variant.available %} — Sold out{% endunless %}</option>{% endfor %}</select></div>{% endunless %}
+        <div><label class="field-label" for="Quantity-{{ section.id }}">Quantity</label><input id="Quantity-{{ section.id }}" type="number" name="quantity" min="1" value="1"></div>
+        <button class="button" type="submit"{% unless product.selected_or_first_available_variant.available %} disabled{% endunless %}>{% if product.selected_or_first_available_variant.available %}Add to cart{% else %}Sold out{% endif %}</button>
+        {{ form | payment_button }}
+      {% endform %}
+      <div class="rte">{{ product.description }}</div>
+      <div class="product-meta"><details><summary>Shipping &amp; delivery</summary><div class="rte"><p>Shipping and delivery options are shown at checkout. Digital products are delivered according to their product description.</p></div></details><details><summary>Questions?</summary><div class="rte"><p>Visit our FAQ or contact Bible House Goods and we'll be glad to help.</p></div></details></div>
+    </div>
+  </div>
+</section>
+{% schema %}{"name":"Product information","settings":[]}{% endschema %}

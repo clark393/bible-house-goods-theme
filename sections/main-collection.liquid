@@ -1,0 +1,10 @@
+<section class="catalog page-width">
+  <div class="catalog-header"><div><span class="eyebrow">Collection</span><h1 class="display-title">{{ collection.title }}</h1>{% if collection.description != blank %}<div class="rte">{{ collection.description }}</div>{% endif %}</div>
+    <form class="sort-form"><label for="SortBy">Sort by</label><select id="SortBy" name="sort_by" onchange="this.form.submit()">{% assign sort_by = collection.sort_by | default: collection.default_sort_by %}{% for option in collection.sort_options %}<option value="{{ option.value }}"{% if option.value == sort_by %} selected{% endif %}>{{ option.name }}</option>{% endfor %}</select></form>
+  </div>
+  {% paginate collection.products by section.settings.products_per_page %}
+    <div class="product-grid">{% for product in collection.products %}{% render 'product-card', product: product %}{% else %}<p>No products found.</p>{% endfor %}</div>
+    {% render 'pagination', paginate: paginate %}
+  {% endpaginate %}
+</section>
+{% schema %}{"name":"Collection","settings":[{"type":"range","id":"products_per_page","label":"Products per page","min":8,"max":32,"step":4,"default":16}]}{% endschema %}

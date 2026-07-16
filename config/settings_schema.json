@@ -1,0 +1,32 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Bible House Editorial",
+    "theme_version": "1.0.0",
+    "theme_author": "Bible House Goods",
+    "theme_documentation_url": "https://biblehousegoods.com",
+    "theme_support_url": "https://biblehousegoods.com/pages/contact"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo" },
+      { "type": "image_picker", "id": "mascot", "label": "Header portrait" },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon" },
+      { "type": "color", "id": "deep_black", "label": "Ink", "default": "#0A0908" },
+      { "type": "color", "id": "cream", "label": "Cream", "default": "#EAE0D5" },
+      { "type": "color", "id": "tan", "label": "Tan", "default": "#C6AC8F" },
+      { "type": "color", "id": "brown", "label": "Brown", "default": "#5E503F" },
+      { "type": "color", "id": "rust", "label": "Rust", "default": "#C1440E" },
+      { "type": "color", "id": "gold", "label": "Gold", "default": "#E3A72B" }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      { "type": "font_picker", "id": "heading_font", "label": "Heading font", "default": "assistant_n7" },
+      { "type": "font_picker", "id": "body_font", "label": "Body font", "default": "assistant_n4" },
+      { "type": "range", "id": "body_font_size", "label": "Body text size", "min": 14, "max": 20, "step": 1, "unit": "px", "default": 16 }
+    ]
+  }
+]
