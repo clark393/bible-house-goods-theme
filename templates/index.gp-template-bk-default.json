@@ -8,11 +8,56 @@
  * ------------------------------------------------------------
  */
 {
-  "order": [
-    "main"
-  ],
   "sections": {
     "main": {
+      "type": "home-editorial",
+      "blocks": {
+        "feature1": {
+          "type": "feature",
+          "settings": {
+            "heading": "Pastor-Written",
+            "copy": "Real biblical insight. No AI. Practical encouragement for daily faith, written by a real pastor."
+          }
+        },
+        "feature2": {
+          "type": "feature",
+          "settings": {
+            "heading": "No App Needed",
+            "copy": "Just tap your phone. Scripture, prayer, devotion, audio, and a one-year Bible reading plan—all in one tap."
+          }
+        },
+        "feature3": {
+          "type": "feature",
+          "settings": {
+            "heading": "Works Everywhere",
+            "copy": "iPhone and Android compatible. A QR code backup ships in every package, just in case."
+          }
+        },
+        "collection1": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "heading": "Devotionals & Prayer",
+            "copy": "Bible studies, prayer journals, and workbooks for deeper engagement with God's Word."
+          }
+        },
+        "collection2": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "heading": "Printables & Resources",
+            "copy": "Downloadable guides for Bible study, family discipleship, and church leadership."
+          }
+        },
+        "collection3": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "heading": "Faith Apparel",
+            "copy": "Christian apparel designed to spark conversations about Christ."
+          }
+        }
+      },
       "block_order": [
         "feature1",
         "feature2",
@@ -21,70 +66,25 @@
         "collection2",
         "collection3"
       ],
-      "blocks": {
-        "collection1": {
-          "settings": {
-            "collection": "",
-            "copy": "Bible studies, prayer journals, and workbooks for deeper engagement with God's Word.",
-            "heading": "Devotionals & Prayer"
-          },
-          "type": "collection"
-        },
-        "collection2": {
-          "settings": {
-            "collection": "",
-            "copy": "Downloadable guides for Bible study, family discipleship, and church leadership.",
-            "heading": "Printables & Resources"
-          },
-          "type": "collection"
-        },
-        "collection3": {
-          "settings": {
-            "collection": "",
-            "copy": "Christian apparel designed to spark conversations about Christ.",
-            "heading": "Faith Apparel"
-          },
-          "type": "collection"
-        },
-        "feature1": {
-          "settings": {
-            "copy": "Real biblical insight. No AI. Practical encouragement for daily faith, written by a real pastor.",
-            "heading": "Pastor-Written"
-          },
-          "type": "feature"
-        },
-        "feature2": {
-          "settings": {
-            "copy": "Just tap your phone. Scripture, prayer, devotion, audio, and a one-year Bible reading plan—all in one tap.",
-            "heading": "No App Needed"
-          },
-          "type": "feature"
-        },
-        "feature3": {
-          "settings": {
-            "copy": "iPhone and Android compatible. A QR code backup ships in every package, just in case.",
-            "heading": "Works Everywhere"
-          },
-          "type": "feature"
-        }
-      },
       "settings": {
+        "kicker": "Bible House Goods Presents · The Bible Band",
+        "heading": "Keep God's<br>Word <em>Close</em>",
+        "copy": "Daily Scripture, prayer, and devotion on your wrist. One simple tap — no app, no subscription.",
         "button_label": "Get Your Bible Band",
         "button_link": "",
-        "collection": "",
-        "copy": "Daily Scripture, prayer, and devotion on your wrist. One simple tap — no app, no subscription.",
         "featured_product": "",
-        "founder_copy": "Bible House Goods was started by Clark Whitney — pastor, husband, and dad — to help families keep God's Word close in the middle of everyday life. Every product is built the same way: faithful, useful, and simple.",
-        "founder_heading": "Started By A Pastor, Not A Company",
-        "founder_link": "",
-        "heading": "Keep God's<br>Word <em>Close</em>",
         "hero_video": "shopify://files/videos/Copy of Untitled (TikTok Video) (1).mp4",
-        "kicker": "Bible House Goods Presents · The Bible Band",
         "products_heading": "From Our Shop",
+        "collection": "",
         "quote": "Keep God's Word close to your heart and carry it with you daily.",
-        "quote_cite": "Inspired by Deuteronomy 11:18"
-      },
-      "type": "home-editorial"
+        "quote_cite": "Inspired by Deuteronomy 11:18",
+        "founder_heading": "Started By A Pastor, Not A Company",
+        "founder_copy": "Bible House Goods was started by Clark Whitney — pastor, husband, and dad — to help families keep God's Word close in the middle of everyday life. Every product is built the same way: faithful, useful, and simple.",
+        "founder_link": ""
+      }
     }
-  }
+  },
+  "order": [
+    "main"
+  ]
 }
