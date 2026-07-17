@@ -14,7 +14,7 @@
     </div>
     <div class="product-info">
       {% if product.vendor != blank %}<span class="eyebrow">{{ product.vendor }}</span>{% endif %}
-      <h1>{{ product.title }}</h1>
+      <h1>{% render 'trademark-title', title: product.title %}</h1>
       <p class="product-price" data-product-price>{{ product.selected_or_first_available_variant.price | money }}</p>
       {% form 'product', product, class: 'product-form' %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">

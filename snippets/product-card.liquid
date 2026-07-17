@@ -9,7 +9,7 @@
     {% if product.compare_at_price > product.price %}<span class="badge">Sale</span>{% endif %}
   </div>
   <div class="product-card__info">
-    <h3>{{ product.title }}</h3>
+    <h3>{% render 'trademark-title', title: product.title %}</h3>
     <div class="product-card__price">
       {% if product.price_varies %}From {% endif %}{{ product.price | money }}
       {% if product.compare_at_price > product.price %}<s>{{ product.compare_at_price | money }}</s>{% endif %}

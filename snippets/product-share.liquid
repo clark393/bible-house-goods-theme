@@ -9,9 +9,13 @@ Renders social sharing controls for a product.
 {% enddoc %}
 
 {% liquid
+  assign share_title = product.title
+  unless share_title contains '™'
+    assign share_title = share_title | replace: 'Bible Band', 'Bible Band™' | replace: 'BibleBand', 'BibleBand™'
+  endunless
   assign encoded_url = share_url | url_encode
-  assign encoded_title = product.title | url_encode
-  assign share_text = 'products.share.message' | t: product: product.title
+  assign encoded_title = share_title | url_encode
+  assign share_text = 'products.share.message' | t: product: share_title
   assign encoded_text = share_text | url_encode
   if product.featured_image
     assign share_image = product.featured_image | image_url: width: 1200
@@ -19,7 +23,7 @@ Renders social sharing controls for a product.
   endif
 %}
 
-<aside class="product-share" data-product-share data-share-url="{{ share_url | escape }}" data-share-title="{{ product.title | escape }}" data-share-text="{{ share_text | escape }}" aria-labelledby="ProductShare-{{ product.id }}">
+<aside class="product-share" data-product-share data-share-url="{{ share_url | escape }}" data-share-title="{{ share_title | escape }}" data-share-text="{{ share_text | escape }}" aria-labelledby="ProductShare-{{ product.id }}">
   <div class="product-share__head">
     <h2 id="ProductShare-{{ product.id }}">{{ 'products.share.heading' | t }}</h2>
     <p>{{ 'products.share.copy' | t }}</p>

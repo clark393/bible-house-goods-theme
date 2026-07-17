@@ -1,0 +1,10 @@
+{% doc %}
+Renders a title with the Bible Band trademark applied once.
+
+@param {string} title - The title to display.
+
+@example
+{% render 'trademark-title', title: product.title %}
+{% enddoc %}
+
+{% if title contains '™' %}{{ title }}{% else %}{{ title | replace: 'Bible Band', 'Bible Band™' | replace: 'BibleBand', 'BibleBand™' }}{% endif %}

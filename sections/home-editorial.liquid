@@ -29,7 +29,7 @@
           {{ section.settings.hero_image | image_url: width: 1400 | image_tag: widths: '500,750,1000,1400', fetchpriority: 'high', alt: section.settings.hero_image.alt | default: section.settings.heading }}
         {% elsif section.settings.featured_product != blank and section.settings.featured_product.featured_image != blank %}
           {{ section.settings.featured_product.featured_image | image_url: width: 1400 | image_tag: widths: '500,750,1000,1400', fetchpriority: 'high', alt: section.settings.featured_product.title }}
-        {% else %}<span>Add a Bible Band image</span>{% endif %}
+        {% else %}<span>Add a Bible Band™ image</span>{% endif %}
       </div>
     </div>
   </div>
@@ -39,7 +39,7 @@
   <div class="page-width">
     <span class="eyebrow">How it works</span><h2 class="section-title">Simple Daily Discipleship</h2>
     <div class="steps-grid">
-      <div class="step"><div class="step__number">1</div><h3>Wear It</h3><p>Put on your Bible Band as a daily reminder.</p></div>
+      <div class="step"><div class="step__number">1</div><h3>Wear It</h3><p>Put on your Bible Band™ as a daily reminder.</p></div>
       <div class="step"><div class="step__number">2</div><h3>Tap It</h3><p>Your compatible phone opens today's content.</p></div>
       <div class="step"><div class="step__number">3</div><h3>Read &amp; Pray</h3><p>Scripture, devotion, prayer, audio, and a Bible reading plan.</p></div>
     </div>
@@ -58,7 +58,7 @@
 
 <section class="collections-section">
   <div class="page-width">
-    <span class="eyebrow">Beyond The Bible Band</span><h2 class="section-title">More Ways To Engage Your Faith</h2>
+    <span class="eyebrow">Beyond The Bible Band™</span><h2 class="section-title">More Ways To Engage Your Faith</h2>
     <div class="collection-cards">
       {% for block in section.blocks %}
         {% if block.type == 'collection' %}
@@ -76,16 +76,16 @@
   <div class="founder__copy"><span class="eyebrow">Our Story</span><h2 class="section-title">{{ section.settings.founder_heading }}</h2><p>{{ section.settings.founder_copy }}</p><a class="button" href="{{ section.settings.founder_link }}">Read Our Story</a></div>
 </div></section>
 
-<section class="final-cta"><div class="page-width"><h2 class="display-title">Every Day.<br>One Tap.</h2><p>Start your wearable discipleship journey with The Bible Band.</p><div class="button-row"><a class="button button--gold" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">Get The Bible Band</a><a class="button button--outline" href="{{ routes.all_products_collection_url }}">Shop All</a></div></div></section>
+<section class="final-cta"><div class="page-width"><h2 class="display-title">Every Day.<br>One Tap.</h2><p>Start your wearable discipleship journey with The Bible Band™.</p><div class="button-row"><a class="button button--gold" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">Get The Bible Band™</a><a class="button button--outline" href="{{ routes.all_products_collection_url }}">Shop All</a></div></div></section>
 
 {% schema %}
 {
   "name":"Editorial homepage",
   "settings":[
-    {"type":"text","id":"kicker","label":"Kicker","default":"Bible House Goods Presents · The Bible Band"},
+    {"type":"text","id":"kicker","label":"Kicker","default":"Bible House Goods Presents · The Bible Band™"},
     {"type":"html","id":"heading","label":"Heading","default":"Keep God's<br>Word <em>Close</em>"},
     {"type":"textarea","id":"copy","label":"Intro","default":"Daily Scripture, prayer, and devotion on your wrist. One simple tap — no app, no subscription."},
-    {"type":"text","id":"button_label","label":"Button label","default":"Get Your Bible Band"},
+    {"type":"text","id":"button_label","label":"Button label","default":"Get Your Bible Band™"},
     {"type":"url","id":"button_link","label":"Button link"},
     {"type":"product","id":"featured_product","label":"Bible Band product"},
     {"type":"video","id":"hero_video","label":"Hero video","info":"Recommended for animation. Upload an MP4, MOV, or WebM; it plays muted and loops automatically."},
