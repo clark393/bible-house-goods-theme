@@ -22,6 +22,10 @@
       "sold_out": "Sold out",
       "unavailable": "Unavailable",
       "quantity": "Quantity"
+    },
+    "gallery": {
+      "previous": "Previous product image",
+      "next": "Next product image"
     }
   },
   "gempages": {

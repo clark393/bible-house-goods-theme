@@ -1,7 +1,16 @@
 <section class="product-page page-width">
   <div class="product-layout">
-    <div class="product-gallery">
-      {% for media in product.media %}<div class="product-gallery__item">{% if media.media_type == 'image' %}{{ media | image_url: width: 1600 | image_tag: widths: '400,700,1000,1600', loading: 'lazy', alt: media.alt | default: product.title }}{% else %}{{ media | media_tag }}{% endif %}</div>{% else %}{{ 'product-1' | placeholder_svg_tag }}{% endfor %}
+    <div class="product-gallery-wrap" data-product-gallery>
+      <div class="product-gallery" data-product-gallery-track>
+        {% for media in product.media %}<div class="product-gallery__item" data-product-gallery-slide>{% if media.media_type == 'image' %}{{ media | image_url: width: 1600 | image_tag: widths: '400,700,1000,1600', loading: 'lazy', alt: media.alt | default: product.title }}{% else %}{{ media | media_tag }}{% endif %}</div>{% else %}{{ 'product-1' | placeholder_svg_tag }}{% endfor %}
+      </div>
+      {% if product.media.size > 1 %}
+        <div class="product-gallery__controls">
+          <button class="product-gallery__button" type="button" data-gallery-previous aria-label="{{ 'products.gallery.previous' | t }}">&larr;</button>
+          <p class="product-gallery__counter" aria-live="polite"><span data-gallery-current>1</span> / {{ product.media.size }}</p>
+          <button class="product-gallery__button" type="button" data-gallery-next aria-label="{{ 'products.gallery.next' | t }}">&rarr;</button>
+        </div>
+      {% endif %}
     </div>
     <div class="product-info">
       {% if product.vendor != blank %}<span class="eyebrow">{{ product.vendor }}</span>{% endif %}
