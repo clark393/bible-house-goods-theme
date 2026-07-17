@@ -14,6 +14,28 @@ document.addEventListener('click', (event) => {
 });
 
 document.addEventListener('change', (event) => {
+  const purchaseOption = event.target.closest('[data-purchase-option]');
+  if (purchaseOption) {
+    const offer = purchaseOption.closest('[data-share-offer]');
+    const quantity = offer.closest('form').querySelector('[name="quantity"]');
+    const sharing = purchaseOption.value === 'share';
+    quantity.value = sharing ? '2' : '1';
+    offer.querySelector('[data-share-recipient]').hidden = !sharing;
+    offer.querySelector('[data-share-recipient-input]').disabled = !sharing;
+    offer.querySelector('[data-share-property]').disabled = !sharing;
+    return;
+  }
+  const quantity = event.target.closest('.product-form [name="quantity"]');
+  if (quantity) {
+    const offer = quantity.closest('form').querySelector('[data-share-offer]');
+    if (!offer) return;
+    const sharing = Number(quantity.value) >= 2;
+    offer.querySelector(`[data-purchase-option][value="${sharing ? 'share' : 'single'}"]`).checked = true;
+    offer.querySelector('[data-share-recipient]').hidden = !sharing;
+    offer.querySelector('[data-share-recipient-input]').disabled = !sharing;
+    offer.querySelector('[data-share-property]').disabled = !sharing;
+    return;
+  }
   const select = event.target.closest('[data-variant-select]');
   if (!select) return;
   const option = select.options[select.selectedIndex];
@@ -45,4 +67,36 @@ document.querySelectorAll('[data-product-gallery]').forEach((gallery) => {
   track.addEventListener('scroll', () => {
     window.requestAnimationFrame(() => { current.textContent = String(activeIndex() + 1); });
   }, { passive: true });
+});
+
+const copyShareUrl = async (share) => {
+  const status = share.querySelector('[data-share-status]');
+  try {
+    await navigator.clipboard.writeText(share.dataset.shareUrl);
+    status.textContent = status.dataset.copied;
+  } catch {
+    const field = document.createElement('textarea');
+    field.value = share.dataset.shareUrl;
+    field.setAttribute('readonly', '');
+    document.body.appendChild(field);
+    field.select();
+    document.execCommand('copy');
+    field.remove();
+    status.textContent = status.dataset.copied;
+  }
+};
+
+document.querySelectorAll('[data-product-share]').forEach((share) => {
+  share.querySelector('[data-copy-share]').addEventListener('click', () => copyShareUrl(share));
+  share.querySelector('[data-native-share]').addEventListener('click', async () => {
+    if (!navigator.share) {
+      await copyShareUrl(share);
+      return;
+    }
+    try {
+      await navigator.share({ title: share.dataset.shareTitle, text: share.dataset.shareText, url: share.dataset.shareUrl });
+    } catch (error) {
+      if (error.name !== 'AbortError') await copyShareUrl(share);
+    }
+  });
 });

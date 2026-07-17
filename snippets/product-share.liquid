@@ -1,0 +1,36 @@
+{% doc %}
+Renders social sharing controls for a product.
+
+@param {product} product - The product to share.
+@param {string} share_url - The canonical product URL.
+
+@example
+{% render 'product-share', product: product, share_url: canonical_url %}
+{% enddoc %}
+
+{% liquid
+  assign encoded_url = share_url | url_encode
+  assign encoded_title = product.title | url_encode
+  assign share_text = 'products.share.message' | t: product: product.title
+  assign encoded_text = share_text | url_encode
+  if product.featured_image
+    assign share_image = product.featured_image | image_url: width: 1200
+    assign encoded_image = share_image | url_encode
+  endif
+%}
+
+<aside class="product-share" data-product-share data-share-url="{{ share_url | escape }}" data-share-title="{{ product.title | escape }}" data-share-text="{{ share_text | escape }}" aria-labelledby="ProductShare-{{ product.id }}">
+  <div class="product-share__head">
+    <h2 id="ProductShare-{{ product.id }}">{{ 'products.share.heading' | t }}</h2>
+    <p>{{ 'products.share.copy' | t }}</p>
+  </div>
+  <div class="product-share__buttons">
+    <button class="product-share__button product-share__button--primary" type="button" data-native-share>{{ 'products.share.share_button' | t }}</button>
+    <a class="product-share__button" href="https://www.facebook.com/sharer/sharer.php?u={{ encoded_url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ 'products.share.facebook_label' | t }}">Facebook</a>
+    <a class="product-share__button" href="https://twitter.com/intent/tweet?text={{ encoded_text }}&amp;url={{ encoded_url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ 'products.share.x_label' | t }}">X</a>
+    {% if encoded_image %}<a class="product-share__button" href="https://pinterest.com/pin/create/button/?url={{ encoded_url }}&amp;media={{ encoded_image }}&amp;description={{ encoded_text }}" target="_blank" rel="noopener noreferrer" aria-label="{{ 'products.share.pinterest_label' | t }}">Pinterest</a>{% endif %}
+    <a class="product-share__button" href="mailto:?subject={{ encoded_title }}&amp;body={{ encoded_text }}%20{{ encoded_url }}" aria-label="{{ 'products.share.email_label' | t }}">{{ 'products.share.email' | t }}</a>
+    <button class="product-share__button" type="button" data-copy-share>{{ 'products.share.copy_link' | t }}</button>
+  </div>
+  <p class="product-share__status" data-share-status data-copied="{{ 'products.share.copied' | t | escape }}" aria-live="polite"></p>
+</aside>

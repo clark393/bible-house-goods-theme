@@ -19,13 +19,46 @@
       {% form 'product', product, class: 'product-form' %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
         {% unless product.has_only_default_variant %}<div><label class="field-label" for="Variant-{{ section.id }}">Choose an option</label><select id="Variant-{{ section.id }}" data-variant-select>{% for variant in product.variants %}<option value="{{ variant.id }}" data-available="{{ variant.available }}" data-price="{{ variant.price | money }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}>{{ variant.title }}{% unless variant.available %} — Sold out{% endunless %}</option>{% endfor %}</select></div>{% endunless %}
+        {% if section.settings.enable_share_offer %}
+          <fieldset class="share-offer" data-share-offer>
+            <legend class="field-label">{{ 'products.share_offer.legend' | t }}</legend>
+            <label class="share-offer__choice">
+              <input type="radio" name="purchase-option" value="single" checked data-purchase-option>
+              <span><strong>{{ 'products.share_offer.single_title' | t }}</strong><small>{{ 'products.share_offer.single_copy' | t }}</small></span>
+            </label>
+            <label class="share-offer__choice share-offer__choice--featured">
+              <input type="radio" name="purchase-option" value="share" data-purchase-option>
+              <span><strong>{{ section.settings.share_heading }}</strong><small>{{ section.settings.share_copy }}</small></span>
+              <b>{{ section.settings.share_badge }}</b>
+            </label>
+            <div class="share-offer__recipient" data-share-recipient hidden>
+              <label class="field-label" for="Share-recipient-{{ section.id }}">{{ 'products.share_offer.recipient_label' | t }}</label>
+              <input id="Share-recipient-{{ section.id }}" type="text" name="properties[{{ 'products.share_offer.recipient_property' | t }}]" placeholder="{{ 'products.share_offer.recipient_placeholder' | t }}" disabled data-share-recipient-input>
+            </div>
+            <input type="hidden" name="properties[{{ 'products.share_offer.purpose_property' | t }}]" value="{{ 'products.share_offer.purpose_value' | t }}" disabled data-share-property>
+          </fieldset>
+        {% endif %}
         <div><label class="field-label" for="Quantity-{{ section.id }}">Quantity</label><input id="Quantity-{{ section.id }}" type="number" name="quantity" min="1" value="1"></div>
         <button class="button" type="submit"{% unless product.selected_or_first_available_variant.available %} disabled{% endunless %}>{% if product.selected_or_first_available_variant.available %}Add to cart{% else %}Sold out{% endif %}</button>
         {{ form | payment_button }}
       {% endform %}
+      {% if section.settings.enable_social_share %}{% render 'product-share', product: product, share_url: canonical_url %}{% endif %}
       <div class="rte">{{ product.description }}</div>
       <div class="product-meta"><details><summary>Shipping &amp; delivery</summary><div class="rte"><p>Shipping and delivery options are shown at checkout. Digital products are delivered according to their product description.</p></div></details><details><summary>Questions?</summary><div class="rte"><p>Visit our FAQ or contact Bible House Goods and we'll be glad to help.</p></div></details></div>
     </div>
   </div>
 </section>
-{% schema %}{"name":"Product information","settings":[]}{% endschema %}
+{% schema %}
+{
+  "name": "Product information",
+  "settings": [
+    { "type": "header", "content": "Give one, share one" },
+    { "type": "checkbox", "id": "enable_share_offer", "label": "Enable offer", "default": true },
+    { "type": "text", "id": "share_heading", "label": "Heading", "default": "Give one, share one" },
+    { "type": "textarea", "id": "share_copy", "label": "Description", "default": "Get two bands—one to wear and one to give to someone who needs encouragement." },
+    { "type": "text", "id": "share_badge", "label": "Badge", "default": "Most meaningful" },
+    { "type": "header", "content": "Social sharing" },
+    { "type": "checkbox", "id": "enable_social_share", "label": "Show social share buttons", "default": true }
+  ]
+}
+{% endschema %}
