@@ -46,6 +46,30 @@
   </div>
 </section>
 
+<section class="home-groups">
+  <div class="page-width home-groups__inner">
+    <div class="home-groups__copy">
+      <span class="eyebrow">Churches · Camps · Groups</span>
+      <h2 class="display-title">Put the Word in every hand.</h2>
+      <p>Equip your church, camp, youth ministry, school, retreat, or outreach with one simple tap to Scripture—and a direct path to prayer guides, giving, bulletins, sermon notes, events, and next steps.</p>
+      <div class="home-groups__actions">
+        <a class="button button--gold" href="{{ section.settings.groups_link | default: '/pages/churches-youth-groups' }}">Explore churches &amp; groups</a>
+        <a class="home-groups__text-link" href="{{ section.settings.groups_contact_link | default: '/pages/contact' }}">Ask about group pricing <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <div class="home-groups__callouts" aria-label="Ways groups use the Bible Band">
+      <div class="home-groups__badge"><strong>21</strong><span>Days of Prayer</span></div>
+      <ul>
+        <li><span>01</span>Daily Scripture</li>
+        <li><span>02</span>Offering &amp; Giving</li>
+        <li><span>03</span>Digital Bulletin</li>
+        <li><span>04</span>Camp Devotions</li>
+        <li><span>05</span>Events &amp; Next Steps</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <section class="products-section">
   <div class="page-width">
     <div class="section-head"><h2 class="section-title">{{ section.settings.products_heading }}</h2><a href="{{ section.settings.collection.url | default: routes.all_products_collection_url }}">View all →</a></div>
@@ -87,6 +111,8 @@
     {"type":"textarea","id":"copy","label":"Intro","default":"Daily Scripture, prayer, and devotion on your wrist. One simple tap — no app, no subscription."},
     {"type":"text","id":"button_label","label":"Button label","default":"Get Your Bible Band™"},
     {"type":"url","id":"button_link","label":"Button link"},
+    {"type":"url","id":"groups_link","label":"Churches and groups page"},
+    {"type":"url","id":"groups_contact_link","label":"Group pricing contact link"},
     {"type":"product","id":"featured_product","label":"Bible Band product"},
     {"type":"video","id":"hero_video","label":"Hero video","info":"Recommended for animation. Upload an MP4, MOV, or WebM; it plays muted and loops automatically."},
     {"type":"image_picker","id":"hero_image","label":"Hero image"},
@@ -106,3 +132,19 @@
   "presets":[{"name":"Editorial homepage","blocks":[{"type":"feature","settings":{"heading":"Pastor-Written","copy":"Real biblical insight. No AI. Practical encouragement for daily faith, written by a real pastor."}},{"type":"feature","settings":{"heading":"No App Needed","copy":"Just tap your phone. Scripture, prayer, devotion, audio, and a one-year Bible reading plan — all in one tap."}},{"type":"feature","settings":{"heading":"Works Everywhere","copy":"iPhone and Android compatible. A QR code backup ships in every package, just in case."}},{"type":"collection","settings":{"heading":"Devotionals & Prayer","copy":"Bible studies, prayer journals, and workbooks for deeper engagement with God's Word."}},{"type":"collection","settings":{"heading":"Printables & Resources","copy":"Downloadable guides for Bible study, family discipleship, and church leadership."}},{"type":"collection","settings":{"heading":"Faith Apparel","copy":"Christian apparel designed to spark conversations about Christ."}}]}]
 }
 {% endschema %}
+
+{% stylesheet %}
+  .home-groups{padding:clamp(75px,9vw,125px) 0;background:var(--rust);color:var(--cream);overflow:hidden}
+  .home-groups__inner{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(330px,.85fr);gap:clamp(50px,8vw,120px);align-items:center}
+  .home-groups .eyebrow{color:var(--gold)}
+  .home-groups .display-title{max-width:850px;font-size:clamp(52px,7.4vw,108px)}
+  .home-groups__copy>p{max-width:720px;margin:28px 0 0;font-size:clamp(16px,1.6vw,20px);line-height:1.65}
+  .home-groups__actions{display:flex;flex-wrap:wrap;align-items:center;gap:22px;margin-top:34px}
+  .home-groups__text-link{font-size:11px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase;text-underline-offset:5px}
+  .home-groups__callouts{position:relative;padding:36px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:14px 14px 0 var(--gold);transform:rotate(1deg)}
+  .home-groups__badge{display:flex;align-items:center;gap:18px;padding-bottom:26px;border-bottom:2px solid var(--ink)}
+  .home-groups__badge strong{color:var(--rust);font-size:68px;letter-spacing:-.06em;line-height:.8}.home-groups__badge span{max-width:130px;font-size:13px;font-weight:950;letter-spacing:1px;line-height:1.1;text-transform:uppercase}
+  .home-groups__callouts ul{margin:0;padding:0;list-style:none}.home-groups__callouts li{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:15px 0;border-bottom:1px solid #cfc2b1;font-size:14px;font-weight:900;text-transform:uppercase}.home-groups__callouts li span{color:var(--rust);font-size:10px;letter-spacing:1px}
+  @media(max-width:900px){.home-groups__inner{grid-template-columns:1fr}.home-groups__callouts{max-width:600px;margin-right:14px}}
+  @media(max-width:640px){.home-groups__callouts{padding:27px}.home-groups__actions{align-items:stretch;flex-direction:column}.home-groups__actions .button{width:100%}.home-groups__text-link{padding:8px 0}}
+{% endstylesheet %}
