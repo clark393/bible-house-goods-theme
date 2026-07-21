@@ -8,49 +8,6 @@
  * ------------------------------------------------------------
  */
 {
-  "general": {
-    "accessibility": {
-      "skip_to_content": "Skip to content"
-    },
-    "pagination": {
-      "page": "Page {{ number }}"
-    }
-  },
-  "products": {
-    "product": {
-      "add_to_cart": "Add to cart",
-      "sold_out": "Sold out",
-      "unavailable": "Unavailable",
-      "quantity": "Quantity"
-    },
-    "gallery": {
-      "previous": "Previous product image",
-      "next": "Next product image"
-    },
-    "share_offer": {
-      "legend": "Choose how you want to purchase",
-      "single_title": "One band",
-      "single_copy": "One BibleBand™ for you.",
-      "recipient_label": "Who are you sharing with? (optional)",
-      "recipient_placeholder": "First name or a short note",
-      "recipient_property": "Sharing with",
-      "purpose_property": "Purchase purpose",
-      "purpose_value": "Give one, share one"
-    },
-    "share": {
-      "heading": "Share TheBibleBand™",
-      "copy": "Know someone who would love this? Send it their way.",
-      "message": "Take a look at {{ product }} from Bible House Goods.",
-      "share_button": "Share",
-      "facebook_label": "Share on Facebook",
-      "x_label": "Share on X",
-      "pinterest_label": "Share on Pinterest",
-      "email_label": "Share by email",
-      "email": "Email",
-      "copy_link": "Copy link",
-      "copied": "Link copied."
-    }
-  },
   "gempages": {
     "Carousel": {
       "no_slider": "No Slider"
@@ -95,6 +52,49 @@
     },
     "Breadcrumb": {
       "home": "Home"
+    }
+  },
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to content"
+    },
+    "pagination": {
+      "page": "Page {{ number }}"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity"
+    },
+    "gallery": {
+      "previous": "Previous product image",
+      "next": "Next product image"
+    },
+    "share_offer": {
+      "legend": "Choose how you want to purchase",
+      "single_title": "One band",
+      "single_copy": "One BibleBand™ for you.",
+      "recipient_label": "Who are you sharing with? (optional)",
+      "recipient_placeholder": "First name or a short note",
+      "recipient_property": "Sharing with",
+      "purpose_property": "Purchase purpose",
+      "purpose_value": "Give one, share one"
+    },
+    "share": {
+      "heading": "Share TheBibleBand™",
+      "copy": "Know someone who would love this? Send it their way.",
+      "message": "Take a look at {{ product }} from Bible House Goods.",
+      "share_button": "Share",
+      "facebook_label": "Share on Facebook",
+      "x_label": "Share on X",
+      "pinterest_label": "Share on Pinterest",
+      "email_label": "Share by email",
+      "email": "Email",
+      "copy_link": "Copy link",
+      "copied": "Link copied."
     }
   }
 }
