@@ -48,10 +48,46 @@
     </div>
   </div>
 </section>
+
+{% if product.handle == 'the-bible-band' and section.settings.show_bible_band_sections %}
+  <section class="dark-section">
+    <div class="page-width">
+      <span class="eyebrow">{{ 'products.bible_band.how_it_works' | t }}</span>
+      <h2 class="section-title">{{ 'products.bible_band.discipleship_title' | t }}</h2>
+      <div class="steps-grid">
+        <div class="step"><div class="step__number">1</div><h3>{{ 'products.bible_band.wear_title' | t }}</h3><p>{{ 'products.bible_band.wear_copy' | t }}</p></div>
+        <div class="step"><div class="step__number">2</div><h3>{{ 'products.bible_band.tap_title' | t }}</h3><p>{{ 'products.bible_band.tap_copy' | t }}</p></div>
+        <div class="step"><div class="step__number">3</div><h3>{{ 'products.bible_band.read_title' | t }}</h3><p>{{ 'products.bible_band.read_copy' | t }}</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="daily-preview" aria-labelledby="ProductDailyPreview-{{ section.id }}">
+    <div class="page-width daily-preview__layout">
+      <div class="daily-preview__intro">
+        <span class="eyebrow">{{ 'products.bible_band.preview_kicker' | t }}</span>
+        <h2 class="display-title" id="ProductDailyPreview-{{ section.id }}">{{ 'products.bible_band.preview_title' | t }}</h2>
+        <p>{{ 'products.bible_band.preview_intro' | t }}</p>
+        <div class="daily-preview__included" aria-label="{{ 'products.bible_band.included_label' | t }}">
+          <span>{{ 'products.bible_band.scripture_label' | t }}</span><span>{{ 'products.bible_band.devotion_label' | t }}</span><span>{{ 'products.bible_band.prayer_label' | t }}</span><span>{{ 'products.bible_band.audio_label' | t }}</span><span>{{ 'products.bible_band.plan_label' | t }}</span>
+        </div>
+      </div>
+      <article class="daily-preview__card">
+        <header class="daily-preview__card-head"><div><span class="daily-preview__sample-label">{{ 'products.bible_band.sample_label' | t }}</span><h3>{{ 'products.bible_band.sample_title' | t }}</h3></div><span class="daily-preview__sun" aria-hidden="true">✦</span></header>
+        <div class="daily-preview__section daily-preview__scripture"><span class="daily-preview__label">{{ 'products.bible_band.scripture_label' | t }}</span><blockquote>“{{ 'products.bible_band.sample_verse' | t }}”</blockquote><cite>{{ 'products.bible_band.sample_reference' | t }}</cite></div>
+        <div class="daily-preview__section"><span class="daily-preview__label">{{ 'products.bible_band.devotion_label' | t }}</span><p>{{ 'products.bible_band.sample_devotion' | t }}</p></div>
+        <div class="daily-preview__section daily-preview__prayer"><span class="daily-preview__label">{{ 'products.bible_band.prayer_label' | t }}</span><p>{{ 'products.bible_band.sample_prayer' | t }}</p></div>
+        <footer>{{ 'products.bible_band.preview_footer' | t }}</footer>
+      </article>
+    </div>
+  </section>
+{% endif %}
+
 {% schema %}
 {
   "name": "Product information",
   "settings": [
+    { "type": "checkbox", "id": "show_bible_band_sections", "label": "Show Bible Band discipleship sections", "default": true },
     { "type": "header", "content": "Give one, share one" },
     { "type": "checkbox", "id": "enable_share_offer", "label": "Enable offer", "default": true },
     { "type": "text", "id": "share_heading", "label": "Heading", "default": "Give one, share one" },
@@ -62,3 +98,26 @@
   ]
 }
 {% endschema %}
+
+{% stylesheet %}
+  .daily-preview{padding:clamp(75px,9vw,130px) 0;background:var(--cream);color:var(--ink);overflow:hidden}
+  .daily-preview__layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(420px,1.15fr);gap:clamp(50px,8vw,120px);align-items:center}
+  .daily-preview__intro .display-title{max-width:720px;margin-bottom:28px;font-size:clamp(50px,6.5vw,96px)}
+  .daily-preview__intro>p{max-width:590px;font-size:clamp(17px,1.5vw,20px);line-height:1.7}
+  .daily-preview__included{display:flex;flex-wrap:wrap;gap:9px;margin-top:32px}
+  .daily-preview__included span{padding:9px 12px;border:1px solid var(--ink);font-size:9px;font-weight:950;letter-spacing:1.2px;text-transform:uppercase}
+  .daily-preview__card{position:relative;padding:clamp(30px,5vw,60px);background:#fffdf8;border:2px solid var(--ink);box-shadow:16px 16px 0 var(--gold);transform:rotate(.7deg)}
+  .daily-preview__card:before{position:absolute;top:-12px;left:50%;width:110px;height:23px;background:rgba(213,197,164,.72);content:"";transform:translateX(-50%) rotate(-2deg)}
+  .daily-preview__card-head{display:flex;justify-content:space-between;gap:24px;padding-bottom:28px;border-bottom:2px solid var(--ink)}
+  .daily-preview__sample-label,.daily-preview__label{display:block;color:var(--rust);font-size:9px;font-weight:950;letter-spacing:1.5px;text-transform:uppercase}
+  .daily-preview__card h3{margin:8px 0 0;font-family:var(--font-heading);font-size:clamp(30px,4vw,52px);line-height:1}
+  .daily-preview__sun{color:var(--gold);font-size:34px;line-height:1}
+  .daily-preview__section{padding:25px 0;border-bottom:1px solid #cfc2b1}
+  .daily-preview__section p{margin:11px 0 0;font-size:15px;line-height:1.7}
+  .daily-preview__scripture blockquote{margin:12px 0 5px;font-family:var(--font-heading);font-size:clamp(25px,3vw,37px);font-style:italic;line-height:1.15}
+  .daily-preview__scripture cite{font-size:10px;font-style:normal;font-weight:950;letter-spacing:1px;text-transform:uppercase}
+  .daily-preview__prayer p{font-style:italic}
+  .daily-preview__card footer{padding-top:25px;font-size:10px;font-weight:900;letter-spacing:1.1px;line-height:1.5;text-transform:uppercase}
+  @media(max-width:900px){.daily-preview__layout{grid-template-columns:1fr}.daily-preview__card{max-width:680px;margin-right:16px}}
+  @media(max-width:640px){.daily-preview__card{padding:28px 24px;box-shadow:10px 10px 0 var(--gold)}.daily-preview__card-head{gap:12px}.daily-preview__sun{font-size:26px}}
+{% endstylesheet %}

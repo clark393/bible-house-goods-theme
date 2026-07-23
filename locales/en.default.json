@@ -63,6 +63,32 @@
     }
   },
   "products": {
+    "bible_band": {
+      "how_it_works": "How it works",
+      "discipleship_title": "Simple Daily Discipleship",
+      "wear_title": "Wear It",
+      "wear_copy": "Put on your Bible Band™ as a daily reminder.",
+      "tap_title": "Tap It",
+      "tap_copy": "Your compatible phone opens today's content.",
+      "read_title": "Read & Pray",
+      "read_copy": "Scripture, devotion, prayer, audio, and a Bible reading plan.",
+      "preview_kicker": "See What One Tap Opens",
+      "preview_title": "One Tap. A Moment With God.",
+      "preview_intro": "Every day, your Bible Band™ opens a fresh, pastor-written experience designed to help you slow down, hear from God, and take one faithful next step.",
+      "included_label": "Included in each daily experience",
+      "scripture_label": "Scripture",
+      "devotion_label": "Devotion",
+      "prayer_label": "Prayer",
+      "audio_label": "Audio",
+      "plan_label": "Bible Plan",
+      "sample_label": "Sample Daily Experience",
+      "sample_title": "Be Still",
+      "sample_verse": "Be still, and know that I am God.",
+      "sample_reference": "Psalm 46:10",
+      "sample_devotion": "Stillness is not the absence of responsibility. It is the choice to stop striving long enough to remember who is in control. Today, let God's presence become louder than the pressure around you.",
+      "sample_prayer": "God, quiet the noise within me. Help me release what I cannot control and rest in who You are. Make me attentive to Your presence and faithful in my next step. Amen.",
+      "preview_footer": "A fresh experience is waiting every day with The Bible Band™."
+    },
     "product": {
       "add_to_cart": "Add to cart",
       "sold_out": "Sold out",
