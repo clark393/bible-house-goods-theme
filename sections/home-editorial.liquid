@@ -24,7 +24,19 @@
       </div>
       <div class="hero__media">
         {% if section.settings.hero_video != blank %}
-          {{ section.settings.hero_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, preload: 'metadata', image_size: '1400x' }}
+          {%- liquid
+            assign video_poster = section.settings.hero_video_poster
+            if video_poster == blank
+              assign video_poster = section.settings.hero_image
+            endif
+            if video_poster == blank and section.settings.featured_product != blank
+              assign video_poster = section.settings.featured_product.featured_image
+            endif
+            if video_poster != blank
+              assign video_poster_url = video_poster | image_url: width: 2000
+            endif
+          -%}
+          {{ section.settings.hero_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, preload: 'auto', poster: video_poster_url, image_size: '2000x' }}
         {% elsif section.settings.hero_image != blank %}
           {{ section.settings.hero_image | image_url: width: 1400 | image_tag: widths: '500,750,1000,1400', fetchpriority: 'high', alt: section.settings.hero_image.alt | default: section.settings.heading }}
         {% elsif section.settings.featured_product != blank and section.settings.featured_product.featured_image != blank %}
@@ -49,22 +61,23 @@
 <section class="home-groups">
   <div class="page-width home-groups__inner">
     <div class="home-groups__copy">
-      <span class="eyebrow">Churches · Camps · Groups</span>
+      <span class="eyebrow">Bible Band™ Church Packs</span>
       <h2 class="display-title">Put the Word in every hand.</h2>
-      <p>Equip your church, camp, youth ministry, school, retreat, or outreach with one simple tap to Scripture—and a direct path to prayer guides, giving, bulletins, sermon notes, events, and next steps.</p>
+      <p>Equip your church, camp, youth ministry, school, retreat, or outreach with Bible Bands and a flexible church hub for Scripture, prayer guides, giving, bulletins, sermon notes, events, and next steps.</p>
       <div class="home-groups__actions">
-        <a class="button button--gold" href="{{ section.settings.groups_link | default: '/pages/churches-youth-groups' }}">Explore churches &amp; groups</a>
+        <a class="button button--gold" href="{{ section.settings.groups_link | default: '/pages/bible-band-church-packs' }}">Explore church packs</a>
         <a class="home-groups__text-link" href="{{ section.settings.groups_contact_link | default: '/pages/contact' }}">Ask about group pricing <span aria-hidden="true">→</span></a>
       </div>
     </div>
     <div class="home-groups__callouts" aria-label="Ways groups use the Bible Band">
+      <span class="home-groups__ribbon">Made for ministry</span>
       <div class="home-groups__badge"><strong>21</strong><span>Days of Prayer</span></div>
       <ul>
-        <li><span>01</span>Daily Scripture</li>
-        <li><span>02</span>Offering &amp; Giving</li>
-        <li><span>03</span>Digital Bulletin</li>
-        <li><span>04</span>Camp Devotions</li>
-        <li><span>05</span>Events &amp; Next Steps</li>
+        <li><span>01</span>Church-wide Scripture</li>
+        <li><span>02</span>Custom Church Hub</li>
+        <li><span>03</span>Camps &amp; Student Ministry</li>
+        <li><span>04</span>Events &amp; Next Steps</li>
+        <li><span>05</span>Group Pricing</li>
       </ul>
     </div>
   </div>
@@ -115,6 +128,7 @@
     {"type":"url","id":"groups_contact_link","label":"Group pricing contact link"},
     {"type":"product","id":"featured_product","label":"Bible Band product"},
     {"type":"video","id":"hero_video","label":"Hero video","info":"Recommended for animation. Upload an MP4, MOV, or WebM; it plays muted and loops automatically."},
+    {"type":"image_picker","id":"hero_video_poster","label":"Video thumbnail","info":"Choose a sharp, high-resolution still image for the video while it loads. If blank, the hero image or Bible Band product image is used."},
     {"type":"image_picker","id":"hero_image","label":"Hero image"},
     {"type":"text","id":"products_heading","label":"Products heading","default":"From Our Shop"},
     {"type":"collection","id":"collection","label":"Featured collection"},
@@ -142,6 +156,7 @@
   .home-groups__actions{display:flex;flex-wrap:wrap;align-items:center;gap:22px;margin-top:34px}
   .home-groups__text-link{font-size:11px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase;text-underline-offset:5px}
   .home-groups__callouts{position:relative;padding:36px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:14px 14px 0 var(--gold);transform:rotate(1deg)}
+  .home-groups__ribbon{display:inline-block;margin:-8px 0 25px;padding:8px 11px;background:var(--ink);color:var(--cream);font-size:9px;font-weight:900;letter-spacing:1.7px;text-transform:uppercase}
   .home-groups__badge{display:flex;align-items:center;gap:18px;padding-bottom:26px;border-bottom:2px solid var(--ink)}
   .home-groups__badge strong{color:var(--rust);font-size:68px;letter-spacing:-.06em;line-height:.8}.home-groups__badge span{max-width:130px;font-size:13px;font-weight:950;letter-spacing:1px;line-height:1.1;text-transform:uppercase}
   .home-groups__callouts ul{margin:0;padding:0;list-style:none}.home-groups__callouts li{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:15px 0;border-bottom:1px solid #cfc2b1;font-size:14px;font-weight:900;text-transform:uppercase}.home-groups__callouts li span{color:var(--rust);font-size:10px;letter-spacing:1px}
