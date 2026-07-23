@@ -9,22 +9,22 @@
  */
 {
   "current": {
-    "deep_black": "#0A0908",
-    "cream": "#EAE0D5",
-    "tan": "#C6AC8F",
-    "brown": "#5E503F",
-    "rust": "#C1440E",
-    "gold": "#E3A72B",
-    "heading_font": "assistant_n7",
-    "body_font": "assistant_n4",
-    "body_font_size": 16,
     "blocks": {
       "6478312753674380289": {
-        "type": "shopify://apps/gempages-builder/blocks/embed-gp-script-head/20b379d4-1b20-474c-a6ca-665c331919f3",
         "disabled": false,
-        "settings": {}
+        "settings": {},
+        "type": "shopify://apps/gempages-builder/blocks/embed-gp-script-head/20b379d4-1b20-474c-a6ca-665c331919f3"
       }
-    }
+    },
+    "body_font": "assistant_n4",
+    "body_font_size": 16,
+    "brown": "#5E503F",
+    "cream": "#EAE0D5",
+    "deep_black": "#0A0908",
+    "gold": "#E3A72B",
+    "heading_font": "assistant_n7",
+    "rust": "#C1440E",
+    "tan": "#C6AC8F"
   },
   "presets": {
     "Bible House Editorial": {}

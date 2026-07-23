@@ -58,6 +58,51 @@
   </div>
 </section>
 
+<section class="daily-preview" aria-labelledby="daily-preview-title">
+  <div class="page-width daily-preview__layout">
+    <div class="daily-preview__intro">
+      <span class="eyebrow">{{ section.settings.preview_kicker }}</span>
+      <h2 class="display-title" id="daily-preview-title">{{ section.settings.preview_heading }}</h2>
+      <p>{{ section.settings.preview_intro }}</p>
+      <div class="daily-preview__included" aria-label="{{ section.settings.preview_includes_label | escape }}">
+        <span>{{ section.settings.preview_scripture_label }}</span>
+        <span>{{ section.settings.preview_devotion_label }}</span>
+        <span>{{ section.settings.preview_prayer_label }}</span>
+        <span>{{ section.settings.preview_audio_label }}</span>
+        <span>{{ section.settings.preview_plan_label }}</span>
+      </div>
+    </div>
+
+    <article class="daily-preview__card">
+      <header class="daily-preview__card-head">
+        <div>
+          <span class="daily-preview__sample-label">{{ section.settings.preview_sample_label }}</span>
+          <h3>{{ section.settings.preview_title }}</h3>
+        </div>
+        <span class="daily-preview__sun" aria-hidden="true">✦</span>
+      </header>
+
+      <div class="daily-preview__section daily-preview__scripture">
+        <span class="daily-preview__label">{{ section.settings.preview_scripture_label }}</span>
+        <blockquote>“{{ section.settings.preview_verse }}”</blockquote>
+        <cite>{{ section.settings.preview_reference }}</cite>
+      </div>
+
+      <div class="daily-preview__section">
+        <span class="daily-preview__label">{{ section.settings.preview_devotion_label }}</span>
+        <p>{{ section.settings.preview_devotion }}</p>
+      </div>
+
+      <div class="daily-preview__section daily-preview__prayer">
+        <span class="daily-preview__label">{{ section.settings.preview_prayer_label }}</span>
+        <p>{{ section.settings.preview_prayer }}</p>
+      </div>
+
+      <footer>{{ section.settings.preview_footer }}</footer>
+    </article>
+  </div>
+</section>
+
 <section class="home-groups">
   <div class="page-width home-groups__inner">
     <div class="home-groups__copy">
@@ -130,6 +175,23 @@
     {"type":"video","id":"hero_video","label":"Hero video","info":"Recommended for animation. Upload an MP4, MOV, or WebM; it plays muted and loops automatically."},
     {"type":"image_picker","id":"hero_video_poster","label":"Video thumbnail","info":"Choose a sharp, high-resolution still image for the video while it loads. If blank, the hero image or Bible Band product image is used."},
     {"type":"image_picker","id":"hero_image","label":"Hero image"},
+    {"type":"header","content":"Daily experience preview"},
+    {"type":"text","id":"preview_kicker","label":"Preview kicker","default":"A Glimpse of Today"},
+    {"type":"text","id":"preview_heading","label":"Preview heading","default":"One tap. A moment with God."},
+    {"type":"textarea","id":"preview_intro","label":"Preview introduction","default":"Every day brings fresh Scripture, a pastor-written devotion, and a guided prayer—made to meet you in the middle of real life."},
+    {"type":"text","id":"preview_includes_label","label":"Included items accessibility label","default":"Every daily experience includes"},
+    {"type":"text","id":"preview_sample_label","label":"Sample label","default":"Sample Daily Experience"},
+    {"type":"text","id":"preview_title","label":"Sample title","default":"Be Still in His Presence"},
+    {"type":"text","id":"preview_scripture_label","label":"Scripture label","default":"Scripture"},
+    {"type":"textarea","id":"preview_verse","label":"Sample verse","default":"Be still, and know that I am God."},
+    {"type":"text","id":"preview_reference","label":"Verse reference","default":"Psalm 46:10"},
+    {"type":"text","id":"preview_devotion_label","label":"Devotion label","default":"Devotion"},
+    {"type":"textarea","id":"preview_devotion","label":"Sample devotion","default":"Stillness is not the absence of trouble. It is the choice to remember who God is while trouble is still making noise. Pause today before you rush to fix everything. Let His presence steady your heart, and trust that He is already at work in what you cannot control."},
+    {"type":"text","id":"preview_prayer_label","label":"Prayer label","default":"Prayer"},
+    {"type":"textarea","id":"preview_prayer","label":"Sample prayer","default":"God, quiet the noise within me. Help me release what I cannot control and rest in who You are. Make me attentive to Your presence and faithful in my next step. Amen."},
+    {"type":"text","id":"preview_audio_label","label":"Audio label","default":"Audio"},
+    {"type":"text","id":"preview_plan_label","label":"Reading plan label","default":"Bible Plan"},
+    {"type":"text","id":"preview_footer","label":"Preview footer","default":"A fresh experience is waiting every day with The Bible Band™."},
     {"type":"text","id":"products_heading","label":"Products heading","default":"From Our Shop"},
     {"type":"collection","id":"collection","label":"Featured collection"},
     {"type":"textarea","id":"quote","label":"Quote","default":"Keep God's Word close to your heart and carry it with you daily."},
@@ -148,6 +210,26 @@
 {% endschema %}
 
 {% stylesheet %}
+  .daily-preview{padding:clamp(75px,9vw,130px) 0;background:var(--cream);color:var(--ink);overflow:hidden}
+  .daily-preview__layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(420px,1.15fr);gap:clamp(50px,8vw,120px);align-items:center}
+  .daily-preview__intro .display-title{max-width:720px;margin-bottom:28px;font-size:clamp(50px,6.5vw,96px)}
+  .daily-preview__intro>p{max-width:590px;font-size:clamp(17px,1.5vw,20px);line-height:1.7}
+  .daily-preview__included{display:flex;flex-wrap:wrap;gap:9px;margin-top:32px}
+  .daily-preview__included span{padding:9px 12px;border:1px solid var(--ink);font-size:9px;font-weight:950;letter-spacing:1.2px;text-transform:uppercase}
+  .daily-preview__card{position:relative;padding:clamp(30px,5vw,60px);background:#fffdf8;border:2px solid var(--ink);box-shadow:16px 16px 0 var(--gold);transform:rotate(.7deg)}
+  .daily-preview__card:before{position:absolute;top:-12px;left:50%;width:110px;height:23px;background:rgba(213,197,164,.72);content:"";transform:translateX(-50%) rotate(-2deg)}
+  .daily-preview__card-head{display:flex;justify-content:space-between;gap:24px;padding-bottom:28px;border-bottom:2px solid var(--ink)}
+  .daily-preview__sample-label,.daily-preview__label{display:block;color:var(--rust);font-size:9px;font-weight:950;letter-spacing:1.5px;text-transform:uppercase}
+  .daily-preview__card h3{margin:8px 0 0;font-family:var(--font-heading-family);font-size:clamp(30px,4vw,52px);line-height:1}
+  .daily-preview__sun{color:var(--gold);font-size:34px;line-height:1}
+  .daily-preview__section{padding:25px 0;border-bottom:1px solid #cfc2b1}
+  .daily-preview__section p{margin:11px 0 0;font-size:15px;line-height:1.7}
+  .daily-preview__scripture blockquote{margin:12px 0 5px;font-family:var(--font-heading-family);font-size:clamp(25px,3vw,37px);font-style:italic;line-height:1.15}
+  .daily-preview__scripture cite{font-size:10px;font-style:normal;font-weight:950;letter-spacing:1px;text-transform:uppercase}
+  .daily-preview__prayer p{font-style:italic}
+  .daily-preview__card footer{padding-top:25px;font-size:10px;font-weight:900;letter-spacing:1.1px;line-height:1.5;text-transform:uppercase}
+  @media(max-width:900px){.daily-preview__layout{grid-template-columns:1fr}.daily-preview__card{max-width:680px;margin-right:16px}}
+  @media(max-width:640px){.daily-preview__card{padding:28px 24px;box-shadow:10px 10px 0 var(--gold)}.daily-preview__card-head{gap:12px}.daily-preview__sun{font-size:26px}}
   .home-groups{padding:clamp(75px,9vw,125px) 0;background:var(--rust);color:var(--cream);overflow:hidden}
   .home-groups__inner{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(330px,.85fr);gap:clamp(50px,8vw,120px);align-items:center}
   .home-groups .eyebrow{color:var(--gold)}
