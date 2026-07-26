@@ -1,0 +1,18 @@
+{% doc %}
+Renders the Judge.me star rating badge for a product.
+
+@param {product} product - The product whose rating is displayed.
+
+@example
+{% render 'judgeme-star-rating', product: product %}
+{% enddoc %}
+
+{% if product != blank %}
+  <div
+    class="jdgm-widget jdgm-preview-badge"
+    data-id="{{ product.id }}"
+    data-auto-install="false"
+  >
+    {{ product.metafields.judgeme.badge }}
+  </div>
+{% endif %}

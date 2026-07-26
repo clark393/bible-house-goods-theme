@@ -24,17 +24,17 @@
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <style>
       :root {
-        --ink: {{ settings.deep_black }};
+        --ink: #000000;
         --cream: {{ settings.cream }};
         --tan: {{ settings.tan }};
         --brown: {{ settings.brown }};
         --rust: {{ settings.rust }};
         --gold: {{ settings.gold }};
-        --font-heading: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
-        --font-heading-style: {{ settings.heading_font.style }};
+        --font-heading: Arial, Helvetica, sans-serif;
+        --font-heading-style: normal;
         --font-heading-weight: {{ settings.heading_font.weight }};
-        --font-body: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
-        --font-body-style: {{ settings.body_font.style }};
+        --font-body: Arial, Helvetica, sans-serif;
+        --font-body-style: normal;
         --font-body-weight: {{ settings.body_font.weight }};
         --font-body-size: {{ settings.body_font_size }}px;
       }

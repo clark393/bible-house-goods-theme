@@ -60,6 +60,12 @@
     },
     "pagination": {
       "page": "Page {{ number }}"
+    },
+    "footer": {
+      "ai_disclosure_title": "AI Created. Pastor Reviewed.",
+      "ai_disclosure_creation": "Artificial intelligence primarily drives the initial content creation and design process for many Bible House Goods resources. We believe in being honest and transparent about that.",
+      "ai_disclosure_review": "Before publication, every resource is reviewed, edited, and approved by a real person for biblical accuracy, sound doctrine, practical usefulness, and clarity.",
+      "ai_disclosure_standard": "AI helps us create. Pastoral review provides accountability. God’s Word remains the standard."
     }
   },
   "products": {
