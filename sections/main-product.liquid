@@ -1,3 +1,17 @@
+{% liquid
+  assign is_bible_band = false
+  if product.handle == 'the-bible-band'
+    assign is_bible_band = true
+  endif
+  assign product_form_id = 'ProductForm-' | append: section.id
+  assign demo_media = blank
+  for media in product.media
+    if media.media_type == 'video' or media.media_type == 'external_video'
+      assign demo_media = media
+      break
+    endif
+  endfor
+%}
 <section class="product-page page-width">
   <div class="product-layout">
     <div class="product-gallery-wrap" data-product-gallery>
@@ -16,10 +30,18 @@
       {% if product.vendor != blank %}<span class="eyebrow">{{ product.vendor }}</span>{% endif %}
       <h1>{% render 'trademark-title', title: product.title %}</h1>
       <p class="product-price" data-product-price>{{ product.selected_or_first_available_variant.price | money }}</p>
-      {% form 'product', product, class: 'product-form' %}
+      {% if is_bible_band %}
+        <div class="product-proof" aria-label="Product testimonial">
+          <span class="product-proof__stars" aria-hidden="true">★★★★★</span>
+          <blockquote>“{{ section.settings.testimonial_quote }}”</blockquote>
+          <cite>— {{ section.settings.testimonial_cite }}</cite>
+        </div>
+      {% endif %}
+      {% form 'product', product, id: product_form_id, class: 'product-form', data-product-form: '' %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-        {% unless product.has_only_default_variant %}<div><label class="field-label" for="Variant-{{ section.id }}">Choose an option</label><select id="Variant-{{ section.id }}" data-variant-select>{% for variant in product.variants %}{% assign is_preorder = false %}{% if variant.option2 == 'Cobalt Blue / Grey Aztec' or variant.option2 == 'Space Grey / Sport Grey' or variant.option2 == 'Pink Bubblegum / Bubblegum Check' or variant.option2 == 'Maroon / Maroon Aztec' %}{% assign is_preorder = true %}{% endif %}<option value="{{ variant.id }}" data-available="{{ variant.available }}" data-preorder="{{ is_preorder }}" data-media-id="{{ variant.featured_media.id }}" data-price="{{ variant.price | money }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}>{{ variant.title }}{% if is_preorder %} — Preorder{% elsif variant.available == false %} — Sold out{% endif %}</option>{% endfor %}</select></div>{% endunless %}
-        {% if section.settings.enable_share_offer %}
+        <input type="hidden" name="properties[Gift packaging]" value="Included free" disabled data-gift-packaging-property>
+        {% unless product.has_only_default_variant %}<div><label class="field-label" for="Variant-{{ section.id }}">Choose an option</label><select id="Variant-{{ section.id }}" data-variant-select data-product-title="{{ product.title | escape }}">{% for variant in product.variants %}{% assign is_preorder = false %}{% if variant.option2 == 'Cobalt Blue / Grey Aztec' or variant.option2 == 'Space Grey / Sport Grey' or variant.option2 == 'Pink Bubblegum / Bubblegum Check' or variant.option2 == 'Maroon / Maroon Aztec' %}{% assign is_preorder = true %}{% endif %}<option value="{{ variant.id }}" data-available="{{ variant.available }}" data-preorder="{{ is_preorder }}" data-media-id="{{ variant.featured_media.id }}" data-price="{{ variant.price | money }}" data-variant-title="{{ variant.title | escape }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}>{{ variant.title }}{% if is_preorder %} — Preorder{% elsif variant.available == false %} — Sold out{% endif %}</option>{% endfor %}</select></div>{% endunless %}
+        {% if section.settings.enable_share_offer and is_bible_band %}
           <fieldset class="share-offer" data-share-offer>
             <legend class="field-label">{{ 'products.share_offer.legend' | t }}</legend>
             <label class="share-offer__choice">
@@ -43,15 +65,53 @@
         {% if product.selected_or_first_available_variant.option2 == 'Cobalt Blue / Grey Aztec' or product.selected_or_first_available_variant.option2 == 'Space Grey / Sport Grey' or product.selected_or_first_available_variant.option2 == 'Pink Bubblegum / Bubblegum Check' or product.selected_or_first_available_variant.option2 == 'Maroon / Maroon Aztec' %}
           {% assign selected_is_preorder = true %}
         {% endif %}
-        <button class="button" type="submit"{% unless product.selected_or_first_available_variant.available %} disabled{% endunless %}>{% if selected_is_preorder %}Preorder{% elsif product.selected_or_first_available_variant.available %}Add to cart{% else %}Sold out{% endif %}</button>
+        <button class="button" type="submit" data-primary-product-submit data-product-title="{{ product.title | escape }}"{% unless product.selected_or_first_available_variant.available %} disabled{% endunless %}>{% if selected_is_preorder %}Preorder{% elsif product.selected_or_first_available_variant.available %}Add to cart{% else %}Sold out{% endif %}</button>
+        {% if is_bible_band %}
+          <ul class="purchase-reassurance" aria-label="Purchase reassurance">
+            <li><strong>Free shipping</strong><span>on Bible Band orders</span></li>
+            <li><strong>No app</strong><span>tap and open</span></li>
+            <li><strong>No subscription</strong><span>ever</span></li>
+            <li><strong>Compatible</strong><span>iPhone &amp; Android</span></li>
+            <li><strong>Delivery</strong><span>typically 3–7 business days</span></li>
+            <li><strong>Easy returns</strong><span>{% if shop.refund_policy != blank %}<a href="{{ shop.refund_policy.url }}">View return policy</a>{% else %}Contact us for help{% endif %}</span></li>
+          </ul>
+        {% endif %}
         {{ form | payment_button }}
       {% endform %}
+      {% if is_bible_band and section.settings.show_demo_video %}
+        <aside class="tap-demo" aria-labelledby="TapDemoTitle-{{ section.id }}">
+          <div class="tap-demo__heading">
+            <span class="eyebrow">See it in seconds</span>
+            <h2 id="TapDemoTitle-{{ section.id }}">Tap. Open. Begin.</h2>
+            <p>Watch the Bible Band open today’s Scripture and prayer with one quick tap.</p>
+          </div>
+          <div class="tap-demo__media" data-tap-demo data-demo-duration="5">
+            {% if section.settings.demo_video != blank %}
+              {{ section.settings.demo_video | video_tag: autoplay: true, loop: true, muted: true, controls: true, playsinline: true, preload: 'metadata', image_size: '900x' }}
+            {% elsif demo_media != blank %}
+              {{ demo_media | media_tag: autoplay: true, loop: true, muted: true, controls: true }}
+            {% else %}
+              <div class="tap-demo__placeholder"><span>Tap</span><strong>Today’s Scripture</strong><small>No app needed</small></div>
+            {% endif %}
+          </div>
+        </aside>
+      {% endif %}
       {% if section.settings.enable_social_share %}{% render 'product-share', product: product, share_url: canonical_url %}{% endif %}
       <div class="rte">{{ product.description }}</div>
       <div class="product-meta"><details><summary>Shipping &amp; delivery</summary><div class="rte"><p>Shipping and delivery options are shown at checkout. Digital products are delivered according to their product description.</p></div></details><details><summary>Questions?</summary><div class="rte"><p>Visit our FAQ or contact Bible House Goods and we'll be glad to help.</p></div></details></div>
     </div>
   </div>
 </section>
+
+<div class="mobile-purchase-bar" data-mobile-purchase-bar>
+  <div>
+    <strong>{% if is_bible_band %}The Bible Band™{% else %}{{ product.title }}{% endif %}</strong>
+    <span data-sticky-price>{{ product.selected_or_first_available_variant.price | money }}</span>
+  </div>
+  <button class="button button--gold" type="button" data-sticky-add aria-controls="{{ product_form_id }}"{% unless product.selected_or_first_available_variant.available %} disabled{% endunless %}>
+    {% if selected_is_preorder %}Preorder{% elsif product.selected_or_first_available_variant.available %}{% if is_bible_band %}Get Your Bible Band{% else %}Add to Cart{% endif %}{% else %}Sold out{% endif %}
+  </button>
+</div>
 
 {% if product.handle == 'the-bible-band' and section.settings.show_bible_band_sections %}
   <section class="dark-section">
@@ -92,11 +152,16 @@
   "name": "Product information",
   "settings": [
     { "type": "checkbox", "id": "show_bible_band_sections", "label": "Show Bible Band discipleship sections", "default": true },
+    { "type": "header", "content": "Proof and tap demonstration" },
+    { "type": "textarea", "id": "testimonial_quote", "label": "Testimonial", "default": "I created The Bible Band to help families keep God’s Word close in the middle of everyday life." },
+    { "type": "text", "id": "testimonial_cite", "label": "Testimonial attribution", "default": "Clark Whitney, founder & pastor" },
+    { "type": "checkbox", "id": "show_demo_video", "label": "Show tap demonstration", "default": true },
+    { "type": "video", "id": "demo_video", "label": "3–5 second tap demonstration", "info": "Upload a short, muted clip showing a phone tapping the band and opening the daily experience." },
     { "type": "header", "content": "Give one, share one" },
     { "type": "checkbox", "id": "enable_share_offer", "label": "Enable offer", "default": true },
     { "type": "text", "id": "share_heading", "label": "Heading", "default": "Give one, share one" },
-    { "type": "textarea", "id": "share_copy", "label": "Description", "default": "Get two bands—one to wear and one to give to someone who needs encouragement." },
-    { "type": "text", "id": "share_badge", "label": "Badge", "default": "Most meaningful" },
+    { "type": "textarea", "id": "share_copy", "label": "Description", "default": "Get two bands—one to wear and one to give—with gift-ready packaging for the one you share, included free." },
+    { "type": "text", "id": "share_badge", "label": "Badge", "default": "Free gift packaging" },
     { "type": "header", "content": "Social sharing" },
     { "type": "checkbox", "id": "enable_social_share", "label": "Show social share buttons", "default": true }
   ]

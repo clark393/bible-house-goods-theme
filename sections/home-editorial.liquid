@@ -6,7 +6,11 @@
         <h1 class="display-title">{{ section.settings.heading }}</h1>
         <div class="hero__copy">
           <p>{{ section.settings.copy }}</p>
-          <a class="button" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label }}</a>
+          <a class="button" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" data-analytics-event="hero_cta_click" data-analytics-label="{{ section.settings.button_label | escape }}">{{ section.settings.button_label }}</a>
+          <div class="hero__proof" aria-label="Product testimonial">
+            <span aria-hidden="true">★★★★★</span>
+            <p>“{{ section.settings.hero_testimonial }}” <strong>— {{ section.settings.hero_testimonial_cite }}</strong></p>
+          </div>
         </div>
         <div class="hero__features">
           {% assign feature_index = 0 %}
@@ -59,7 +63,7 @@
           {% assign band_color_key = '|' | append: band_color | append: '|' %}
           {% unless seen_band_colors contains band_color_key %}
             {% assign seen_band_colors = seen_band_colors | append: band_color | append: '|' %}
-            <a class="band-shop__card" href="{{ section.settings.featured_product.url }}?variant={{ variant.id }}">
+            <a class="band-shop__card" href="{{ section.settings.featured_product.url }}?variant={{ variant.id }}" data-analytics-event="product_option_selected" data-product-title="{{ section.settings.featured_product.title | escape }}" data-variant-title="{{ band_color | escape }}">
               <div class="band-shop__image">
                 {% if variant.featured_image != blank %}
                   {{ variant.featured_image | image_url: width: 900 | image_tag: widths: '300,500,700,900', loading: 'lazy', alt: band_color }}
@@ -78,6 +82,29 @@
     </div>
   </section>
 {% endif %}
+
+<section class="products-section products-section--priority">
+  <div class="page-width">
+    <div class="section-head"><h2 class="section-title">{{ section.settings.products_heading }}</h2><a href="{{ section.settings.collection.url | default: routes.all_products_collection_url }}">View all →</a></div>
+    <div class="product-grid">
+      {% assign source_collection = section.settings.collection | default: collections.all %}
+      {% assign displayed_products = 0 %}
+      {% if section.settings.featured_product != blank %}
+        {% render 'product-card', product: section.settings.featured_product %}
+        {% assign displayed_products = 1 %}
+      {% endif %}
+      {% for product in source_collection.products %}
+        {% if section.settings.featured_product == blank or product.id != section.settings.featured_product.id %}
+          {% render 'product-card', product: product %}
+          {% assign displayed_products = displayed_products | plus: 1 %}
+        {% endif %}
+        {% if displayed_products >= 4 %}{% break %}{% endif %}
+      {% else %}
+        {% if section.settings.featured_product == blank %}<p>Your products will appear here automatically.</p>{% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
 <section class="dark-section">
   <div class="page-width">
@@ -135,6 +162,64 @@
   </div>
 </section>
 
+<section class="guide-capture" aria-labelledby="GuideCaptureTitle-{{ section.id }}">
+  <div class="page-width guide-capture__inner">
+    <div>
+      <span class="eyebrow">A free gift for your week</span>
+      <h2 class="section-title" id="GuideCaptureTitle-{{ section.id }}">{{ section.settings.guide_heading }}</h2>
+      <p>{{ section.settings.guide_copy }}</p>
+    </div>
+    {% form 'customer', class: 'guide-capture__form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter,7-day-scripture-prayer-guide">
+      <label class="visually-hidden" for="GuideEmail-{{ section.id }}">Email address</label>
+      <input id="GuideEmail-{{ section.id }}" type="email" name="contact[email]" autocomplete="email" placeholder="Your email address" required>
+      <button class="button button--gold" type="submit" data-analytics-event="email_guide_signup">Unlock my free guide</button>
+      {% if form.posted_successfully? %}
+        <div class="guide-capture__delivery">
+          <p class="form-success"><strong>Your guide is ready.</strong> Save this page and begin with Day 1.</p>
+          <ol>
+            <li><strong>Day 1 · Be still</strong><span>Read Psalm 46:10. Ask God to quiet the noise and make you aware of His presence.</span></li>
+            <li><strong>Day 2 · Ask for wisdom</strong><span>Read James 1:5. Name one decision and ask God for wisdom without fear.</span></li>
+            <li><strong>Day 3 · Release your worry</strong><span>Read Philippians 4:6–7. Turn each anxious thought into a specific prayer.</span></li>
+            <li><strong>Day 4 · Receive new strength</strong><span>Read Isaiah 40:31. Ask for strength for the next faithful step—not the whole journey.</span></li>
+            <li><strong>Day 5 · Rest in grace</strong><span>Read 2 Corinthians 12:9. Bring God one weakness you have been trying to hide.</span></li>
+            <li><strong>Day 6 · Practice love</strong><span>Read John 13:34–35. Pray for one person you can encourage in a practical way today.</span></li>
+            <li><strong>Day 7 · Walk it out</strong><span>Read Micah 6:8. Ask God to help you act justly, love mercy, and walk humbly this week.</span></li>
+          </ol>
+        </div>
+      {% endif %}
+      {{ form.errors | default_errors }}
+    {% endform %}
+  </div>
+</section>
+
+<section class="collections-section">
+  <div class="page-width">
+    <span class="eyebrow">Beyond The Bible Band™</span><h2 class="section-title">More Ways To Engage Your Faith</h2>
+    <div class="collection-cards">
+      {% assign collection_index = 0 %}
+      {% for block in section.blocks %}
+        {% if block.type == 'collection' %}
+          {% assign collection_index = collection_index | plus: 1 %}
+          {% case collection_index %}
+            {% when 1 %}{% assign collection_fallback = '/collections/devotionals' %}
+            {% when 2 %}{% assign collection_fallback = '/collections/printables' %}
+            {% else %}{% assign collection_fallback = '/collections/faith-apparel' %}
+          {% endcase %}
+          <a class="collection-card" href="{{ block.settings.collection.url | default: collection_fallback }}" {{ block.shopify_attributes }}><h3>{{ block.settings.heading | default: block.settings.collection.title }}</h3><p>{{ block.settings.copy }}</p><span>Explore →</span></a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="quote-section"><div class="page-width"><blockquote>“{{ section.settings.quote }}”<cite>{{ section.settings.quote_cite }}</cite></blockquote></div></section>
+
+<section class="founder"><div class="page-width founder__grid">
+  <div class="founder__photo">{% if section.settings.founder_image != blank %}{{ section.settings.founder_image | image_url: width: 1200 | image_tag: widths: '500,800,1200', loading: 'lazy', alt: section.settings.founder_image.alt | default: 'Bible House Goods founder' }}{% else %}<img src="{{ 'founders.jpeg' | asset_url }}" alt="Clark Whitney and his wife" width="1200" height="900" loading="lazy">{% endif %}</div>
+  <div class="founder__copy"><span class="eyebrow">Our Story</span><h2 class="section-title">{{ section.settings.founder_heading }}</h2><p>{{ section.settings.founder_copy }}</p><a class="button" href="{{ section.settings.founder_link }}">Read Our Story</a></div>
+</div></section>
+
 <section class="home-groups">
   <div class="page-width home-groups__inner">
     <div class="home-groups__copy">
@@ -160,37 +245,7 @@
   </div>
 </section>
 
-<section class="products-section">
-  <div class="page-width">
-    <div class="section-head"><h2 class="section-title">{{ section.settings.products_heading }}</h2><a href="{{ section.settings.collection.url | default: routes.all_products_collection_url }}">View all →</a></div>
-    <div class="product-grid">
-      {% assign source_collection = section.settings.collection | default: collections.all %}
-      {% for product in source_collection.products limit: 4 %}{% render 'product-card', product: product %}{% else %}<p>Your products will appear here automatically.</p>{% endfor %}
-    </div>
-  </div>
-</section>
-
-<section class="collections-section">
-  <div class="page-width">
-    <span class="eyebrow">Beyond The Bible Band™</span><h2 class="section-title">More Ways To Engage Your Faith</h2>
-    <div class="collection-cards">
-      {% for block in section.blocks %}
-        {% if block.type == 'collection' %}
-          <a class="collection-card" href="{{ block.settings.collection.url | default: routes.collections_url }}" {{ block.shopify_attributes }}><h3>{{ block.settings.heading | default: block.settings.collection.title }}</h3><p>{{ block.settings.copy }}</p><span>Explore →</span></a>
-        {% endif %}
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<section class="quote-section"><div class="page-width"><blockquote>“{{ section.settings.quote }}”<cite>{{ section.settings.quote_cite }}</cite></blockquote></div></section>
-
-<section class="founder"><div class="page-width founder__grid">
-  <div class="founder__photo">{% if section.settings.founder_image != blank %}{{ section.settings.founder_image | image_url: width: 1200 | image_tag: widths: '500,800,1200', loading: 'lazy', alt: section.settings.founder_image.alt | default: 'Bible House Goods founder' }}{% else %}<img src="{{ 'founders.jpeg' | asset_url }}" alt="Clark Whitney and his wife" width="1200" height="900" loading="lazy">{% endif %}</div>
-  <div class="founder__copy"><span class="eyebrow">Our Story</span><h2 class="section-title">{{ section.settings.founder_heading }}</h2><p>{{ section.settings.founder_copy }}</p><a class="button" href="{{ section.settings.founder_link }}">Read Our Story</a></div>
-</div></section>
-
-<section class="final-cta"><div class="page-width"><h2 class="display-title">Every Day.<br>One Tap.</h2><p>Start your wearable discipleship journey with The Bible Band™.</p><div class="button-row"><a class="button button--gold" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">Get The Bible Band™</a><a class="button button--outline" href="{{ routes.all_products_collection_url }}">Shop All</a></div></div></section>
+<section class="final-cta"><div class="page-width"><h2 class="display-title">Every Day.<br>One Tap.</h2><p>Start your wearable discipleship journey with The Bible Band™.</p><div class="button-row"><a class="button button--gold" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" data-analytics-event="hero_cta_click" data-analytics-label="Final homepage CTA">Get The Bible Band™</a><a class="button button--outline" href="{{ routes.all_products_collection_url }}">Shop All</a></div></div></section>
 
 {% schema %}
 {
@@ -201,6 +256,8 @@
     {"type":"textarea","id":"copy","label":"Intro","default":"Daily Scripture, prayer, and devotion on your wrist. One simple tap — no app, no subscription."},
     {"type":"text","id":"button_label","label":"Button label","default":"Get Your Bible Band™"},
     {"type":"url","id":"button_link","label":"Button link"},
+    {"type":"textarea","id":"hero_testimonial","label":"Testimonial","default":"I created The Bible Band to help families keep God’s Word close in the middle of everyday life."},
+    {"type":"text","id":"hero_testimonial_cite","label":"Testimonial attribution","default":"Clark Whitney, founder & pastor"},
     {"type":"url","id":"groups_link","label":"Churches and groups page"},
     {"type":"url","id":"groups_contact_link","label":"Group pricing contact link"},
     {"type":"product","id":"featured_product","label":"Bible Band product"},
@@ -226,6 +283,9 @@
     {"type":"text","id":"preview_footer","label":"Preview footer","default":"A fresh experience is waiting every day with The Bible Band™."},
     {"type":"text","id":"products_heading","label":"Products heading","default":"From Our Shop"},
     {"type":"collection","id":"collection","label":"Featured collection"},
+    {"type":"header","content":"Free guide email signup"},
+    {"type":"text","id":"guide_heading","label":"Heading","default":"Get the free 7-day Scripture & prayer guide"},
+    {"type":"textarea","id":"guide_copy","label":"Description","default":"Join the list to unlock seven short daily readings and guided prayers that help you begin a steady rhythm with God."},
     {"type":"textarea","id":"quote","label":"Quote","default":"Keep God's Word close to your heart and carry it with you daily."},
     {"type":"text","id":"quote_cite","label":"Citation","default":"Deuteronomy 11:18"},
     {"type":"image_picker","id":"founder_image","label":"Founder image"},
