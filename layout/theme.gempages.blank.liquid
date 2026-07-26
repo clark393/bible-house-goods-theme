@@ -8,8 +8,7 @@
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
-    <title>{{ page_title }}{% if current_tags %} – {{ current_tags | join: ', ' }}{% endif %}{% if current_page != 1 %} – Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} – {{ shop.name }}{% endunless %}</title>
-    {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+    {% render 'seo-meta' %}
     {{ content_for_header }}
     {%- liquid
       assign heading_font_bold = settings.heading_font | font_modify: 'weight', 'bolder'
