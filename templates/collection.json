@@ -9,126 +9,14 @@
  */
 {
   "sections": {
-    "1784995943f1a42bfe": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_74fbc22_Vm8VEf": {
-          "type": "ai_gen_block_74fbc22",
-          "settings": {
-            "heading": "FEATURED APPAREL",
-            "description": "",
-            "product_1": "jesus-is-king-hoodie-religious-christian-typography-pullover",
-            "product_2": "the-heavens-are-roaring-lion-graphic-t-shirt-faith-christian-scripture-design",
-            "product_3": "riding-for-jesus-tee-cowboy-silhouette-sunset-graphic-tee",
-            "product_4": "christian-t-shirt-john-14-6-the-way-truth-life-tee-comfort-colors-scripture-graphic-tee",
-            "product_5": "rooted-in-christ-t-shirt-floral-rose-christian-faith-tee",
-            "product_6": "death-lost-jesus-won-t-shirt-christian-faith-crosses-back-graphic",
-            "product_7": "he-called-me-to-fish-christian-t-shirt-faith",
-            "product_8": "god-made-a-way-last-time-he-will-do-it-again-t-shirt-1",
-            "products_per_row": 4,
-            "products_per_row_tablet": "3",
-            "products_per_row_mobile": "2",
-            "grid_gap": 20,
-            "text_alignment": "center",
-            "desktop_width_percent": 100,
-            "section_padding": 40,
-            "background_color": "#EAE0D5",
-            "heading_color": "#0A0908",
-            "text_color": "#5E503F",
-            "image_background": "#FFFFFF",
-            "heading_font": "assistant_n7",
-            "heading_size": 36,
-            "description_size": 16,
-            "product_title_size": 16,
-            "price_size": 14,
-            "image_border_radius": 8
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_74fbc22_Vm8VEf"
-      ],
-      "settings": {}
-    },
     "main": {
       "type": "main-collection",
       "settings": {
         "products_per_page": 28
       }
-    },
-    "home_editorial_LYVmK3": {
-      "type": "home-editorial",
-      "blocks": {
-        "collection_i7zitP": {
-          "type": "collection",
-          "settings": {
-            "collection": "",
-            "heading": "Devotionals & Prayer",
-            "copy": "Bible studies, prayer journals, and workbooks for deeper engagement with God's Word."
-          }
-        },
-        "collection_YPLyw9": {
-          "type": "collection",
-          "settings": {
-            "collection": "",
-            "heading": "Printables & Resources",
-            "copy": "Downloadable guides for Bible study, family discipleship, and church leadership."
-          }
-        },
-        "collection_GmrfRJ": {
-          "type": "collection",
-          "settings": {
-            "collection": "",
-            "heading": "Faith Apparel",
-            "copy": "Christian apparel designed to spark conversations about Christ."
-          }
-        }
-      },
-      "block_order": [
-        "collection_i7zitP",
-        "collection_YPLyw9",
-        "collection_GmrfRJ"
-      ],
-      "name": "Editorial homepage",
-      "settings": {
-        "kicker": "",
-        "heading": "See All Apparel",
-        "copy": "Browse our complete collection of faith-inspired apparel designed to strengthen your faith journey.",
-        "button_label": "See All Apparel",
-        "button_link": "shopify://collections/faith-apparel",
-        "groups_link": "",
-        "groups_contact_link": "",
-        "featured_product": "",
-        "preview_kicker": "A Glimpse of Today",
-        "preview_heading": "One tap. A moment with God.",
-        "preview_intro": "Every day brings fresh Scripture, a pastor-written devotion, and a guided prayer—made to meet you in the middle of real life.",
-        "preview_includes_label": "Every daily experience includes",
-        "preview_sample_label": "Sample Daily Experience",
-        "preview_title": "Be Still in His Presence",
-        "preview_scripture_label": "Scripture",
-        "preview_verse": "Be still, and know that I am God.",
-        "preview_reference": "Psalm 46:10",
-        "preview_devotion_label": "Devotion",
-        "preview_devotion": "Stillness is not the absence of trouble. It is the choice to remember who God is while trouble is still making noise. Pause today before you rush to fix everything. Let His presence steady your heart, and trust that He is already at work in what you cannot control.",
-        "preview_prayer_label": "Prayer",
-        "preview_prayer": "God, quiet the noise within me. Help me release what I cannot control and rest in who You are. Make me attentive to Your presence and faithful in my next step. Amen.",
-        "preview_audio_label": "Audio",
-        "preview_plan_label": "Bible Plan",
-        "preview_footer": "A fresh experience is waiting every day with The Bible Band™.",
-        "products_heading": "From Our Shop",
-        "collection": "",
-        "quote": "Keep God's Word close to your heart and carry it with you daily.",
-        "quote_cite": "Deuteronomy 11:18",
-        "founder_heading": "Started By A Pastor, Not A Company",
-        "founder_copy": "Bible House Goods was started by Clark Whitney — pastor, husband, and dad — to help families keep God's Word close in the middle of everyday life. Every product is built the same way: faithful, useful, and simple.",
-        "founder_link": ""
-      }
     }
   },
   "order": [
-    "1784995943f1a42bfe",
-    "main",
-    "home_editorial_LYVmK3"
+    "main"
   ]
 }
