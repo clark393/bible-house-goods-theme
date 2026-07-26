@@ -106,6 +106,64 @@
   </div>
 </section>
 
+{% assign social_proof_count = 0 %}
+{% for block in section.blocks %}
+  {% if block.type == 'social_post' or block.type == 'review' %}
+    {% assign social_proof_count = social_proof_count | plus: 1 %}
+  {% endif %}
+{% endfor %}
+{% if social_proof_count > 0 %}
+  <section class="community-proof" aria-labelledby="CommunityProofTitle-{{ section.id }}">
+    <div class="page-width">
+      <div class="community-proof__head">
+        <div>
+          <span class="eyebrow">{{ section.settings.social_kicker }}</span>
+          <h2 class="section-title" id="CommunityProofTitle-{{ section.id }}">{{ section.settings.social_heading }}</h2>
+          <p>{{ section.settings.social_copy }}</p>
+        </div>
+        <div class="community-proof__actions">
+          {% if settings.social_tiktok_url != blank %}<a href="{{ settings.social_tiktok_url }}" target="_blank" rel="noopener">Follow on TikTok ↗</a>{% endif %}
+          {% if settings.social_etsy_url != blank %}<a href="{{ settings.social_etsy_url }}" target="_blank" rel="noopener">Read Etsy reviews ↗</a>{% endif %}
+        </div>
+      </div>
+      <div class="community-proof__rail">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'social_post' %}
+              <article class="social-post" {{ block.shopify_attributes }}>
+                <div class="social-post__media">
+                  {% if block.settings.video != blank %}
+                    {{ block.settings.video | video_tag: autoplay: false, loop: true, muted: true, controls: true, playsinline: true, preload: 'metadata', image_size: '900x' }}
+                  {% elsif block.settings.image != blank %}
+                    {{ block.settings.image | image_url: width: 900 | image_tag: widths: '360,540,720,900', loading: 'lazy', alt: block.settings.image.alt | default: block.settings.caption }}
+                  {% else %}
+                    <div class="social-post__placeholder"><span>Play</span><strong>{{ block.settings.platform }}</strong></div>
+                  {% endif %}
+                  <span class="social-post__platform">{{ block.settings.platform }}</span>
+                </div>
+                <p>{{ block.settings.caption }}</p>
+                {% assign social_post_link = block.settings.link | default: settings.social_tiktok_url %}
+                {% if social_post_link != blank %}<a class="social-post__link" href="{{ social_post_link }}" target="_blank" rel="noopener">Watch the post ↗</a>{% endif %}
+              </article>
+            {% when 'review' %}
+              <article class="review-card" {{ block.shopify_attributes }}>
+                <div class="review-card__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
+                  {% for star in (1..5) %}<span aria-hidden="true">{% if star <= block.settings.rating %}★{% else %}☆{% endif %}</span>{% endfor %}
+                </div>
+                <blockquote>“{{ block.settings.quote }}”</blockquote>
+                <footer>
+                  <strong>{{ block.settings.author }}</strong>
+                  <span>{{ block.settings.source }}</span>
+                  {% if block.settings.link != blank %}<a href="{{ block.settings.link }}" target="_blank" rel="noopener" aria-label="View review by {{ block.settings.author | escape }}">View review ↗</a>{% endif %}
+                </footer>
+              </article>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
 <section class="dark-section">
   <div class="page-width">
     <span class="eyebrow">How it works</span><h2 class="section-title">Simple Daily Discipleship</h2>
@@ -283,6 +341,10 @@
     {"type":"text","id":"preview_footer","label":"Preview footer","default":"A fresh experience is waiting every day with The Bible Band™."},
     {"type":"text","id":"products_heading","label":"Products heading","default":"From Our Shop"},
     {"type":"collection","id":"collection","label":"Featured collection"},
+    {"type":"header","content":"Social proof"},
+    {"type":"text","id":"social_kicker","label":"Social proof kicker","default":"From the community"},
+    {"type":"text","id":"social_heading","label":"Social proof heading","default":"Faith in real life"},
+    {"type":"textarea","id":"social_copy","label":"Social proof introduction","default":"See how people are using Bible House Goods, then hear what customers have to say."},
     {"type":"header","content":"Free guide email signup"},
     {"type":"text","id":"guide_heading","label":"Heading","default":"Get the free 7-day Scripture & prayer guide"},
     {"type":"textarea","id":"guide_copy","label":"Description","default":"Join the list to unlock seven short daily readings and guided prayers that help you begin a steady rhythm with God."},
@@ -295,7 +357,9 @@
   ],
   "blocks":[
     {"type":"feature","name":"Feature","limit":3,"settings":[{"type":"text","id":"heading","label":"Heading"},{"type":"textarea","id":"copy","label":"Copy"}]},
-    {"type":"collection","name":"Collection card","limit":3,"settings":[{"type":"collection","id":"collection","label":"Collection"},{"type":"text","id":"heading","label":"Custom heading"},{"type":"textarea","id":"copy","label":"Copy"}]}
+    {"type":"collection","name":"Collection card","limit":3,"settings":[{"type":"collection","id":"collection","label":"Collection"},{"type":"text","id":"heading","label":"Custom heading"},{"type":"textarea","id":"copy","label":"Copy"}]},
+    {"type":"social_post","name":"Social post","limit":4,"settings":[{"type":"text","id":"platform","label":"Platform","default":"TikTok"},{"type":"video","id":"video","label":"Video"},{"type":"image_picker","id":"image","label":"Cover image","info":"Used when no Shopify-hosted video is selected."},{"type":"textarea","id":"caption","label":"Caption","default":"See Bible House Goods in action."},{"type":"url","id":"link","label":"Post link"}]},
+    {"type":"review","name":"Customer review","limit":6,"settings":[{"type":"range","id":"rating","label":"Rating","min":1,"max":5,"step":1,"default":5},{"type":"textarea","id":"quote","label":"Review","default":"Add a customer review here."},{"type":"text","id":"author","label":"Customer name","default":"Verified customer"},{"type":"text","id":"source","label":"Source","default":"Etsy review"},{"type":"url","id":"link","label":"Review link"}]}
   ],
   "presets":[{"name":"Editorial homepage","blocks":[{"type":"feature","settings":{"heading":"Pastor-Written","copy":"Real biblical insight. No AI. Practical encouragement for daily faith, written by a real pastor."}},{"type":"feature","settings":{"heading":"No App Needed","copy":"Just tap your phone. Scripture, prayer, devotion, audio, and a one-year Bible reading plan — all in one tap."}},{"type":"feature","settings":{"heading":"Works Everywhere","copy":"iPhone and Android compatible. A QR code backup ships in every package, just in case."}},{"type":"collection","settings":{"heading":"Devotionals & Prayer","copy":"Bible studies, prayer journals, and workbooks for deeper engagement with God's Word."}},{"type":"collection","settings":{"heading":"Printables & Resources","copy":"Downloadable guides for Bible study, family discipleship, and church leadership."}},{"type":"collection","settings":{"heading":"Faith Apparel","copy":"Christian apparel designed to spark conversations about Christ."}}]}]
 }
@@ -335,6 +399,17 @@
   .home-groups__badge{display:flex;align-items:center;gap:18px;padding-bottom:26px;border-bottom:2px solid var(--ink)}
   .home-groups__badge strong{color:var(--rust);font-size:68px;letter-spacing:-.06em;line-height:.8}.home-groups__badge span{max-width:130px;font-size:13px;font-weight:950;letter-spacing:1px;line-height:1.1;text-transform:uppercase}
   .home-groups__callouts ul{margin:0;padding:0;list-style:none}.home-groups__callouts li{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:15px 0;border-bottom:1px solid #cfc2b1;font-size:14px;font-weight:900;text-transform:uppercase}.home-groups__callouts li span{color:var(--rust);font-size:10px;letter-spacing:1px}
+  .community-proof{padding:clamp(70px,8vw,112px) 0;border-bottom:2px solid var(--ink);background:#f6ecdf}
+  .community-proof__head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:end;margin-bottom:38px}
+  .community-proof__head .section-title{max-width:800px}.community-proof__head p{max-width:690px;margin:18px 0 0;color:var(--brown);font-size:17px;line-height:1.65}
+  .community-proof__actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px}.community-proof__actions a,.social-post__link,.review-card footer a{font-size:10px;font-weight:950;letter-spacing:1.2px;text-transform:uppercase;text-underline-offset:4px}
+  .community-proof__actions a{padding:12px 14px;border:1px solid var(--ink);text-decoration:none}.community-proof__actions a:hover{background:var(--ink);color:var(--cream)}
+  .community-proof__rail{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;align-items:stretch}
+  .social-post,.review-card{min-width:0;border:2px solid var(--ink);background:var(--cream);color:var(--ink);box-shadow:7px 7px 0 var(--gold)}
+  .social-post{display:flex;flex-direction:column;text-decoration:none}.social-post__media{position:relative;overflow:hidden;aspect-ratio:4/5;background:var(--ink)}.social-post__media video,.social-post__media img{width:100%;height:100%;object-fit:cover}.social-post__platform{position:absolute;top:10px;left:10px;padding:7px 9px;background:var(--ink);color:var(--cream);font-size:9px;font-weight:950;letter-spacing:1px;text-transform:uppercase}.social-post__placeholder{display:flex;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:12px;background:linear-gradient(150deg,var(--rust),var(--ink));color:var(--cream)}.social-post__placeholder span{display:flex;width:56px;height:56px;align-items:center;justify-content:center;border:2px solid var(--gold);border-radius:50%;font-size:10px;font-weight:900;text-transform:uppercase}.social-post p{margin:0;padding:18px 18px 8px;font-size:14px;font-weight:800;line-height:1.45}.social-post__link{margin-top:auto;padding:0 18px 18px}
+  .review-card{display:flex;min-height:360px;flex-direction:column;padding:26px}.review-card__stars{color:var(--rust);font-size:15px;letter-spacing:2px}.review-card blockquote{margin:28px 0;font-family:var(--font-heading-family);font-size:clamp(24px,2.3vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.12}.review-card footer{display:flex;align-items:flex-start;flex-direction:column;gap:5px;margin-top:auto;padding-top:18px;border-top:1px solid #c8b8a5}.review-card footer strong{font-size:11px;letter-spacing:1px;text-transform:uppercase}.review-card footer span{color:var(--brown);font-size:11px}
+  @media(max-width:1100px){.community-proof__rail{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:760px){.community-proof__head{grid-template-columns:1fr}.community-proof__actions{justify-content:flex-start}.community-proof__rail{display:flex;width:calc(100% + 14px);padding:0 14px 10px 0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}.community-proof__rail::-webkit-scrollbar{display:none}.social-post,.review-card{flex:0 0:min(84vw,340px);scroll-snap-align:start}.review-card{min-height:340px}}
   @media(max-width:900px){.home-groups__inner{grid-template-columns:1fr}.home-groups__callouts{max-width:600px;margin-right:14px}}
   @media(max-width:640px){.home-groups__callouts{padding:27px}.home-groups__actions{align-items:stretch;flex-direction:column}.home-groups__actions .button{width:100%}.home-groups__text-link{padding:8px 0}}
 {% endstylesheet %}

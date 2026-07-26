@@ -56,6 +56,45 @@
             "heading": "Faith Apparel",
             "copy": "Christian apparel designed to spark conversations about Christ."
           }
+        },
+        "socialpost1": {
+          "type": "social_post",
+          "settings": {
+            "platform": "TikTok",
+            "video": "shopify://files/videos/Copy of Untitled (TikTok Video) (1).mp4",
+            "caption": "See how The Bible Band™ brings Scripture, prayer, and devotion into the rhythm of an ordinary day.",
+            "link": "https://www.tiktok.com/@thebibleband.co/video/7662926359441706253"
+          }
+        },
+        "review1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "These templates changed my sermon prep. I have a consistent system now—the messages are tighter and my study time is better.",
+            "author": "Pastor",
+            "source": "Bible House Goods customer",
+            "link": ""
+          }
+        },
+        "review2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "I printed the anxiety worksheets for our women’s group and we worked through them together. Biblically grounded and incredibly practical.",
+            "author": "Women’s ministry leader",
+            "source": "Bible House Goods customer",
+            "link": ""
+          }
+        },
+        "review3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "The SOAP journal gave me the most consistent quiet time I’ve had in years. Simple, structured, and it actually works.",
+            "author": "Daily devotion customer",
+            "source": "Bible House Goods customer",
+            "link": ""
+          }
         }
       },
       "block_order": [
@@ -64,7 +103,11 @@
         "feature3",
         "collection1",
         "collection2",
-        "collection3"
+        "collection3",
+        "socialpost1",
+        "review1",
+        "review2",
+        "review3"
       ],
       "settings": {
         "kicker": "Bible House Goods Presents · The Bible Band™",

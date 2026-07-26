@@ -9,9 +9,10 @@ A Shopify Online Store 2.0 theme based on the supplied Bible Band editorial HTML
 3. Open **Customize** before publishing.
 4. Under **Theme settings → Brand**, select the Bible House logo, header portrait, and favicon.
 5. Under **Theme settings → Typography**, choose separate heading and body fonts and adjust the body text size.
-6. In the homepage section, select the Bible Band product, hero video or image, founder image, featured collection, and three collection cards. For animation, use MP4/WebM video rather than a large GIF.
-7. Confirm the header and footer menus. Existing Shopify menus and catalog content are not deleted or duplicated.
-8. For the specialty pages, select the `page.bible-band-faq` and `page.churches-youth-groups` templates on their matching Shopify pages.
+6. Under **Theme settings → Social media**, add the TikTok, Instagram, Etsy, and Facebook URLs you use. Blank networks stay hidden.
+7. In the homepage section, select the Bible Band product, hero video or image, founder image, featured collection, three collection cards, social posts, and customer reviews. For animation, use MP4/WebM video rather than a large GIF.
+8. Confirm the header and footer menus. Existing Shopify menus and catalog content are not deleted or duplicated.
+9. For the specialty pages, select the `page.bible-band-faq` and `page.churches-youth-groups` templates on their matching Shopify pages.
 
 ## Included templates
 
