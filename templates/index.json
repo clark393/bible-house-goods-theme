@@ -70,30 +70,30 @@
           "type": "review",
           "settings": {
             "rating": 5,
-            "quote": "",
-            "author": "",
-            "source": "Etsy review",
-            "link": ""
+            "quote": "Clark was VERY helpful, generous and responsive. GREAT quality of work.",
+            "author": "Maria",
+            "source": "Christian Marriage Worksheets · Etsy",
+            "link": "https://www.etsy.com/shop/BibleHouseGoods#reviews"
           }
         },
         "review2": {
           "type": "review",
           "settings": {
             "rating": 5,
-            "quote": "",
-            "author": "",
-            "source": "Etsy review",
-            "link": ""
+            "quote": "Delivery and instructions were perfect and quick!",
+            "author": "Missy",
+            "source": "Baby Dedication Certificate · Etsy",
+            "link": "https://www.etsy.com/shop/BibleHouseGoods#reviews"
           }
         },
         "review3": {
           "type": "review",
           "settings": {
             "rating": 5,
-            "quote": "",
-            "author": "",
-            "source": "Etsy review",
-            "link": ""
+            "quote": "I love the cheat sheet with the biblical verses.",
+            "author": "Patricia",
+            "source": "Back to School Christian Printable · Etsy",
+            "link": "https://www.etsy.com/shop/BibleHouseGoods#reviews"
           }
         }
       },
