@@ -36,7 +36,7 @@
         "collection1": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "devotionals",
             "heading": "Devotionals & Prayer",
             "copy": "Bible studies, prayer journals, and workbooks for deeper engagement with God's Word."
           }
@@ -44,7 +44,7 @@
         "collection2": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "printables",
             "heading": "Printables & Resources",
             "copy": "Downloadable guides for Bible study, family discipleship, and church leadership."
           }
@@ -52,7 +52,7 @@
         "collection3": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "faith-apparel",
             "heading": "Faith Apparel",
             "copy": "Christian apparel designed to spark conversations about Christ."
           }

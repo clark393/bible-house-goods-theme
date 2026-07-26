@@ -1,1 +1,22 @@
-{"sections":{"main":{"type":"main-product","settings":{}}},"order":["main"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "show_bible_band_sections": true,
+        "testimonial_quote": "I created The Bible Band to help families keep God’s Word close in the middle of everyday life.",
+        "testimonial_cite": "Clark Whitney, founder & pastor",
+        "show_demo_video": true,
+        "demo_video": "shopify://files/videos/Copy of Untitled (TikTok Video) (1).mp4",
+        "enable_share_offer": true,
+        "share_heading": "Give one, share one",
+        "share_copy": "Get two bands—one to wear and one to give—with gift-ready packaging for the one you share, included free.",
+        "share_badge": "Free gift packaging",
+        "enable_social_share": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
