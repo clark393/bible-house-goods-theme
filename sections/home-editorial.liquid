@@ -36,7 +36,7 @@
               assign video_poster_url = video_poster | image_url: width: 2000
             endif
           -%}
-          {{ section.settings.hero_video | video_tag: autoplay: false, loop: false, muted: false, controls: true, preload: 'metadata', poster: video_poster_url, image_size: '2000x' }}
+          {{ section.settings.hero_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, preload: 'metadata', poster: video_poster_url, image_size: '2000x' }}
         {% elsif section.settings.hero_image != blank %}
           {{ section.settings.hero_image | image_url: width: 1400 | image_tag: widths: '500,750,1000,1400', fetchpriority: 'high', alt: section.settings.hero_image.alt | default: section.settings.heading }}
         {% elsif section.settings.featured_product != blank and section.settings.featured_product.featured_image != blank %}
