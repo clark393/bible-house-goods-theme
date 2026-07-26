@@ -69,7 +69,7 @@
               </div>
               <div class="band-shop__info">
                 <h3>{{ band_color }}</h3>
-                <span>{% if variant.inventory_policy == 'continue' and variant.inventory_quantity <= 0 %}Preorder{% else %}Shop now{% endif %} →</span>
+                <span>{% if band_color == 'Cobalt Blue / Grey Aztec' or band_color == 'Space Grey / Sport Grey' or band_color == 'Pink Bubblegum / Bubblegum Check' or band_color == 'Maroon / Maroon Aztec' %}Preorder{% else %}Shop now{% endif %} →</span>
               </div>
             </a>
           {% endunless %}

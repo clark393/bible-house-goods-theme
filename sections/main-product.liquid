@@ -18,7 +18,7 @@
       <p class="product-price" data-product-price>{{ product.selected_or_first_available_variant.price | money }}</p>
       {% form 'product', product, class: 'product-form' %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-        {% unless product.has_only_default_variant %}<div><label class="field-label" for="Variant-{{ section.id }}">Choose an option</label><select id="Variant-{{ section.id }}" data-variant-select>{% for variant in product.variants %}{% assign is_preorder = false %}{% if variant.inventory_management and variant.inventory_quantity <= 0 and variant.inventory_policy == 'continue' %}{% assign is_preorder = true %}{% endif %}<option value="{{ variant.id }}" data-available="{{ variant.available }}" data-preorder="{{ is_preorder }}" data-media-id="{{ variant.featured_media.id }}" data-price="{{ variant.price | money }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}>{{ variant.title }}{% if is_preorder %} — Preorder{% elsif variant.available == false %} — Sold out{% endif %}</option>{% endfor %}</select></div>{% endunless %}
+        {% unless product.has_only_default_variant %}<div><label class="field-label" for="Variant-{{ section.id }}">Choose an option</label><select id="Variant-{{ section.id }}" data-variant-select>{% for variant in product.variants %}{% assign is_preorder = false %}{% if variant.option2 == 'Cobalt Blue / Grey Aztec' or variant.option2 == 'Space Grey / Sport Grey' or variant.option2 == 'Pink Bubblegum / Bubblegum Check' or variant.option2 == 'Maroon / Maroon Aztec' %}{% assign is_preorder = true %}{% endif %}<option value="{{ variant.id }}" data-available="{{ variant.available }}" data-preorder="{{ is_preorder }}" data-media-id="{{ variant.featured_media.id }}" data-price="{{ variant.price | money }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}>{{ variant.title }}{% if is_preorder %} — Preorder{% elsif variant.available == false %} — Sold out{% endif %}</option>{% endfor %}</select></div>{% endunless %}
         {% if section.settings.enable_share_offer %}
           <fieldset class="share-offer" data-share-offer>
             <legend class="field-label">{{ 'products.share_offer.legend' | t }}</legend>
@@ -40,7 +40,7 @@
         {% endif %}
         <div><label class="field-label" for="Quantity-{{ section.id }}">Quantity</label><input id="Quantity-{{ section.id }}" type="number" name="quantity" min="1" value="1"></div>
         {% assign selected_is_preorder = false %}
-        {% if product.selected_or_first_available_variant.inventory_management and product.selected_or_first_available_variant.inventory_quantity <= 0 and product.selected_or_first_available_variant.inventory_policy == 'continue' %}
+        {% if product.selected_or_first_available_variant.option2 == 'Cobalt Blue / Grey Aztec' or product.selected_or_first_available_variant.option2 == 'Space Grey / Sport Grey' or product.selected_or_first_available_variant.option2 == 'Pink Bubblegum / Bubblegum Check' or product.selected_or_first_available_variant.option2 == 'Maroon / Maroon Aztec' %}
           {% assign selected_is_preorder = true %}
         {% endif %}
         <button class="button" type="submit"{% unless product.selected_or_first_available_variant.available %} disabled{% endunless %}>{% if selected_is_preorder %}Preorder{% elsif product.selected_or_first_available_variant.available %}Add to cart{% else %}Sold out{% endif %}</button>
