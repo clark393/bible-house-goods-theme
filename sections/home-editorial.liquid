@@ -146,17 +146,25 @@
                 {% if social_post_link != blank %}<a class="social-post__link" href="{{ social_post_link }}" target="_blank" rel="noopener">Watch the post ↗</a>{% endif %}
               </article>
             {% when 'review' %}
-              <article class="review-card" {{ block.shopify_attributes }}>
-                <div class="review-card__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
-                  {% for star in (1..5) %}<span aria-hidden="true">{% if star <= block.settings.rating %}★{% else %}☆{% endif %}</span>{% endfor %}
-                </div>
-                <blockquote>“{{ block.settings.quote }}”</blockquote>
-                <footer>
-                  <strong>{{ block.settings.author }}</strong>
-                  <span>{{ block.settings.source }}</span>
-                  {% if block.settings.link != blank %}<a href="{{ block.settings.link }}" target="_blank" rel="noopener" aria-label="View review by {{ block.settings.author | escape }}">View review ↗</a>{% endif %}
-                </footer>
-              </article>
+              {% if block.settings.quote != blank %}
+                <article class="review-card" {{ block.shopify_attributes }}>
+                  <div class="review-card__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
+                    {% for star in (1..5) %}<span aria-hidden="true">{% if star <= block.settings.rating %}★{% else %}☆{% endif %}</span>{% endfor %}
+                  </div>
+                  <blockquote>“{{ block.settings.quote }}”</blockquote>
+                  <footer>
+                    <strong>{{ block.settings.author }}</strong>
+                    <span>{{ block.settings.source }}</span>
+                    {% if block.settings.link != blank %}<a href="{{ block.settings.link }}" target="_blank" rel="noopener" aria-label="View review by {{ block.settings.author | escape }}">View review ↗</a>{% endif %}
+                  </footer>
+                </article>
+              {% else %}
+                <article class="review-card review-card--placeholder" {{ block.shopify_attributes }}>
+                  <div class="review-card__stars" aria-hidden="true">☆☆☆☆☆</div>
+                  <span class="review-card__placeholder-label">Review placeholder</span>
+                  <p>Reserved for a verified Etsy customer review.</p>
+                </article>
+              {% endif %}
           {% endcase %}
         {% endfor %}
       </div>
@@ -190,33 +198,44 @@
       </div>
     </div>
 
-    <article class="daily-preview__card">
-      <header class="daily-preview__card-head">
-        <div>
-          <span class="daily-preview__sample-label">{{ section.settings.preview_sample_label }}</span>
+    <div class="daily-preview__device">
+      <article class="daily-preview__card">
+        <header class="daily-preview__app-head">
+          <div class="daily-preview__brand"><span aria-hidden="true">✦</span><strong>The Bible Band</strong></div>
+          <span class="daily-preview__day">{{ section.settings.preview_day }}</span>
+        </header>
+        <div class="daily-preview__progress" aria-label="{{ section.settings.preview_day }}"><span></span></div>
+        <div class="daily-preview__welcome">
+          <span>{{ section.settings.preview_date }}</span>
+          <p>{{ section.settings.preview_sample_label }}</p>
           <h3>{{ section.settings.preview_title }}</h3>
         </div>
-        <span class="daily-preview__sun" aria-hidden="true">✦</span>
-      </header>
-
-      <div class="daily-preview__section daily-preview__scripture">
-        <span class="daily-preview__label">{{ section.settings.preview_scripture_label }}</span>
-        <blockquote>“{{ section.settings.preview_verse }}”</blockquote>
-        <cite>{{ section.settings.preview_reference }}</cite>
-      </div>
-
-      <div class="daily-preview__section">
-        <span class="daily-preview__label">{{ section.settings.preview_devotion_label }}</span>
-        <p>{{ section.settings.preview_devotion }}</p>
-      </div>
-
-      <div class="daily-preview__section daily-preview__prayer">
-        <span class="daily-preview__label">{{ section.settings.preview_prayer_label }}</span>
-        <p>{{ section.settings.preview_prayer }}</p>
-      </div>
-
-      <footer>{{ section.settings.preview_footer }}</footer>
-    </article>
+        <div class="daily-preview__verse-card">
+          <span class="daily-preview__label">{{ section.settings.preview_scripture_label }}</span>
+          <blockquote>“{{ section.settings.preview_verse }}”</blockquote>
+          <cite>{{ section.settings.preview_reference }}</cite>
+        </div>
+        <section class="daily-preview__section">
+          <div class="daily-preview__section-head"><span class="daily-preview__number">01</span><h4>{{ section.settings.preview_devotion_label }}</h4></div>
+          <p>{{ section.settings.preview_devotion | newline_to_br }}</p>
+        </section>
+        <section class="daily-preview__section daily-preview__prayer">
+          <div class="daily-preview__section-head"><span class="daily-preview__number">02</span><h4>{{ section.settings.preview_prayer_label }}</h4></div>
+          <p>{{ section.settings.preview_prayer }}</p>
+        </section>
+        <div class="daily-preview__extras">
+          <div class="daily-preview__extra">
+            <span class="daily-preview__play" aria-hidden="true">▶</span>
+            <span><strong>Listen to today’s reflection</strong><small>{{ section.settings.preview_audio_detail }}</small></span>
+          </div>
+          <div class="daily-preview__extra">
+            <span class="daily-preview__book" aria-hidden="true">¶</span>
+            <span><strong>Today’s Bible reading</strong><small>{{ section.settings.preview_reading }}</small></span>
+          </div>
+        </div>
+        <footer><span class="daily-preview__cached">Static sample</span>{{ section.settings.preview_footer }}</footer>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -323,22 +342,26 @@
     {"type":"image_picker","id":"hero_video_poster","label":"Video thumbnail","info":"Choose a sharp, high-resolution still image for the video while it loads. If blank, the hero image or Bible Band product image is used."},
     {"type":"image_picker","id":"hero_image","label":"Hero image"},
     {"type":"header","content":"Daily experience preview"},
-    {"type":"text","id":"preview_kicker","label":"Preview kicker","default":"A Glimpse of Today"},
-    {"type":"text","id":"preview_heading","label":"Preview heading","default":"One tap. A moment with God."},
-    {"type":"textarea","id":"preview_intro","label":"Preview introduction","default":"Every day brings fresh Scripture, a pastor-written devotion, and a guided prayer—made to meet you in the middle of real life."},
+    {"type":"text","id":"preview_kicker","label":"Preview kicker","default":"See What One Tap Opens"},
+    {"type":"text","id":"preview_heading","label":"Preview heading","default":"A Real Daily Devotion"},
+    {"type":"textarea","id":"preview_intro","label":"Preview introduction","default":"This static sample from TheBibleBand.com shows the Scripture, pastor-written reflection, guided prayer, audio, and reading plan your band opens each day."},
     {"type":"text","id":"preview_includes_label","label":"Included items accessibility label","default":"Every daily experience includes"},
-    {"type":"text","id":"preview_sample_label","label":"Sample label","default":"Sample Daily Experience"},
-    {"type":"text","id":"preview_title","label":"Sample title","default":"Be Still in His Presence"},
+    {"type":"text","id":"preview_sample_label","label":"Sample label","default":"Today’s Word"},
+    {"type":"text","id":"preview_date","label":"Sample date","default":"Friday, July 24"},
+    {"type":"text","id":"preview_day","label":"Plan progress","default":"Day 205 of 365"},
+    {"type":"text","id":"preview_title","label":"Sample title","default":"Finish Strong"},
     {"type":"text","id":"preview_scripture_label","label":"Scripture label","default":"Scripture"},
-    {"type":"textarea","id":"preview_verse","label":"Sample verse","default":"Be still, and know that I am God."},
-    {"type":"text","id":"preview_reference","label":"Verse reference","default":"Psalm 46:10"},
+    {"type":"textarea","id":"preview_verse","label":"Sample verse","default":"For it came to pass, when Solomon was old, that his wives turned away his heart after other gods: and his heart was not perfect with the LORD his God, as was the heart of David his father."},
+    {"type":"text","id":"preview_reference","label":"Verse reference","default":"1 Kings 11:4 · KJV"},
     {"type":"text","id":"preview_devotion_label","label":"Devotion label","default":"Devotion"},
-    {"type":"textarea","id":"preview_devotion","label":"Sample devotion","default":"Stillness is not the absence of trouble. It is the choice to remember who God is while trouble is still making noise. Pause today before you rush to fix everything. Let His presence steady your heart, and trust that He is already at work in what you cannot control."},
+    {"type":"textarea","id":"preview_devotion","label":"Sample devotion","default":"In Super Bowl LI, the Atlanta Falcons led the New England Patriots 28–3 in the third quarter. Although the statistical models said their chance of winning was 99.8%, the Falcons let off the gas and the Patriots rallied to win in overtime. As the saying goes, it’s not how you start, it’s how you finish.\n\nAlthough King Solomon was the wisest and wealthiest man to ever live, he didn’t finish strong. God gave him many blessings, but Solomon took them for granted and allowed the people around him to lead him away from God. Are you on track to finish strong? Are the people around you helping you get closer to God or pushing you farther away from Him?"},
     {"type":"text","id":"preview_prayer_label","label":"Prayer label","default":"Prayer"},
-    {"type":"textarea","id":"preview_prayer","label":"Sample prayer","default":"God, quiet the noise within me. Help me release what I cannot control and rest in who You are. Make me attentive to Your presence and faithful in my next step. Amen."},
+    {"type":"textarea","id":"preview_prayer","label":"Sample prayer","default":"Lord, help me be grateful for all the help You’ve given me. Thank You for the wisdom of Your Word. Bring that wisdom to life in me today, and bring good and godly influences into my life to help me along the path You’ve set before me. In Jesus’ name. Amen."},
     {"type":"text","id":"preview_audio_label","label":"Audio label","default":"Audio"},
+    {"type":"text","id":"preview_audio_detail","label":"Audio detail","default":"Audio version available"},
     {"type":"text","id":"preview_plan_label","label":"Reading plan label","default":"Bible Plan"},
-    {"type":"text","id":"preview_footer","label":"Preview footer","default":"A fresh experience is waiting every day with The Bible Band™."},
+    {"type":"text","id":"preview_reading","label":"Reading plan detail","default":"1 Chron 25–26 · Acts 19:8–24 · Ps 87 · Prov 18:10–11"},
+    {"type":"text","id":"preview_footer","label":"Preview footer","default":"Cached from Day 205 on TheBibleBand.com."},
     {"type":"text","id":"products_heading","label":"Products heading","default":"From Our Shop"},
     {"type":"collection","id":"collection","label":"Featured collection"},
     {"type":"header","content":"Social proof"},
@@ -359,7 +382,7 @@
     {"type":"feature","name":"Feature","limit":3,"settings":[{"type":"text","id":"heading","label":"Heading"},{"type":"textarea","id":"copy","label":"Copy"}]},
     {"type":"collection","name":"Collection card","limit":3,"settings":[{"type":"collection","id":"collection","label":"Collection"},{"type":"text","id":"heading","label":"Custom heading"},{"type":"textarea","id":"copy","label":"Copy"}]},
     {"type":"social_post","name":"Social post","limit":4,"settings":[{"type":"text","id":"platform","label":"Platform","default":"TikTok"},{"type":"video","id":"video","label":"Video"},{"type":"image_picker","id":"image","label":"Cover image","info":"Used when no Shopify-hosted video is selected."},{"type":"textarea","id":"caption","label":"Caption","default":"See Bible House Goods in action."},{"type":"url","id":"link","label":"Post link"}]},
-    {"type":"review","name":"Customer review","limit":6,"settings":[{"type":"range","id":"rating","label":"Rating","min":1,"max":5,"step":1,"default":5},{"type":"textarea","id":"quote","label":"Review","default":"Add a customer review here."},{"type":"text","id":"author","label":"Customer name","default":"Verified customer"},{"type":"text","id":"source","label":"Source","default":"Etsy review"},{"type":"url","id":"link","label":"Review link"}]}
+    {"type":"review","name":"Customer review","limit":6,"settings":[{"type":"range","id":"rating","label":"Rating","min":1,"max":5,"step":1,"default":5},{"type":"textarea","id":"quote","label":"Verified review","info":"Leave blank to show a review placeholder."},{"type":"text","id":"author","label":"Customer name"},{"type":"text","id":"source","label":"Source","default":"Etsy review"},{"type":"url","id":"link","label":"Review link"}]}
   ],
   "presets":[{"name":"Editorial homepage","blocks":[{"type":"feature","settings":{"heading":"Pastor-Written","copy":"Real biblical insight. No AI. Practical encouragement for daily faith, written by a real pastor."}},{"type":"feature","settings":{"heading":"No App Needed","copy":"Just tap your phone. Scripture, prayer, devotion, audio, and a one-year Bible reading plan — all in one tap."}},{"type":"feature","settings":{"heading":"Works Everywhere","copy":"iPhone and Android compatible. A QR code backup ships in every package, just in case."}},{"type":"collection","settings":{"heading":"Devotionals & Prayer","copy":"Bible studies, prayer journals, and workbooks for deeper engagement with God's Word."}},{"type":"collection","settings":{"heading":"Printables & Resources","copy":"Downloadable guides for Bible study, family discipleship, and church leadership."}},{"type":"collection","settings":{"heading":"Faith Apparel","copy":"Christian apparel designed to spark conversations about Christ."}}]}]
 }
@@ -373,20 +396,18 @@
   .daily-preview__intro>p{max-width:590px;font-size:clamp(17px,1.5vw,20px);line-height:1.7}
   .daily-preview__included{display:flex;flex-wrap:wrap;gap:9px;margin-top:32px}
   .daily-preview__included span{padding:9px 12px;border:1px solid var(--ink);font-size:9px;font-weight:950;letter-spacing:1.2px;text-transform:uppercase}
-  .daily-preview__card{position:relative;padding:clamp(30px,5vw,60px);background:#fffdf8;border:2px solid var(--ink);box-shadow:16px 16px 0 var(--gold);transform:rotate(.7deg)}
-  .daily-preview__card:before{position:absolute;top:-12px;left:50%;width:110px;height:23px;background:rgba(213,197,164,.72);content:"";transform:translateX(-50%) rotate(-2deg)}
-  .daily-preview__card-head{display:flex;justify-content:space-between;gap:24px;padding-bottom:28px;border-bottom:2px solid var(--ink)}
-  .daily-preview__sample-label,.daily-preview__label{display:block;color:var(--rust);font-size:9px;font-weight:950;letter-spacing:1.5px;text-transform:uppercase}
-  .daily-preview__card h3{margin:8px 0 0;font-family:var(--font-heading-family);font-size:clamp(30px,4vw,52px);line-height:1}
-  .daily-preview__sun{color:var(--gold);font-size:34px;line-height:1}
-  .daily-preview__section{padding:25px 0;border-bottom:1px solid #cfc2b1}
-  .daily-preview__section p{margin:11px 0 0;font-size:15px;line-height:1.7}
-  .daily-preview__scripture blockquote{margin:12px 0 5px;font-family:var(--font-heading-family);font-size:clamp(25px,3vw,37px);font-style:italic;line-height:1.15}
-  .daily-preview__scripture cite{font-size:10px;font-style:normal;font-weight:950;letter-spacing:1px;text-transform:uppercase}
-  .daily-preview__prayer p{font-style:italic}
-  .daily-preview__card footer{padding-top:25px;font-size:10px;font-weight:900;letter-spacing:1.1px;line-height:1.5;text-transform:uppercase}
-  @media(max-width:900px){.daily-preview__layout{grid-template-columns:1fr}.daily-preview__card{max-width:680px;margin-right:16px}}
-  @media(max-width:640px){.daily-preview__card{padding:28px 24px;box-shadow:10px 10px 0 var(--gold)}.daily-preview__card-head{gap:12px}.daily-preview__sun{font-size:26px}}
+  .daily-preview__device{width:min(100%,520px);justify-self:center;padding:12px;border:2px solid var(--ink);border-radius:34px;background:var(--ink);box-shadow:14px 18px 0 var(--gold)}
+  .daily-preview__card{overflow:hidden;background:#fffdf8;border-radius:23px}
+  .daily-preview__app-head{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 22px;background:var(--ink);color:var(--cream)}
+  .daily-preview__brand{display:flex;align-items:center;gap:9px;font-size:13px;text-transform:uppercase}.daily-preview__brand>span{color:var(--gold);font-size:18px}.daily-preview__day{font-size:9px;font-weight:900;letter-spacing:1px;text-transform:uppercase}
+  .daily-preview__progress{height:5px;background:#2c2823}.daily-preview__progress span{display:block;width:56.2%;height:100%;background:var(--gold)}
+  .daily-preview__welcome{padding:26px 25px 20px}.daily-preview__welcome>span,.daily-preview__welcome>p{display:block;margin:0;color:var(--rust);font-size:9px;font-weight:950;letter-spacing:1.4px;text-transform:uppercase}.daily-preview__welcome>p{margin-top:6px;color:var(--brown)}.daily-preview__welcome h3{margin:9px 0 0;font-family:var(--font-heading-family);font-size:clamp(34px,5vw,54px);letter-spacing:-.035em;line-height:.95}
+  .daily-preview__verse-card{margin:0 18px;padding:23px;border-radius:16px;background:var(--rust);color:var(--cream)}.daily-preview__label{display:block;color:var(--gold);font-size:9px;font-weight:950;letter-spacing:1.5px;text-transform:uppercase}.daily-preview__verse-card blockquote{margin:12px 0 10px;font-family:var(--font-heading-family);font-size:clamp(25px,3vw,34px);font-style:italic;line-height:1.12}.daily-preview__verse-card cite{font-size:10px;font-style:normal;font-weight:950;letter-spacing:1px;text-transform:uppercase}
+  .daily-preview__section{margin:0 25px;padding:25px 0;border-bottom:1px solid #d9ccbb}.daily-preview__section-head{display:flex;align-items:center;gap:11px}.daily-preview__number{display:flex;width:29px;height:29px;align-items:center;justify-content:center;border:1px solid var(--rust);border-radius:50%;color:var(--rust);font-size:8px;font-weight:950}.daily-preview__section h4{margin:0;font-size:12px;letter-spacing:1.3px;text-transform:uppercase}.daily-preview__section p{margin:13px 0 0;color:#3d372f;font-size:14px;line-height:1.68}.daily-preview__prayer p{font-style:italic}
+  .daily-preview__extras{display:grid;gap:9px;padding:20px 18px;background:#f2e7d8}.daily-preview__extra{display:flex;align-items:center;gap:12px;padding:13px 14px;border:1px solid #d4c4b0;border-radius:11px;background:#fffdf8}.daily-preview__extra>span:last-child{display:flex;flex-direction:column;gap:3px}.daily-preview__extra strong{font-size:10px;letter-spacing:.7px;text-transform:uppercase}.daily-preview__extra small{color:var(--brown);font-size:10px}.daily-preview__play,.daily-preview__book{display:flex;width:31px;height:31px;align-items:center;justify-content:center;flex:none;border-radius:50%;background:var(--ink);color:var(--gold);font-size:9px}.daily-preview__book{font-family:serif;font-size:17px}
+  .daily-preview__card footer{padding:15px 20px;background:var(--ink);color:#c8bfb5;font-size:8px;font-weight:800;letter-spacing:.7px;line-height:1.5;text-transform:uppercase}.daily-preview__cached{display:inline-block;margin-right:8px;padding:4px 6px;border:1px solid var(--gold);color:var(--gold);font-size:7px;letter-spacing:1px}
+  @media(max-width:900px){.daily-preview__layout{grid-template-columns:1fr}.daily-preview__device{justify-self:start;margin-right:14px}}
+  @media(max-width:640px){.daily-preview__device{padding:8px;border-radius:28px;box-shadow:9px 11px 0 var(--gold)}.daily-preview__card{border-radius:19px}.daily-preview__app-head{padding:16px 18px}.daily-preview__welcome{padding:22px 20px 17px}.daily-preview__section{margin-inline:20px}}
   .home-groups{padding:clamp(75px,9vw,125px) 0;background:var(--rust);color:var(--cream);overflow:hidden}
   .home-groups__inner{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(330px,.85fr);gap:clamp(50px,8vw,120px);align-items:center}
   .home-groups .eyebrow{color:var(--gold)}
@@ -408,6 +429,7 @@
   .social-post,.review-card{min-width:0;border:2px solid var(--ink);background:var(--cream);color:var(--ink);box-shadow:7px 7px 0 var(--gold)}
   .social-post{display:flex;flex-direction:column;text-decoration:none}.social-post__media{position:relative;overflow:hidden;aspect-ratio:4/5;background:var(--ink)}.social-post__media video,.social-post__media img{width:100%;height:100%;object-fit:cover}.social-post__platform{position:absolute;top:10px;left:10px;padding:7px 9px;background:var(--ink);color:var(--cream);font-size:9px;font-weight:950;letter-spacing:1px;text-transform:uppercase}.social-post__placeholder{display:flex;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:12px;background:linear-gradient(150deg,var(--rust),var(--ink));color:var(--cream)}.social-post__placeholder span{display:flex;width:56px;height:56px;align-items:center;justify-content:center;border:2px solid var(--gold);border-radius:50%;font-size:10px;font-weight:900;text-transform:uppercase}.social-post p{margin:0;padding:18px 18px 8px;font-size:14px;font-weight:800;line-height:1.45}.social-post__link{margin-top:auto;padding:0 18px 18px}
   .review-card{display:flex;min-height:360px;flex-direction:column;padding:26px}.review-card__stars{color:var(--rust);font-size:15px;letter-spacing:2px}.review-card blockquote{margin:28px 0;font-family:var(--font-heading-family);font-size:clamp(24px,2.3vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.12}.review-card footer{display:flex;align-items:flex-start;flex-direction:column;gap:5px;margin-top:auto;padding-top:18px;border-top:1px solid #c8b8a5}.review-card footer strong{font-size:11px;letter-spacing:1px;text-transform:uppercase}.review-card footer span{color:var(--brown);font-size:11px}
+  .review-card--placeholder{align-items:center;justify-content:center;border-style:dashed;background:transparent;box-shadow:none;text-align:center}.review-card--placeholder .review-card__stars{color:#b6a793}.review-card__placeholder-label{margin-top:24px;color:var(--rust);font-size:10px;font-weight:950;letter-spacing:1.4px;text-transform:uppercase}.review-card--placeholder p{max-width:190px;margin:11px 0 0;color:var(--brown);font-size:14px;line-height:1.5}
   @media(max-width:1100px){.community-proof__rail{grid-template-columns:repeat(2,minmax(0,1fr))}}
   @media(max-width:760px){.community-proof__head{grid-template-columns:1fr}.community-proof__actions{justify-content:flex-start}.community-proof__rail{display:flex;width:calc(100% + 14px);padding:0 14px 10px 0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}.community-proof__rail::-webkit-scrollbar{display:none}.social-post,.review-card{flex:0 0:min(84vw,340px);scroll-snap-align:start}.review-card{min-height:340px}}
   @media(max-width:900px){.home-groups__inner{grid-template-columns:1fr}.home-groups__callouts{max-width:600px;margin-right:14px}}

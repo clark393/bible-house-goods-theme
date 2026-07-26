@@ -70,9 +70,9 @@
           "type": "review",
           "settings": {
             "rating": 5,
-            "quote": "These templates changed my sermon prep. I have a consistent system now—the messages are tighter and my study time is better.",
-            "author": "Pastor",
-            "source": "Bible House Goods customer",
+            "quote": "",
+            "author": "",
+            "source": "Etsy review",
             "link": ""
           }
         },
@@ -80,9 +80,9 @@
           "type": "review",
           "settings": {
             "rating": 5,
-            "quote": "I printed the anxiety worksheets for our women’s group and we worked through them together. Biblically grounded and incredibly practical.",
-            "author": "Women’s ministry leader",
-            "source": "Bible House Goods customer",
+            "quote": "",
+            "author": "",
+            "source": "Etsy review",
             "link": ""
           }
         },
@@ -90,9 +90,9 @@
           "type": "review",
           "settings": {
             "rating": 5,
-            "quote": "The SOAP journal gave me the most consistent quiet time I’ve had in years. Simple, structured, and it actually works.",
-            "author": "Daily devotion customer",
-            "source": "Bible House Goods customer",
+            "quote": "",
+            "author": "",
+            "source": "Etsy review",
             "link": ""
           }
         }
@@ -119,6 +119,20 @@
         "groups_contact_link": "/pages/contact",
         "featured_product": "the-bible-band",
         "hero_video": "shopify://files/videos/Copy of Untitled (TikTok Video) (1).mp4",
+        "preview_kicker": "See What One Tap Opens",
+        "preview_heading": "A Real Daily Devotion",
+        "preview_intro": "This static sample from TheBibleBand.com shows the Scripture, pastor-written reflection, guided prayer, audio, and reading plan your band opens each day.",
+        "preview_sample_label": "Today’s Word",
+        "preview_date": "Friday, July 24",
+        "preview_day": "Day 205 of 365",
+        "preview_title": "Finish Strong",
+        "preview_verse": "For it came to pass, when Solomon was old, that his wives turned away his heart after other gods: and his heart was not perfect with the LORD his God, as was the heart of David his father.",
+        "preview_reference": "1 Kings 11:4 · KJV",
+        "preview_devotion": "In Super Bowl LI, the Atlanta Falcons led the New England Patriots 28–3 in the third quarter. Although the statistical models said their chance of winning was 99.8%, the Falcons let off the gas and the Patriots rallied to win in overtime. As the saying goes, it’s not how you start, it’s how you finish.\n\nAlthough King Solomon was the wisest and wealthiest man to ever live, he didn’t finish strong. God gave him many blessings, but Solomon took them for granted and allowed the people around him to lead him away from God. Are you on track to finish strong? Are the people around you helping you get closer to God or pushing you farther away from Him?",
+        "preview_prayer": "Lord, help me be grateful for all the help You’ve given me. Thank You for the wisdom of Your Word. Bring that wisdom to life in me today, and bring good and godly influences into my life to help me along the path You’ve set before me. In Jesus’ name. Amen.",
+        "preview_audio_detail": "Audio version available",
+        "preview_reading": "1 Chron 25–26 · Acts 19:8–24 · Ps 87 · Prov 18:10–11",
+        "preview_footer": "Cached from Day 205 on TheBibleBand.com.",
         "products_heading": "From Our Shop",
         "collection": "",
         "quote": "Keep God's Word close to your heart and carry it with you daily.",
