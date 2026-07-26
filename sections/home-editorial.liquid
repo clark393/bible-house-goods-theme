@@ -47,6 +47,38 @@
   </div>
 </section>
 
+{% if section.settings.featured_product != blank %}
+  <section class="band-shop" aria-labelledby="BandShopTitle-{{ section.id }}">
+    <div class="page-width">
+      <span class="eyebrow">Choose Your Bible Band™</span>
+      <h2 class="section-title" id="BandShopTitle-{{ section.id }}">Six Bands. One Daily Habit.</h2>
+      <div class="band-shop__grid">
+        {% assign seen_band_colors = '|' %}
+        {% for variant in section.settings.featured_product.variants %}
+          {% assign band_color = variant.option2 | default: variant.title %}
+          {% assign band_color_key = '|' | append: band_color | append: '|' %}
+          {% unless seen_band_colors contains band_color_key %}
+            {% assign seen_band_colors = seen_band_colors | append: band_color | append: '|' %}
+            <a class="band-shop__card" href="{{ section.settings.featured_product.url }}?variant={{ variant.id }}">
+              <div class="band-shop__image">
+                {% if variant.featured_image != blank %}
+                  {{ variant.featured_image | image_url: width: 900 | image_tag: widths: '300,500,700,900', loading: 'lazy', alt: band_color }}
+                {% else %}
+                  {{ section.settings.featured_product.featured_image | image_url: width: 900 | image_tag: widths: '300,500,700,900', loading: 'lazy', alt: band_color }}
+                {% endif %}
+              </div>
+              <div class="band-shop__info">
+                <h3>{{ band_color }}</h3>
+                <span>{% if variant.inventory_policy == 'continue' and variant.inventory_quantity <= 0 %}Preorder{% else %}Shop now{% endif %} →</span>
+              </div>
+            </a>
+          {% endunless %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
 <section class="dark-section">
   <div class="page-width">
     <span class="eyebrow">How it works</span><h2 class="section-title">Simple Daily Discipleship</h2>
