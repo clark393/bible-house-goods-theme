@@ -1,3 +1,13 @@
+<aside class="site-impact" aria-labelledby="SiteImpactTitle-{{ section.id }}">
+  <div class="page-width site-impact__inner">
+    <span class="site-impact__mark" aria-hidden="true">✦</span>
+    <div>
+      <p class="site-impact__eyebrow">{{ section.settings.impact_kicker }}</p>
+      <h2 id="SiteImpactTitle-{{ section.id }}">{{ section.settings.impact_heading }}</h2>
+    </div>
+    <p>{{ section.settings.impact_copy }}</p>
+  </div>
+</aside>
 {% if section.settings.show %}
   <div class="ticker" aria-label="Announcement">
     <div class="ticker__track">
@@ -8,5 +18,5 @@
   </div>
 {% endif %}
 {% schema %}
-{"name":"Announcement ticker","settings":[{"type":"checkbox","id":"show","label":"Show ticker","default":true},{"type":"text","id":"text_1","label":"Highlighted message","default":"Free shipping on all Bible Band™ orders"},{"type":"text","id":"text_2","label":"Message two","default":"Keep God's Word Close"},{"type":"text","id":"text_3","label":"Message three","default":"Scripture · Prayer · Devotion"},{"type":"text","id":"text_4","label":"Scripture message","default":"“Fix these words of mine in your hearts and minds; tie them as symbols on your hands.” — Deuteronomy 11:18"}]}
+{"name":"Announcement ticker","settings":[{"type":"header","content":"Ministry impact"},{"type":"text","id":"impact_kicker","label":"Kicker","default":"Faith That Gives Back"},{"type":"text","id":"impact_heading","label":"Heading","default":"Your Purchase Supports Ministry"},{"type":"textarea","id":"impact_copy","label":"Message","default":"A portion of all profits goes back into local church ministry and missions, with The Bible Band™ at the heart of that commitment."},{"type":"header","content":"Scrolling announcement"},{"type":"checkbox","id":"show","label":"Show ticker","default":true},{"type":"text","id":"text_1","label":"Highlighted message","default":"Free shipping on all Bible Band™ orders"},{"type":"text","id":"text_2","label":"Message two","default":"Keep God's Word Close"},{"type":"text","id":"text_3","label":"Message three","default":"Scripture · Prayer · Devotion"},{"type":"text","id":"text_4","label":"Scripture message","default":"“Fix these words of mine in your hearts and minds; tie them as symbols on your hands.” — Deuteronomy 11:18"}]}
 {% endschema %}
