@@ -7,9 +7,10 @@
         <div class="hero__copy">
           <p>{{ section.settings.copy }}</p>
           <a class="button" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" data-analytics-event="hero_cta_click" data-analytics-label="{{ section.settings.button_label | escape }}">{{ section.settings.button_label }}</a>
-          <div class="hero__proof" aria-label="Product testimonial">
+          <div class="hero__proof" aria-label="Founder note and Scripture">
             <span aria-hidden="true">★★★★★</span>
             <p>“{{ section.settings.hero_testimonial }}” <strong>— {{ section.settings.hero_testimonial_cite }}</strong></p>
+            <blockquote class="hero__scripture">“{{ section.settings.hero_scripture }}” <cite>— {{ section.settings.hero_scripture_cite }}</cite></blockquote>
           </div>
         </div>
         <div class="hero__features">
@@ -335,6 +336,8 @@
     {"type":"url","id":"button_link","label":"Button link"},
     {"type":"textarea","id":"hero_testimonial","label":"Testimonial","default":"I created The Bible Band to help families keep God’s Word close in the middle of everyday life."},
     {"type":"text","id":"hero_testimonial_cite","label":"Testimonial attribution","default":"Clark Whitney, founder & pastor"},
+    {"type":"textarea","id":"hero_scripture","label":"Scripture beneath testimonial","default":"Fix these words of mine in your hearts and minds; tie them as symbols on your hands."},
+    {"type":"text","id":"hero_scripture_cite","label":"Scripture citation","default":"Deuteronomy 11:18"},
     {"type":"url","id":"groups_link","label":"Churches and groups page"},
     {"type":"url","id":"groups_contact_link","label":"Group pricing contact link"},
     {"type":"product","id":"featured_product","label":"Bible Band product"},
@@ -390,6 +393,7 @@
 
 {% stylesheet %}
   .hero__content>.hero__copy .button:hover,.hero__content>.hero__copy .button:focus-visible{background:var(--ink);color:var(--cream);box-shadow:5px 5px 0 var(--rust);transform:translate(-2px,-2px)}
+  .hero__scripture{grid-column:2;margin:4px 0 0;padding-top:13px;border-top:1px solid #c8b8a5;color:var(--brown);font-family:var(--font-heading);font-size:clamp(16px,1.6vw,21px);font-style:italic;line-height:1.35}.hero__scripture cite{display:block;margin-top:7px;color:var(--rust);font-family:var(--font-body);font-size:9px;font-style:normal;font-weight:950;letter-spacing:1px;text-transform:uppercase}
   .daily-preview{padding:clamp(75px,9vw,130px) 0;background:var(--cream);color:var(--ink);overflow:hidden}
   .daily-preview__layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(420px,1.15fr);gap:clamp(50px,8vw,120px);align-items:center}
   .daily-preview__intro .display-title{max-width:720px;margin-bottom:28px;font-size:clamp(50px,6.5vw,96px)}
