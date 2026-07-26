@@ -48,6 +48,16 @@ document.addEventListener('change', (event) => {
     : option.dataset.available === 'true' ? 'Add to cart' : 'Sold out';
   const price = document.querySelector('[data-product-price]');
   if (price) price.textContent = option.dataset.price;
+  if (option.dataset.mediaId) {
+    const media = document.querySelector(`[data-product-gallery-slide][data-media-id="${option.dataset.mediaId}"]`);
+    if (media) {
+      media.scrollIntoView({
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+        block: 'nearest',
+        inline: 'start'
+      });
+    }
+  }
 });
 document.querySelectorAll('[data-product-gallery]').forEach((gallery) => {
   const track = gallery.querySelector('[data-product-gallery-track]');
