@@ -1,4 +1,14 @@
 <footer class="site-footer">
+  <aside class="footer-impact" aria-labelledby="FooterImpactTitle-{{ section.id }}">
+    <div class="page-width footer-impact__inner">
+      <span class="footer-impact__mark" aria-hidden="true">✦</span>
+      <div>
+        <p class="footer-impact__eyebrow">{{ section.settings.impact_kicker }}</p>
+        <h2 id="FooterImpactTitle-{{ section.id }}">{{ section.settings.impact_heading }}</h2>
+      </div>
+      <p>{{ section.settings.impact_copy }}</p>
+    </div>
+  </aside>
   <div class="page-width footer-grid">
     {% for block in section.blocks %}
       {% case block.type %}
@@ -22,5 +32,5 @@
   <div class="page-width footer-bottom"><p>© {{ 'now' | date: '%Y' }} {{ shop.name }}</p><div>{% for policy in shop.policies %}{% if policy != blank %}<a href="{{ policy.url }}">{{ policy.title }}</a>{% endif %}{% endfor %}</div></div>
 </footer>
 {% schema %}
-{"name":"Footer","max_blocks":4,"blocks":[{"type":"menu","name":"Menu","settings":[{"type":"text","id":"heading","label":"Heading","default":"Explore"},{"type":"link_list","id":"menu","label":"Menu","default":"footer"}]},{"type":"newsletter","name":"Newsletter","settings":[{"type":"text","id":"heading","label":"Heading","default":"Join our email list"},{"type":"textarea","id":"copy","label":"Text","default":"Get exclusive deals and early access to new products."}]}],"presets":[{"name":"Footer","blocks":[{"type":"menu","settings":{"heading":"Shop"}},{"type":"menu","settings":{"heading":"Learn"}},{"type":"menu","settings":{"heading":"Support"}},{"type":"newsletter"}]}]}
+{"name":"Footer","max_blocks":4,"settings":[{"type":"header","content":"Ministry impact"},{"type":"text","id":"impact_kicker","label":"Kicker","default":"Faith That Gives Back"},{"type":"text","id":"impact_heading","label":"Heading","default":"Your Purchase Supports Ministry"},{"type":"textarea","id":"impact_copy","label":"Message","default":"A portion of all profits goes back into local church ministry and missions, with The Bible Band™ at the heart of that commitment."}],"blocks":[{"type":"menu","name":"Menu","settings":[{"type":"text","id":"heading","label":"Heading","default":"Explore"},{"type":"link_list","id":"menu","label":"Menu","default":"footer"}]},{"type":"newsletter","name":"Newsletter","settings":[{"type":"text","id":"heading","label":"Heading","default":"Join our email list"},{"type":"textarea","id":"copy","label":"Text","default":"Get exclusive deals and early access to new products."}]}],"presets":[{"name":"Footer","blocks":[{"type":"menu","settings":{"heading":"Shop"}},{"type":"menu","settings":{"heading":"Learn"}},{"type":"menu","settings":{"heading":"Support"}},{"type":"newsletter"}]}]}
 {% endschema %}

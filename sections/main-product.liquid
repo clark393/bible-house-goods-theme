@@ -78,6 +78,7 @@
             <li><strong>Delivery</strong><span>typically 3–7 business days</span></li>
             <li><strong>Easy returns</strong><span>{% if shop.refund_policy != blank %}<a href="{{ shop.refund_policy.url }}">View return policy</a>{% else %}Contact us for help{% endif %}</span></li>
           </ul>
+          <p class="product-impact"><span aria-hidden="true">✦</span><strong>Your Bible Band™ gives back.</strong> A portion of all profits supports local church ministry and missions.</p>
         {% endif %}
         {{ form | payment_button }}
         {% render 'payment-options' %}
