@@ -2,12 +2,14 @@
   <p class="payment-options__title">Ways to pay</p>
   <ul class="payment-options__list" role="list">
     {% for payment_type in shop.enabled_payment_types %}
-      <li class="payment-options__icon" title="{{ payment_type | replace: '_', ' ' | capitalize }}">
-        {{ payment_type | payment_type_svg_tag: class: 'payment-options__svg' }}
-        <span class="visually-hidden">{{ payment_type | replace: '_', ' ' | capitalize }}</span>
-      </li>
+      {% if payment_type == 'shopify_pay' or payment_type == 'apple_pay' or payment_type == 'google_pay' or payment_type == 'paypal' %}
+        <li class="payment-options__icon" title="{{ payment_type | replace: '_', ' ' | capitalize }}">
+          {{ payment_type | payment_type_svg_tag: class: 'payment-options__svg' }}
+          <span class="visually-hidden">{{ payment_type | replace: '_', ' ' | capitalize }}</span>
+        </li>
+      {% endif %}
     {% endfor %}
     <li class="payment-options__brand payment-options__brand--venmo">Venmo</li>
   </ul>
-  <p class="payment-options__note">Choose your preferred payment method at secure checkout.</p>
+  <p class="payment-options__note">Express checkout options appear when available on your device.</p>
 </div>
