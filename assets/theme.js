@@ -43,7 +43,9 @@ document.addEventListener('change', (event) => {
   form.querySelector('[name="id"]').value = option.value;
   const button = form.querySelector('[type="submit"]');
   button.disabled = option.dataset.available !== 'true';
-  button.textContent = option.dataset.available === 'true' ? 'Add to cart' : 'Sold out';
+  button.textContent = option.dataset.preorder === 'true'
+    ? 'Preorder'
+    : option.dataset.available === 'true' ? 'Add to cart' : 'Sold out';
   const price = document.querySelector('[data-product-price]');
   if (price) price.textContent = option.dataset.price;
 });
