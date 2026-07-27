@@ -37,9 +37,23 @@
         "share_badge": "Free gift packaging",
         "enable_social_share": true
       }
+    },
+    "17851870240ddcdab2": {
+      "type": "apps",
+      "blocks": {
+        "klaviyo_reviews_product_reviews_jRdWcf": {
+          "type": "shopify://apps/klaviyo-reviews/blocks/product-reviews/db20e365-d984-4ac4-9655-e1588d951ca9",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "klaviyo_reviews_product_reviews_jRdWcf"
+      ],
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "17851870240ddcdab2"
   ]
 }
