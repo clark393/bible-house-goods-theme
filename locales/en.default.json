@@ -70,6 +70,7 @@
   },
   "products": {
     "bible_band": {
+      "choose_band": "Choose Your Band",
       "how_it_works": "How it works",
       "discipleship_title": "Simple Daily Discipleship",
       "wear_title": "Wear It",

@@ -34,7 +34,7 @@
         <a class="product-review-link" href="{{ settings.social_etsy_url }}" target="_blank" rel="noopener"><span aria-hidden="true">★★★★★</span> Read customer reviews on Etsy ↗</a>
       {% endif %}
       {% if is_bible_band %}
-        <div class="product-proof" aria-label="Product testimonial">
+        <div class="product-proof product-proof--desktop" aria-label="Product testimonial">
           <span class="product-proof__stars" aria-hidden="true">★★★★★</span>
           <blockquote>“{{ section.settings.testimonial_quote }}”</blockquote>
           <cite>— {{ section.settings.testimonial_cite }}</cite>
@@ -43,7 +43,14 @@
       {% form 'product', product, id: product_form_id, class: 'product-form', data-product-form: '' %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
         <input type="hidden" name="properties[Gift packaging]" value="Included free" disabled data-gift-packaging-property>
-        {% unless product.has_only_default_variant %}<div><label class="field-label" for="Variant-{{ section.id }}">Choose an option</label><select id="Variant-{{ section.id }}" data-variant-select data-product-title="{{ product.title | escape }}">{% for variant in product.variants %}{% assign is_preorder = false %}{% if variant.option2 == 'Cobalt Blue / Grey Aztec' or variant.option2 == 'Space Grey / Sport Grey' or variant.option2 == 'Pink Bubblegum / Bubblegum Check' or variant.option2 == 'Maroon / Maroon Aztec' %}{% assign is_preorder = true %}{% endif %}<option value="{{ variant.id }}" data-available="{{ variant.available }}" data-preorder="{{ is_preorder }}" data-media-id="{{ variant.featured_media.id }}" data-price="{{ variant.price | money }}" data-variant-title="{{ variant.title | escape }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}>{{ variant.title }}{% if is_preorder %} — Preorder{% elsif variant.available == false %} — Sold out{% endif %}</option>{% endfor %}</select></div>{% endunless %}
+        {% unless product.has_only_default_variant %}
+          <div>
+            <label class="field-label{% if is_bible_band %} field-label--band-choice{% endif %}" for="Variant-{{ section.id }}">
+              {% if is_bible_band %}{{ 'products.bible_band.choose_band' | t }}{% else %}Choose an option{% endif %}
+            </label>
+            <select id="Variant-{{ section.id }}" data-variant-select data-product-title="{{ product.title | escape }}">{% for variant in product.variants %}{% assign is_preorder = false %}{% if variant.option2 == 'Cobalt Blue / Grey Aztec' or variant.option2 == 'Space Grey / Sport Grey' or variant.option2 == 'Pink Bubblegum / Bubblegum Check' or variant.option2 == 'Maroon / Maroon Aztec' %}{% assign is_preorder = true %}{% endif %}<option value="{{ variant.id }}" data-available="{{ variant.available }}" data-preorder="{{ is_preorder }}" data-media-id="{{ variant.featured_media.id }}" data-price="{{ variant.price | money }}" data-variant-title="{{ variant.title | escape }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}>{{ variant.title }}{% if is_preorder %} — Preorder{% elsif variant.available == false %} — Sold out{% endif %}</option>{% endfor %}</select>
+          </div>
+        {% endunless %}
         {% if section.settings.enable_share_offer and is_bible_band %}
           <fieldset class="share-offer" data-share-offer>
             <legend class="field-label">{{ 'products.share_offer.legend' | t }}</legend>
@@ -107,6 +114,13 @@
     <div class="product-details">
       <div class="rte">{{ product.description }}</div>
       <div class="product-meta"><details><summary>Shipping &amp; delivery</summary><div class="rte"><p>Shipping and delivery options are shown at checkout. Digital products are delivered according to their product description.</p></div></details><details><summary>Questions?</summary><div class="rte"><p>Visit our FAQ or contact Bible House Goods and we'll be glad to help.</p></div></details></div>
+      {% if is_bible_band %}
+        <div class="product-proof product-proof--mobile" aria-label="Product testimonial">
+          <span class="product-proof__stars" aria-hidden="true">★★★★★</span>
+          <blockquote>“{{ section.settings.testimonial_quote }}”</blockquote>
+          <cite>— {{ section.settings.testimonial_cite }}</cite>
+        </div>
+      {% endif %}
     </div>
   </div>
 </section>
