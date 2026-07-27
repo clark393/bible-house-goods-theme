@@ -38,31 +38,14 @@ document.addEventListener('click', (event) => {
 });
 
 document.addEventListener('change', (event) => {
-  const purchaseOption = event.target.closest('[data-purchase-option]');
-  if (purchaseOption) {
-    const offer = purchaseOption.closest('[data-share-offer]');
-    const quantity = offer.closest('form').querySelector('[name="quantity"]');
-    const sharing = purchaseOption.value === 'share';
-    quantity.value = sharing ? '2' : '1';
-    offer.querySelector('[data-share-recipient]').hidden = !sharing;
-    offer.querySelector('[data-share-recipient-input]').disabled = !sharing;
-    offer.querySelector('[data-share-property]').disabled = !sharing;
-    const giftPackaging = offer.closest('form').querySelector('[data-gift-packaging-property]');
-    if (giftPackaging) giftPackaging.disabled = !sharing;
-    trackStorefrontEvent('product_option_selected', { purchase_option: purchaseOption.value });
-    return;
-  }
-  const quantity = event.target.closest('.product-form [name="quantity"]');
-  if (quantity) {
-    const offer = quantity.closest('form').querySelector('[data-share-offer]');
-    if (!offer) return;
-    const sharing = Number(quantity.value) >= 2;
-    offer.querySelector(`[data-purchase-option][value="${sharing ? 'share' : 'single'}"]`).checked = true;
-    offer.querySelector('[data-share-recipient]').hidden = !sharing;
-    offer.querySelector('[data-share-recipient-input]').disabled = !sharing;
-    offer.querySelector('[data-share-property]').disabled = !sharing;
-    const giftPackaging = offer.closest('form').querySelector('[data-gift-packaging-property]');
-    if (giftPackaging) giftPackaging.disabled = !sharing;
+  const bandTier = event.target.closest('[data-band-tier]');
+  if (bandTier) {
+    const form = bandTier.closest('form');
+    const quantity = form.querySelector('[data-band-quantity]');
+    const giftPackaging = form.querySelector('[data-gift-packaging-property]');
+    quantity.value = bandTier.value;
+    if (giftPackaging) giftPackaging.disabled = Number(bandTier.value) < 2;
+    trackStorefrontEvent('product_option_selected', { purchase_option: `${bandTier.value}_bands` });
     return;
   }
   const select = event.target.closest('[data-variant-select]');
@@ -137,7 +120,7 @@ document.querySelectorAll('.product-form').forEach((form) => {
       variant_id: form.querySelector('[name="id"]')?.value,
       variant_title: selectedOption?.dataset.variantTitle,
       quantity: Number(form.querySelector('[name="quantity"]')?.value || 1),
-      purchase_option: form.querySelector('[data-purchase-option]:checked')?.value || 'single'
+      purchase_option: form.querySelector('[data-band-tier]:checked')?.value || 'single'
     });
   });
 });

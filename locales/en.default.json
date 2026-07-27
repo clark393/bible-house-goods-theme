@@ -68,9 +68,26 @@
       "ai_disclosure_standard": "AI helps us create. Pastoral review provides accountability. God’s Word remains the standard."
     }
   },
+  "cart": {
+    "keep_shopping": "Keep Shopping"
+  },
   "products": {
     "bible_band": {
       "choose_band": "Choose Your Band",
+      "quantity_heading": "Choose Your Quantity",
+      "tier_one": "1 band",
+      "tier_one_note": "One for you",
+      "tier_one_price": "$19.99",
+      "tier_two": "2 bands",
+      "tier_two_note": "Save $9.99",
+      "tier_two_price": "$29.99",
+      "tier_three": "3 bands",
+      "tier_three_note": "Save $19.98",
+      "tier_three_price": "$39.99",
+      "tier_four": "4 bands",
+      "tier_four_note": "Save $29.97",
+      "tier_four_price": "$49.99",
+      "quantity_note": "Bundle pricing is applied automatically in your cart. Choose Keep Shopping to add another color.",
       "how_it_works": "How it works",
       "discipleship_title": "Simple Daily Discipleship",
       "wear_title": "Wear It",

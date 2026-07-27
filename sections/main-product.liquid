@@ -33,13 +33,6 @@
       {% if settings.social_etsy_url != blank %}
         <a class="product-review-link" href="{{ settings.social_etsy_url }}" target="_blank" rel="noopener"><span aria-hidden="true">★★★★★</span> Read customer reviews on Etsy ↗</a>
       {% endif %}
-      {% if is_bible_band %}
-        <div class="product-proof product-proof--desktop" aria-label="Product testimonial">
-          <span class="product-proof__stars" aria-hidden="true">★★★★★</span>
-          <blockquote>“{{ section.settings.testimonial_quote }}”</blockquote>
-          <cite>— {{ section.settings.testimonial_cite }}</cite>
-        </div>
-      {% endif %}
       {% form 'product', product, id: product_form_id, class: 'product-form', data-product-form: '' %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
         <input type="hidden" name="properties[Gift packaging]" value="Included free" disabled data-gift-packaging-property>
@@ -51,26 +44,37 @@
             <select id="Variant-{{ section.id }}" data-variant-select data-product-title="{{ product.title | escape }}">{% for variant in product.variants %}{% assign is_preorder = false %}{% if variant.option2 == 'Cobalt Blue / Grey Aztec' or variant.option2 == 'Space Grey / Sport Grey' or variant.option2 == 'Pink Bubblegum / Bubblegum Check' or variant.option2 == 'Maroon / Maroon Aztec' %}{% assign is_preorder = true %}{% endif %}<option value="{{ variant.id }}" data-available="{{ variant.available }}" data-preorder="{{ is_preorder }}" data-media-id="{{ variant.featured_media.id }}" data-price="{{ variant.price | money }}" data-variant-title="{{ variant.title | escape }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}>{{ variant.title }}{% if is_preorder %} — Preorder{% elsif variant.available == false %} — Sold out{% endif %}</option>{% endfor %}</select>
           </div>
         {% endunless %}
-        {% if section.settings.enable_share_offer and is_bible_band %}
-          <fieldset class="share-offer" data-share-offer>
-            <legend class="field-label">{{ 'products.share_offer.legend' | t }}</legend>
-            <label class="share-offer__choice">
-              <input type="radio" name="purchase-option" value="single" checked data-purchase-option>
-              <span><strong>{{ 'products.share_offer.single_title' | t }}</strong><small>{{ 'products.share_offer.single_copy' | t }}</small></span>
+        {% if is_bible_band %}
+          <fieldset class="band-tiers" data-band-tiers>
+            <legend class="field-label">{{ 'products.bible_band.quantity_heading' | t }}</legend>
+            <label class="band-tier">
+              <input type="radio" name="band-tier" value="1" checked data-band-tier>
+              <span><strong>{{ 'products.bible_band.tier_one' | t }}</strong><small>{{ 'products.bible_band.tier_one_note' | t }}</small></span>
+              <b>{{ 'products.bible_band.tier_one_price' | t }}</b>
             </label>
-            <label class="share-offer__choice share-offer__choice--featured">
-              <input type="radio" name="purchase-option" value="share" data-purchase-option>
-              <span><strong>{{ section.settings.share_heading }}</strong><small>{{ section.settings.share_copy }}</small></span>
-              <b>{{ section.settings.share_badge }}</b>
+            <label class="band-tier">
+              <input type="radio" name="band-tier" value="2" data-band-tier>
+              <span><strong>{{ 'products.bible_band.tier_two' | t }}</strong><small>{{ 'products.bible_band.tier_two_note' | t }}</small></span>
+              <b>{{ 'products.bible_band.tier_two_price' | t }}</b>
             </label>
-            <div class="share-offer__recipient" data-share-recipient hidden>
-              <label class="field-label" for="Share-recipient-{{ section.id }}">{{ 'products.share_offer.recipient_label' | t }}</label>
-              <input id="Share-recipient-{{ section.id }}" type="text" name="properties[{{ 'products.share_offer.recipient_property' | t }}]" placeholder="{{ 'products.share_offer.recipient_placeholder' | t }}" disabled data-share-recipient-input>
-            </div>
-            <input type="hidden" name="properties[{{ 'products.share_offer.purpose_property' | t }}]" value="{{ 'products.share_offer.purpose_value' | t }}" disabled data-share-property>
+            <label class="band-tier">
+              <input type="radio" name="band-tier" value="3" data-band-tier>
+              <span><strong>{{ 'products.bible_band.tier_three' | t }}</strong><small>{{ 'products.bible_band.tier_three_note' | t }}</small></span>
+              <b>{{ 'products.bible_band.tier_three_price' | t }}</b>
+            </label>
+            <label class="band-tier">
+              <input type="radio" name="band-tier" value="4" data-band-tier>
+              <span><strong>{{ 'products.bible_band.tier_four' | t }}</strong><small>{{ 'products.bible_band.tier_four_note' | t }}</small></span>
+              <b>{{ 'products.bible_band.tier_four_price' | t }}</b>
+            </label>
+            <p class="band-tiers__note">{{ 'products.bible_band.quantity_note' | t }}</p>
           </fieldset>
         {% endif %}
-        <div><label class="field-label" for="Quantity-{{ section.id }}">Quantity</label><input id="Quantity-{{ section.id }}" type="number" name="quantity" min="1" value="1"></div>
+        {% if is_bible_band %}
+          <input id="Quantity-{{ section.id }}" type="hidden" name="quantity" value="1" data-band-quantity>
+        {% else %}
+          <div><label class="field-label" for="Quantity-{{ section.id }}">Quantity</label><input id="Quantity-{{ section.id }}" type="number" name="quantity" min="1" value="1"></div>
+        {% endif %}
         {% assign selected_is_preorder = false %}
         {% if product.selected_or_first_available_variant.option2 == 'Cobalt Blue / Grey Aztec' or product.selected_or_first_available_variant.option2 == 'Space Grey / Sport Grey' or product.selected_or_first_available_variant.option2 == 'Pink Bubblegum / Bubblegum Check' or product.selected_or_first_available_variant.option2 == 'Maroon / Maroon Aztec' %}
           {% assign selected_is_preorder = true %}
@@ -115,7 +119,7 @@
       <div class="rte">{{ product.description }}</div>
       <div class="product-meta"><details><summary>Shipping &amp; delivery</summary><div class="rte"><p>Shipping and delivery options are shown at checkout. Digital products are delivered according to their product description.</p></div></details><details><summary>Questions?</summary><div class="rte"><p>Visit our FAQ or contact Bible House Goods and we'll be glad to help.</p></div></details></div>
       {% if is_bible_band %}
-        <div class="product-proof product-proof--mobile" aria-label="Product testimonial">
+        <div class="product-proof" aria-label="Product testimonial">
           <span class="product-proof__stars" aria-hidden="true">★★★★★</span>
           <blockquote>“{{ section.settings.testimonial_quote }}”</blockquote>
           <cite>— {{ section.settings.testimonial_cite }}</cite>
