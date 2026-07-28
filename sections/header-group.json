@@ -1,6 +1,38 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "header",
   "name": "Header group",
-  "sections": { "announcement": { "type": "announcement-bar", "settings": {} }, "header": { "type": "header", "settings": {} } },
-  "order": ["announcement", "header"]
+  "sections": {
+    "announcement": {
+      "type": "announcement-bar",
+      "settings": {
+        "impact_kicker": "We give back to advance the kingdom",
+        "impact_heading": "Your Purchase Supports Ministry",
+        "impact_copy": "At least 10% of all  profits goes back into our local church's mission of reaching all of South Arkansas and beyond with the Gospel, with The Bible Band™ at the heart of that commitment. Thank you for helping us with the vision!",
+        "show": true,
+        "text_1": "Free shipping on all Bible Band™ orders",
+        "text_2": "Keep God's Word Close",
+        "text_3": "Scripture · Prayer · Devotion",
+        "text_4": "“Fix these words of mine in your hearts and minds; tie them as symbols on your hands.” — Deuteronomy 11:18"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu"
+      }
+    }
+  },
+  "order": [
+    "announcement",
+    "header"
+  ]
 }
