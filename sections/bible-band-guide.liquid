@@ -1,0 +1,168 @@
+<section class="band-guide" aria-labelledby="BandGuideTitle-{{ section.id }}">
+  <header class="band-guide__hero">
+    <div class="page-width--narrow band-guide__hero-inner">
+      <span class="eyebrow">{{ 'sections.bible_band_guide.eyebrow' | t }}</span>
+      <h1 class="display-title" id="BandGuideTitle-{{ section.id }}">{{ section.settings.heading }}</h1>
+      <p class="band-guide__lead">{{ section.settings.intro }}</p>
+      <ul class="band-guide__benefits" aria-label="{{ 'sections.bible_band_guide.benefits_label' | t }}">
+        <li>{{ 'sections.bible_band_guide.no_app' | t }}</li>
+        <li>{{ 'sections.bible_band_guide.no_login' | t }}</li>
+        <li>{{ 'sections.bible_band_guide.no_battery' | t }}</li>
+      </ul>
+      <a class="band-guide__jump" href="#BandGuideSteps-{{ section.id }}">{{ 'sections.bible_band_guide.jump_to_steps' | t }} <span aria-hidden="true">↓</span></a>
+    </div>
+  </header>
+
+  <nav class="band-guide__nav" aria-label="{{ 'sections.bible_band_guide.on_this_page' | t }}">
+    <div class="page-width--narrow band-guide__nav-inner">
+      <a href="#BandGuideSteps-{{ section.id }}">{{ 'sections.bible_band_guide.setup' | t }}</a>
+      <a href="#BandGuidePlacement-{{ section.id }}">{{ 'sections.bible_band_guide.phone_placement' | t }}</a>
+      <a href="#BandGuideTroubleshooting-{{ section.id }}">{{ 'sections.bible_band_guide.troubleshooting' | t }}</a>
+      <a href="#BandGuideCompatibility-{{ section.id }}">{{ 'sections.bible_band_guide.compatibility' | t }}</a>
+      <a href="#BandGuideFaqs-{{ section.id }}">{{ 'sections.bible_band_guide.faqs' | t }}</a>
+    </div>
+  </nav>
+
+  <div class="page-width band-guide__section" id="BandGuideSteps-{{ section.id }}">
+    <div class="band-guide__section-heading">
+      <span class="eyebrow">{{ 'sections.bible_band_guide.getting_started' | t }}</span>
+      <h2 class="section-title">{{ 'sections.bible_band_guide.four_steps' | t }}</h2>
+      <p>{{ 'sections.bible_band_guide.steps_intro' | t }}</p>
+    </div>
+    <ol class="band-guide__steps">
+      <li class="band-guide__step">
+        <span class="band-guide__step-number" aria-hidden="true">01</span>
+        <div><h3>{{ 'sections.bible_band_guide.step_one_title' | t }}</h3><p>{{ 'sections.bible_band_guide.step_one_copy' | t }}</p></div>
+      </li>
+      <li class="band-guide__step">
+        <span class="band-guide__step-number" aria-hidden="true">02</span>
+        <div><h3>{{ 'sections.bible_band_guide.step_two_title' | t }}</h3><p>{{ 'sections.bible_band_guide.step_two_copy' | t }}</p></div>
+      </li>
+      <li class="band-guide__step band-guide__step--accent">
+        <span class="band-guide__step-number" aria-hidden="true">03</span>
+        <div><h3>{{ 'sections.bible_band_guide.step_three_title' | t }}</h3><p>{{ 'sections.bible_band_guide.step_three_copy' | t }}</p><strong>{{ 'sections.bible_band_guide.hold_dont_tap' | t }}</strong></div>
+      </li>
+      <li class="band-guide__step">
+        <span class="band-guide__step-number" aria-hidden="true">04</span>
+        <div><h3>{{ 'sections.bible_band_guide.step_four_title' | t }}</h3><p>{{ 'sections.bible_band_guide.step_four_copy' | t }}</p></div>
+      </li>
+    </ol>
+    <div class="band-guide__daily" aria-label="{{ 'sections.bible_band_guide.daily_experience' | t }}">
+      <span>{{ 'sections.bible_band_guide.tap_read_share' | t }}</span>
+      <ul>
+        <li>{{ 'sections.bible_band_guide.bible_verse' | t }}</li>
+        <li>{{ 'sections.bible_band_guide.devotional' | t }}</li>
+        <li>{{ 'sections.bible_band_guide.prayer' | t }}</li>
+        <li>{{ 'sections.bible_band_guide.reading_plan' | t }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="band-guide__placement" id="BandGuidePlacement-{{ section.id }}" aria-labelledby="BandGuidePlacementTitle-{{ section.id }}">
+    <div class="page-width">
+      <div class="band-guide__section-heading band-guide__section-heading--light">
+        <span class="eyebrow">{{ 'sections.bible_band_guide.find_reader' | t }}</span>
+        <h2 class="section-title" id="BandGuidePlacementTitle-{{ section.id }}">{{ 'sections.bible_band_guide.phone_placement_title' | t }}</h2>
+        <p>{{ 'sections.bible_band_guide.placement_intro' | t }}</p>
+      </div>
+      <div class="band-guide__phones">
+        <article class="band-guide__phone-card">
+          <div class="band-guide__phone-visual band-guide__phone-visual--iphone" aria-hidden="true"><span class="band-guide__signal"></span><span class="band-guide__phone-speaker"></span><span class="band-guide__phone-screen">iPhone</span></div>
+          <div><span class="band-guide__device-label">{{ 'sections.bible_band_guide.iphone' | t }}</span><h3>{{ 'sections.bible_band_guide.iphone_title' | t }}</h3><p>{{ 'sections.bible_band_guide.iphone_copy' | t }}</p></div>
+        </article>
+        <article class="band-guide__phone-card">
+          <div class="band-guide__phone-visual band-guide__phone-visual--android" aria-hidden="true"><span class="band-guide__signal"></span><span class="band-guide__camera"></span><span class="band-guide__phone-screen">Android</span></div>
+          <div><span class="band-guide__device-label">{{ 'sections.bible_band_guide.android' | t }}</span><h3>{{ 'sections.bible_band_guide.android_title' | t }}</h3><p>{{ 'sections.bible_band_guide.android_copy' | t }}</p></div>
+        </article>
+      </div>
+      <p class="band-guide__placement-note"><strong>{{ 'sections.bible_band_guide.still_searching' | t }}</strong> {{ 'sections.bible_band_guide.still_searching_copy' | t }}</p>
+    </div>
+  </section>
+
+  <section class="page-width band-guide__section" id="BandGuideTroubleshooting-{{ section.id }}" aria-labelledby="BandGuideTroubleshootingTitle-{{ section.id }}">
+    <div class="band-guide__section-heading">
+      <span class="eyebrow">{{ 'sections.bible_band_guide.quick_fixes' | t }}</span>
+      <h2 class="section-title" id="BandGuideTroubleshootingTitle-{{ section.id }}">{{ 'sections.bible_band_guide.trouble_title' | t }}</h2>
+      <p>{{ 'sections.bible_band_guide.trouble_intro' | t }}</p>
+    </div>
+    <div class="band-guide__fixes">
+      <article><span aria-hidden="true">01</span><h3>{{ 'sections.bible_band_guide.remove_case_title' | t }}</h3><p>{{ 'sections.bible_band_guide.remove_case_copy' | t }}</p></article>
+      <article><span aria-hidden="true">02</span><h3>{{ 'sections.bible_band_guide.move_slowly_title' | t }}</h3><p>{{ 'sections.bible_band_guide.move_slowly_copy' | t }}</p></article>
+      <article><span aria-hidden="true">03</span><h3>{{ 'sections.bible_band_guide.hold_still_title' | t }}</h3><p>{{ 'sections.bible_band_guide.hold_still_copy' | t }}</p></article>
+      <article><span aria-hidden="true">04</span><h3>{{ 'sections.bible_band_guide.unlock_title' | t }}</h3><p>{{ 'sections.bible_band_guide.unlock_copy' | t }}</p></article>
+      <article><span aria-hidden="true">05</span><h3>{{ 'sections.bible_band_guide.nfc_on_title' | t }}</h3><p>{{ 'sections.bible_band_guide.nfc_on_copy' | t }}</p></article>
+      <article><span aria-hidden="true">06</span><h3>{{ 'sections.bible_band_guide.try_phone_title' | t }}</h3><p>{{ 'sections.bible_band_guide.try_phone_copy' | t }}</p></article>
+    </div>
+  </section>
+
+  <section class="band-guide__compatibility" id="BandGuideCompatibility-{{ section.id }}" aria-labelledby="BandGuideCompatibilityTitle-{{ section.id }}">
+    <div class="page-width band-guide__compatibility-grid">
+      <div><span class="eyebrow">{{ 'sections.bible_band_guide.before_you_tap' | t }}</span><h2 class="section-title" id="BandGuideCompatibilityTitle-{{ section.id }}">{{ 'sections.bible_band_guide.compatibility_title' | t }}</h2></div>
+      <div class="band-guide__compatibility-copy">
+        <div><strong>{{ 'sections.bible_band_guide.iphone' | t }}</strong><p>{{ 'sections.bible_band_guide.compatibility_iphone' | t }}</p></div>
+        <div><strong>{{ 'sections.bible_band_guide.android' | t }}</strong><p>{{ 'sections.bible_band_guide.compatibility_android' | t }}</p></div>
+        <div><strong>{{ 'sections.bible_band_guide.internet' | t }}</strong><p>{{ 'sections.bible_band_guide.compatibility_internet' | t }}</p></div>
+      </div>
+    </div>
+  </section>
+
+  {% if section.blocks.size > 0 %}
+    <section class="page-width--narrow band-guide__faqs" id="BandGuideFaqs-{{ section.id }}" aria-labelledby="BandGuideFaqsTitle-{{ section.id }}">
+      <div class="band-guide__section-heading">
+        <span class="eyebrow">{{ 'sections.bible_band_guide.need_to_know' | t }}</span>
+        <h2 class="section-title" id="BandGuideFaqsTitle-{{ section.id }}">{{ 'sections.bible_band_guide.faq_title' | t }}</h2>
+      </div>
+      <div class="band-guide__faq-list">
+        {% for block in section.blocks %}
+          <details class="faq-item" {{ block.shopify_attributes }}{% if forloop.first %} open{% endif %}>
+            <summary>{{ block.settings.question }}</summary>
+            <div class="rte">{{ block.settings.answer }}</div>
+          </details>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  <section class="band-guide__support">
+    <div class="page-width--narrow band-guide__support-inner">
+      <span class="eyebrow">{{ 'sections.bible_band_guide.we_are_here' | t }}</span>
+      <h2 class="section-title">{{ section.settings.support_heading }}</h2>
+      <p>{{ section.settings.support_copy }}</p>
+      <a class="button button--gold" href="{{ section.settings.support_link }}">{{ section.settings.support_label }}</a>
+    </div>
+  </section>
+</section>
+
+{% stylesheet %}
+  .band-guide{overflow:hidden}.band-guide__hero{position:relative;padding:clamp(64px,10vw,120px) 0 72px;border-bottom:2px solid var(--ink);background:linear-gradient(135deg,var(--cream) 0 72%,var(--gold) 72% 100%)}.band-guide__hero::after{content:"";position:absolute;right:clamp(20px,8vw,140px);bottom:-54px;width:108px;height:108px;border:3px solid var(--ink);border-radius:50%;background:var(--rust);box-shadow:14px 14px 0 var(--gold)}.band-guide__hero-inner{position:relative;z-index:1}.band-guide__hero .display-title{max-width:900px;font-size:clamp(46px,8vw,106px)}.band-guide__lead{max-width:700px;margin:28px 0 0;color:var(--brown);font-size:clamp(18px,2.4vw,24px);font-weight:700;line-height:1.55}.band-guide__benefits{display:flex;flex-wrap:wrap;gap:10px 24px;margin:28px 0 0;padding:0;list-style:none}.band-guide__benefits li{font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}.band-guide__benefits li::before{content:"✓";margin-right:8px;color:var(--rust)}.band-guide__jump{display:inline-flex;gap:12px;align-items:center;margin-top:42px;font-size:12px;font-weight:900;letter-spacing:1.5px;text-decoration:none;text-transform:uppercase}.band-guide__jump span{font-size:20px}.band-guide__nav{border-bottom:2px solid var(--ink);background:var(--ink);color:var(--cream)}.band-guide__nav-inner{display:flex;gap:30px;overflow-x:auto;padding-block:18px;scrollbar-width:none}.band-guide__nav-inner::-webkit-scrollbar{display:none}.band-guide__nav a{flex:0 0 auto;color:inherit;font-size:11px;font-weight:900;letter-spacing:1.3px;text-decoration:none;text-transform:uppercase}.band-guide__nav a:hover{color:var(--gold)}.band-guide__section{padding-block:clamp(68px,9vw,110px)}.band-guide__section-heading{max-width:780px;margin-bottom:46px}.band-guide__section-heading>p{max-width:660px;margin:20px 0 0;color:var(--brown);font-size:17px;line-height:1.7}.band-guide__steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin:0;padding:1px;background:var(--ink);list-style:none}.band-guide__step{display:grid;grid-template-columns:auto 1fr;gap:24px;min-height:230px;padding:38px;background:var(--cream)}.band-guide__step--accent{background:var(--gold)}.band-guide__step-number{color:transparent;-webkit-text-stroke:1.5px var(--rust);font-size:46px;font-weight:950;line-height:.8}.band-guide__step h3{margin:0 0 12px;font-size:22px;text-transform:uppercase}.band-guide__step p{margin:0;color:var(--brown);line-height:1.7}.band-guide__step strong{display:inline-block;margin-top:20px;padding:8px 12px;border:2px solid var(--ink);font-size:11px;letter-spacing:1px;text-transform:uppercase}.band-guide__daily{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:28px 34px;background:var(--rust);color:var(--cream)}.band-guide__daily>span{font-family:var(--font-heading);font-size:clamp(25px,4vw,42px);font-weight:950;letter-spacing:-.03em;text-transform:uppercase}.band-guide__daily ul{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px 20px;margin:0;padding:0;list-style:none}.band-guide__daily li{font-size:11px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase}.band-guide__daily li::before{content:"✦";margin-right:7px;color:var(--gold)}.band-guide__placement{padding-block:clamp(70px,9vw,112px);background:var(--ink);color:var(--cream)}.band-guide__section-heading--light>p{color:#c9c4bc}.band-guide__phones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.band-guide__phone-card{display:grid;grid-template-columns:190px 1fr;gap:34px;align-items:center;padding:38px;border:1px solid #49433c;background:#171512}.band-guide__phone-visual{position:relative;width:150px;height:286px;margin:auto;border:5px solid var(--cream);border-radius:26px;background:#2d2924;box-shadow:12px 12px 0 var(--rust)}.band-guide__phone-speaker{position:absolute;top:10px;left:50%;width:46px;height:5px;border-radius:10px;background:var(--cream);transform:translateX(-50%)}.band-guide__camera{position:absolute;top:14px;left:14px;width:30px;height:30px;border:7px solid var(--cream);border-radius:50%}.band-guide__phone-screen{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase}.band-guide__signal{position:absolute;z-index:2;width:44px;height:44px;border:3px solid var(--gold);border-radius:50%}.band-guide__signal::before,.band-guide__signal::after{content:"";position:absolute;border:3px solid var(--gold);border-radius:50%}.band-guide__signal::before{inset:-12px}.band-guide__signal::after{inset:-22px}.band-guide__phone-visual--iphone .band-guide__signal{top:-10px;left:50%;transform:translateX(-50%)}.band-guide__phone-visual--android .band-guide__signal{top:72px;left:50%;transform:translateX(-50%)}.band-guide__device-label{color:var(--gold);font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase}.band-guide__phone-card h3{margin:10px 0 14px;font-size:26px;text-transform:uppercase}.band-guide__phone-card p{margin:0;color:#c9c4bc;line-height:1.7}.band-guide__placement-note{max-width:850px;margin:34px auto 0;padding:18px 22px;border-left:4px solid var(--gold);background:#24201c;color:#d8d2c9;line-height:1.65}.band-guide__placement-note strong{color:var(--cream)}.band-guide__fixes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:2px solid var(--ink);border-left:2px solid var(--ink)}.band-guide__fixes article{min-height:245px;padding:30px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink)}.band-guide__fixes span{color:var(--rust);font-size:12px;font-weight:900;letter-spacing:2px}.band-guide__fixes h3{margin:34px 0 12px;font-size:18px;text-transform:uppercase}.band-guide__fixes p{margin:0;color:var(--brown);font-size:14px;line-height:1.65}.band-guide__compatibility{padding-block:clamp(68px,9vw,100px);background:var(--gold)}.band-guide__compatibility-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(50px,8vw,120px)}.band-guide__compatibility-copy{border-top:2px solid var(--ink)}.band-guide__compatibility-copy>div{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid var(--ink)}.band-guide__compatibility-copy strong{text-transform:uppercase}.band-guide__compatibility-copy p{margin:0;line-height:1.65}.band-guide__faqs{padding-block:clamp(68px,9vw,110px)}.band-guide__faq-list{border-top:2px solid var(--ink)}.band-guide__faq-list .faq-item{padding:24px 0}.band-guide__faq-list .faq-item summary{font-size:17px}.band-guide__support{padding-block:clamp(72px,10vw,120px);background:var(--rust);color:var(--cream);text-align:center}.band-guide__support .eyebrow{color:var(--gold)}.band-guide__support-inner{display:flex;align-items:center;flex-direction:column}.band-guide__support p{max-width:650px;margin:24px auto 30px;color:#f1ddd1;font-size:17px;line-height:1.7}.band-guide__support .button:hover{border-color:var(--cream);color:var(--cream)}
+  @media(max-width:900px){.band-guide__hero{background:var(--cream)}.band-guide__phones,.band-guide__compatibility-grid{grid-template-columns:1fr}.band-guide__phone-card{grid-template-columns:150px 1fr}.band-guide__fixes{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:640px){.band-guide__hero{padding:52px 0 58px}.band-guide__hero::after{right:22px;bottom:-34px;width:68px;height:68px;box-shadow:8px 8px 0 var(--gold)}.band-guide__hero .display-title{font-size:clamp(42px,14vw,66px)}.band-guide__lead{font-size:17px}.band-guide__benefits{display:grid;gap:10px}.band-guide__jump{margin-top:30px}.band-guide__nav-inner{gap:24px}.band-guide__steps{grid-template-columns:1fr}.band-guide__step{grid-template-columns:58px 1fr;min-height:0;padding:28px 22px}.band-guide__step-number{font-size:38px}.band-guide__daily{align-items:flex-start;flex-direction:column;padding:24px}.band-guide__daily ul{justify-content:flex-start}.band-guide__phone-card{grid-template-columns:1fr;padding:28px 22px}.band-guide__phone-visual{width:132px;height:250px}.band-guide__fixes{grid-template-columns:1fr}.band-guide__fixes article{min-height:0}.band-guide__compatibility-copy>div{grid-template-columns:1fr;gap:8px}.band-guide__faq-list .faq-item summary{font-size:15px}}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Bible Band guide",
+  "tag": "section",
+  "class": "section-bible-band-guide",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "How to Use Your Bible Band" },
+    { "type": "textarea", "id": "intro", "label": "Introduction", "default": "Your daily walk with God—right on your wrist. Hold a compatible smartphone near your Bible Band and your daily Scripture experience opens automatically." },
+    { "type": "text", "id": "support_heading", "label": "Support heading", "default": "Still Need Help?" },
+    { "type": "textarea", "id": "support_copy", "label": "Support text", "default": "Send us a note and Pastor Clark or a Bible House Goods team member will help you get connected." },
+    { "type": "url", "id": "support_link", "label": "Support link" },
+    { "type": "text", "id": "support_label", "label": "Support button label", "default": "Contact Support" }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Do I need an app?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>No. Your Bible Band opens a webpage automatically.</p>" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [{ "name": "Bible Band guide" }]
+}
+{% endschema %}

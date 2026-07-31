@@ -1,0 +1,61 @@
+{
+  "sections": {
+    "main": {
+      "type": "bible-band-guide",
+      "blocks": {
+        "faq_app": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I need an app or account?",
+            "answer": "<p>No. There is no app, required login, or complicated setup. Tap the notification to open the daily experience in your phone’s browser.</p>"
+          }
+        },
+        "faq_battery": {
+          "type": "faq",
+          "settings": {
+            "question": "Does the Bible Band need a battery or charging?",
+            "answer": "<p>No. The NFC chip is powered briefly by your phone when you scan it, so there is nothing to charge or replace.</p>"
+          }
+        },
+        "faq_share": {
+          "type": "faq",
+          "settings": {
+            "question": "Can someone else tap my Bible Band?",
+            "answer": "<p>Yes. Anyone with a compatible phone can tap your Bible Band. Use it yourself each day or share it with a friend who needs encouragement from God’s Word.</p>"
+          }
+        },
+        "faq_internet": {
+          "type": "faq",
+          "settings": {
+            "question": "Does my phone need internet access?",
+            "answer": "<p>Yes. The band itself needs no power or connection, but your phone needs Wi-Fi or cellular data to load the daily page after the tap.</p>"
+          }
+        },
+        "faq_case": {
+          "type": "faq",
+          "settings": {
+            "question": "Will my phone case block the signal?",
+            "answer": "<p>Most standard cases work. Thick, metal, magnetic, battery, and wallet-style cases can interfere with NFC, so remove the case if your phone does not respond.</p>"
+          }
+        },
+        "faq_safe": {
+          "type": "faq",
+          "settings": {
+            "question": "Is NFC safe?",
+            "answer": "<p>Yes. NFC is the same short-range technology commonly used for contactless payments. The Bible Band chip only directs your browser to a webpage; it does not access your phone or track your location.</p>"
+          }
+        }
+      },
+      "block_order": ["faq_app", "faq_battery", "faq_share", "faq_internet", "faq_case", "faq_safe"],
+      "settings": {
+        "heading": "How to Use Your Bible Band",
+        "intro": "Your daily walk with God—right on your wrist. Hold a compatible smartphone near your Bible Band and your daily Scripture experience opens automatically.",
+        "support_heading": "Still Need Help?",
+        "support_copy": "Send us a note and Pastor Clark or a Bible House Goods team member will help you get connected.",
+        "support_link": "shopify://pages/contact",
+        "support_label": "Contact Support"
+      }
+    }
+  },
+  "order": ["main"]
+}
