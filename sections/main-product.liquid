@@ -149,6 +149,9 @@
         <div class="step"><div class="step__number">2</div><h3>{{ 'products.bible_band.tap_title' | t }}</h3><p>{{ 'products.bible_band.tap_copy' | t }}</p></div>
         <div class="step"><div class="step__number">3</div><h3>{{ 'products.bible_band.read_title' | t }}</h3><p>{{ 'products.bible_band.read_copy' | t }}</p></div>
       </div>
+      <div class="product-guide-cta">
+        <a class="button button--gold" href="{{ pages['how-to-use-your-bible-band'].url | default: '/pages/how-to-use-your-bible-band' }}">{{ 'products.bible_band.guide_link' | t }}</a>
+      </div>
     </div>
   </section>
 
@@ -242,6 +245,7 @@
 
 {% stylesheet %}
   .daily-preview{padding:clamp(75px,9vw,130px) 0;background:var(--cream);color:var(--ink);overflow:hidden}
+  .product-guide-cta{display:flex;justify-content:center;margin-top:36px}
   .daily-preview__layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(420px,1.15fr);gap:clamp(50px,8vw,120px);align-items:center}
   .daily-preview__intro .display-title{max-width:720px;margin-bottom:28px;font-size:clamp(50px,6.5vw,96px)}
   .daily-preview__intro>p{max-width:590px;font-size:clamp(17px,1.5vw,20px);line-height:1.7}

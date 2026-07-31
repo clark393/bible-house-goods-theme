@@ -182,6 +182,9 @@
       <div class="step"><div class="step__number">2</div><h3>Tap It</h3><p>Your compatible phone opens today's content.</p></div>
       <div class="step"><div class="step__number">3</div><h3>Read &amp; Pray</h3><p>Scripture, devotion, prayer, audio, and a Bible reading plan.</p></div>
     </div>
+    <div class="home-guide-cta">
+      <a class="button button--gold" href="{{ pages['how-to-use-your-bible-band'].url | default: '/pages/how-to-use-your-bible-band' }}">{{ 'sections.bible_band_guide.home_link' | t }}</a>
+    </div>
   </div>
 </section>
 
@@ -394,6 +397,7 @@
 
 {% stylesheet %}
   .hero__content>.hero__copy .button:hover,.hero__content>.hero__copy .button:focus-visible{background:var(--ink);color:var(--cream);box-shadow:5px 5px 0 var(--rust);transform:translate(-2px,-2px)}
+  .home-guide-cta{display:flex;justify-content:center;margin-top:36px}
   .hero__scripture{grid-column:2;margin:4px 0 0;padding-top:13px;border-top:1px solid #c8b8a5;color:var(--brown);font-family:var(--font-heading);font-size:clamp(16px,1.6vw,21px);font-style:italic;line-height:1.35}.hero__scripture cite{display:block;margin-top:7px;color:var(--rust);font-family:var(--font-body);font-size:9px;font-style:normal;font-weight:950;letter-spacing:1px;text-transform:uppercase}
   .daily-preview{padding:clamp(75px,9vw,130px) 0;background:var(--cream);color:var(--ink);overflow:hidden}
   .daily-preview__layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(420px,1.15fr);gap:clamp(50px,8vw,120px);align-items:center}
