@@ -8,7 +8,7 @@
       <div class="rte">{{ content_parts.first }}</div>
       {% assign bible_band_product = all_products['the-bible-band'] %}
       {% assign landing_proof_heading = 'general.social_proof.landing_heading' | t %}
-      {% render 'compact-social-proof', product: bible_band_product, context: 'landing', heading: landing_proof_heading, show_etsy: true %}
+      {% render 'compact-social-proof', product: bible_band_product, context: 'landing', heading: landing_proof_heading, show_etsy: true, show_visual: true %}
       {% if content_parts.size > 1 %}
         <div class="rte">
           {% for content_part in content_parts offset: 1 %}

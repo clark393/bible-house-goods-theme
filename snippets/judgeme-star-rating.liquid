@@ -8,11 +8,31 @@ Renders the Judge.me star rating badge for a product.
 {% enddoc %}
 
 {% if product != blank %}
-  <div
-    class="jdgm-widget jdgm-preview-badge"
-    data-id="{{ product.id }}"
-    data-auto-install="false"
-  >
-    {{ product.metafields.judgeme.badge }}
-  </div>
+  {% liquid
+    assign badge_markup = product.metafields.judgeme.badge | default: ''
+    assign review_count = 0
+    if badge_markup contains 'data-number-of-reviews="'
+      assign review_count = badge_markup | split: 'data-number-of-reviews="' | last | split: '"' | first | plus: 0
+    endif
+  %}
+  {% if review_count > 0 %}
+    <div
+      class="jdgm-widget jdgm-preview-badge"
+      data-id="{{ product.id }}"
+      data-auto-install="false"
+    >
+      {{ badge_markup }}
+    </div>
+  {% else %}
+    <div class="judgeme-rating-empty" aria-label="{{ 'general.social_proof.no_verified_reviews' | t }}">
+      <span aria-hidden="true">☆☆☆☆☆</span>
+      <small>{{ 'general.social_proof.no_verified_reviews' | t }}</small>
+    </div>
+  {% endif %}
 {% endif %}
+
+{% stylesheet %}
+  .judgeme-rating-empty{display:inline-flex;align-items:center;gap:8px;color:var(--rust)}
+  .judgeme-rating-empty>span{font-size:14px;letter-spacing:2px;line-height:1}
+  .judgeme-rating-empty small{color:var(--brown);font-size:10px;font-weight:900;letter-spacing:.8px;text-transform:uppercase}
+{% endstylesheet %}

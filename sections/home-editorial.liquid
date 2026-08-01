@@ -54,7 +54,7 @@
 
 {% if section.settings.featured_product != blank %}
   {% assign home_proof_heading = 'general.social_proof.home_heading' | t %}
-  {% render 'compact-social-proof', product: section.settings.featured_product, context: 'home', heading: home_proof_heading, full_width: true, show_etsy: true %}
+  {% render 'compact-social-proof', product: section.settings.featured_product, context: 'home', heading: home_proof_heading, full_width: true, show_etsy: true, show_visual: true %}
 {% endif %}
 
 {% if section.settings.featured_product != blank %}
