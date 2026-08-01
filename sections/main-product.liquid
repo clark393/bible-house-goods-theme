@@ -29,9 +29,38 @@
     <div class="product-info">
       {% if product.vendor != blank %}<span class="eyebrow">{{ product.vendor }}</span>{% endif %}
       <h1>{% render 'trademark-title', title: product.title %}</h1>
+      <div class="product-rating-summary">
+        {% render 'judgeme-star-rating', product: product %}
+        <a href="#judgeme_product_reviews">{{ 'general.social_proof.judgeme_link' | t }}</a>
+      </div>
       <p class="product-price" data-product-price>{{ product.selected_or_first_available_variant.price | money }}</p>
       {% if settings.social_etsy_url != blank %}
         <a class="product-review-link" href="{{ settings.social_etsy_url }}" target="_blank" rel="noopener"><span aria-hidden="true">★★★★★</span> Read customer reviews on Etsy ↗</a>
+      {% endif %}
+      {% if is_bible_band %}
+        <div class="quiet-time-solution">
+          <span class="eyebrow">{{ 'products.bible_band.problem_kicker' | t }}</span>
+          <h2>{{ section.settings.problem_heading }}</h2>
+          <p>{{ section.settings.problem_copy }}</p>
+        </div>
+      {% endif %}
+      {% if is_bible_band and section.settings.show_demo_video %}
+        <aside class="tap-demo tap-demo--early" aria-labelledby="TapDemoTitle-{{ section.id }}">
+          <div class="tap-demo__heading">
+            <span class="eyebrow">{{ 'products.bible_band.tap_demo_kicker' | t }}</span>
+            <h2 id="TapDemoTitle-{{ section.id }}">{{ 'products.bible_band.tap_demo_heading' | t }}</h2>
+            <p>{{ 'products.bible_band.tap_demo_copy' | t }}</p>
+          </div>
+          <div class="tap-demo__media" data-tap-demo data-demo-duration="5">
+            {% if section.settings.demo_video != blank %}
+              {{ section.settings.demo_video | video_tag: autoplay: true, loop: true, muted: true, controls: true, playsinline: true, preload: 'metadata', image_size: '900x' }}
+            {% elsif demo_media != blank %}
+              {{ demo_media | media_tag: autoplay: true, loop: true, muted: true, controls: true }}
+            {% else %}
+              <div class="tap-demo__placeholder"><span>{{ 'products.bible_band.tap_demo_tap' | t }}</span><strong>{{ 'products.bible_band.tap_demo_scripture' | t }}</strong><small>{{ 'products.bible_band.tap_demo_no_app' | t }}</small></div>
+            {% endif %}
+          </div>
+        </aside>
       {% endif %}
       {% form 'product', product, id: product_form_id, class: 'product-form', data-product-form: '' %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
@@ -95,23 +124,9 @@
         {{ form | payment_button }}
         {% render 'payment-options' %}
       {% endform %}
-      {% if is_bible_band and section.settings.show_demo_video %}
-        <aside class="tap-demo" aria-labelledby="TapDemoTitle-{{ section.id }}">
-          <div class="tap-demo__heading">
-            <span class="eyebrow">See it in seconds</span>
-            <h2 id="TapDemoTitle-{{ section.id }}">Tap. Open. Begin.</h2>
-            <p>Watch the Bible Band open today’s Scripture and prayer with one quick tap.</p>
-          </div>
-          <div class="tap-demo__media" data-tap-demo data-demo-duration="5">
-            {% if section.settings.demo_video != blank %}
-              {{ section.settings.demo_video | video_tag: autoplay: true, loop: true, muted: true, controls: true, playsinline: true, preload: 'metadata', image_size: '900x' }}
-            {% elsif demo_media != blank %}
-              {{ demo_media | media_tag: autoplay: true, loop: true, muted: true, controls: true }}
-            {% else %}
-              <div class="tap-demo__placeholder"><span>Tap</span><strong>Today’s Scripture</strong><small>No app needed</small></div>
-            {% endif %}
-          </div>
-        </aside>
+      {% if is_bible_band %}
+        {% assign product_proof_heading = 'general.social_proof.product_heading' | t %}
+        {% render 'compact-social-proof', product: product, context: 'product', heading: product_proof_heading, show_etsy: false %}
       {% endif %}
       {% if section.settings.enable_social_share %}{% render 'product-share', product: product, share_url: canonical_url %}{% endif %}
     </div>
@@ -207,12 +222,16 @@
   </section>
 {% endif %}
 
+{% render 'judgeme-review-widget', product: product %}
+
 {% schema %}
 {
   "name": "Product information",
   "settings": [
     { "type": "checkbox", "id": "show_bible_band_sections", "label": "Show Bible Band discipleship sections", "default": true },
     { "type": "header", "content": "Proof and tap demonstration" },
+    { "type": "text", "id": "problem_heading", "label": "Problem and solution heading", "default": "A quiet-time rhythm you can actually remember" },
+    { "type": "textarea", "id": "problem_copy", "label": "Problem and solution copy", "default": "Quiet time is easy to mean to do—and easy to forget once the day gets moving. The Bible Band puts a simple reminder on your wrist. When you notice it, tap it, and today’s Scripture, devotion, and prayer are ready. No searching or setup—just a small rhythm that helps you meet with God again tomorrow." },
     { "type": "textarea", "id": "testimonial_quote", "label": "Testimonial", "default": "I created The Bible Band to help families keep God’s Word close in the middle of everyday life." },
     { "type": "text", "id": "testimonial_cite", "label": "Testimonial attribution", "default": "Clark Whitney, founder & pastor" },
     { "type": "checkbox", "id": "show_demo_video", "label": "Show tap demonstration", "default": true },

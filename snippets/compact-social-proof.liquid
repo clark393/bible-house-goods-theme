@@ -1,0 +1,59 @@
+{% doc %}
+Renders a compact, source-labeled social-proof panel.
+
+@param {product} product - The product whose Judge.me rating is displayed.
+@param {string} [context] - Styling context: home, landing, or product.
+@param {string} [heading] - Optional localized heading.
+@param {boolean} [full_width] - Wrap the panel in the theme page width.
+@param {boolean} [show_etsy] - Show the clearly labeled wider-shop Etsy proof link.
+
+@example
+{% render 'compact-social-proof', product: product, context: 'product', show_etsy: false %}
+{% enddoc %}
+
+{% if product != blank %}
+  {% if heading == blank %}
+    {% assign heading = 'general.social_proof.heading' | t %}
+  {% endif %}
+  <section class="compact-social-proof compact-social-proof--{{ context | default: 'standard' }}">
+    <div class="compact-social-proof__inner{% if full_width %} page-width{% endif %}">
+      <div class="compact-social-proof__heading">
+        <span class="eyebrow">{{ 'general.social_proof.eyebrow' | t }}</span>
+        <h2>{{ heading }}</h2>
+      </div>
+      <div class="compact-social-proof__sources">
+        <div class="compact-social-proof__source">
+          <strong>{{ 'general.social_proof.judgeme_label' | t }}</strong>
+          {% render 'judgeme-star-rating', product: product %}
+          <p>{{ 'general.social_proof.judgeme_copy' | t }}</p>
+          <a href="{{ product.url }}#judgeme_product_reviews">{{ 'general.social_proof.judgeme_link' | t }}</a>
+        </div>
+        {% if show_etsy and settings.social_etsy_url != blank %}
+          <div class="compact-social-proof__source compact-social-proof__source--etsy">
+            <strong>{{ 'general.social_proof.etsy_label' | t }}</strong>
+            <p>{{ 'general.social_proof.etsy_copy' | t }}</p>
+            <a href="{{ settings.social_etsy_url }}" target="_blank" rel="noopener">{{ 'general.social_proof.etsy_link' | t }}</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% stylesheet %}
+  .compact-social-proof{padding:clamp(42px,5vw,66px) 0;border-block:2px solid var(--ink);background:#eadcc9;color:var(--ink)}
+  .compact-social-proof__inner{display:grid;grid-template-columns:minmax(200px,.72fr) minmax(0,1.28fr);gap:clamp(26px,5vw,72px);align-items:center}
+  .compact-social-proof__heading h2{margin:0;font-size:clamp(30px,4vw,52px);letter-spacing:-.04em;line-height:.95;text-transform:uppercase}
+  .compact-social-proof__sources{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .compact-social-proof__source{padding:20px;border:1px solid var(--ink);background:var(--cream)}
+  .compact-social-proof__source>strong{display:block;margin-bottom:10px;font-size:10px;letter-spacing:1.3px;text-transform:uppercase}
+  .compact-social-proof__source p{margin:12px 0;color:var(--brown);font-size:13px;line-height:1.55}
+  .compact-social-proof__source a{font-size:10px;font-weight:950;letter-spacing:1px;text-transform:uppercase;text-underline-offset:4px}
+  .compact-social-proof__source--etsy{border-left:5px solid var(--rust)}
+  .compact-social-proof--landing{margin:34px 0 46px;padding:28px}
+  .compact-social-proof--landing .compact-social-proof__inner,.compact-social-proof--product .compact-social-proof__inner{grid-template-columns:1fr}
+  .compact-social-proof--product{margin:22px 0 30px;padding:20px;border-width:1px;border-left:6px solid var(--rust)}
+  .compact-social-proof--product .compact-social-proof__sources{grid-template-columns:1fr}
+  .compact-social-proof--product .compact-social-proof__heading h2{font-size:24px}
+  @media(max-width:760px){.compact-social-proof__inner,.compact-social-proof__sources{grid-template-columns:1fr}.compact-social-proof--landing{margin-inline:-16px;padding:24px 16px}}
+{% endstylesheet %}

@@ -66,6 +66,19 @@
       "ai_disclosure_creation": "Artificial intelligence primarily drives the initial content creation and design process for many Bible House Goods resources. We believe in being honest and transparent about that.",
       "ai_disclosure_review": "Before publication, every resource is reviewed, edited, and approved by a real person for biblical accuracy, sound doctrine, practical usefulness, and clarity.",
       "ai_disclosure_standard": "AI helps us create. Pastoral review provides accountability. God’s Word remains the standard."
+    },
+    "social_proof": {
+      "eyebrow": "Verified reviews",
+      "heading": "Customer proof",
+      "home_heading": "Happy Customers",
+      "landing_heading": "Real People. Real Encouragement.",
+      "product_heading": "What Customers Are Saying",
+      "judgeme_label": "Verified Judge.me product reviews",
+      "judgeme_copy": "Our verified product reviews are still growing, so we show the real rating and count instead of inflating the numbers.",
+      "judgeme_link": "Read verified reviews",
+      "etsy_label": "More from our wider shop",
+      "etsy_copy": "Additional Bible House Goods testimonials are hosted on Etsy and clearly labeled by product and source.",
+      "etsy_link": "See Etsy testimonials"
     }
   },
   "sections": {
@@ -158,6 +171,13 @@
       "tier_four_note": "Save $29.97",
       "tier_four_price": "$49.99",
       "quantity_note": "Bundle pricing is applied automatically in your cart. Choose Keep Shopping to add another color.",
+      "problem_kicker": "Make quiet time easier to remember",
+      "tap_demo_kicker": "See it in seconds",
+      "tap_demo_heading": "Tap. Open. Begin.",
+      "tap_demo_copy": "Watch the Bible Band open today’s Scripture and prayer with one quick tap.",
+      "tap_demo_tap": "Tap",
+      "tap_demo_scripture": "Today’s Scripture",
+      "tap_demo_no_app": "No app needed",
       "how_it_works": "How it works",
       "discipleship_title": "Simple Daily Discipleship",
       "wear_title": "Wear It",
