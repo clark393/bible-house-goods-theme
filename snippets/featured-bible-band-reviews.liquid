@@ -1,0 +1,44 @@
+{% doc %}
+Renders the compact Bible Band review gallery inside the product media column.
+
+@param {product} product - The Bible Band product.
+@param {section} section - The parent product section and its review settings.
+
+@example
+{% render 'featured-bible-band-reviews', product: product, section: section %}
+{% enddoc %}
+
+<section class="featured-reviews featured-reviews--column" aria-labelledby="FeaturedReviews-{{ section.id }}">
+  <div class="featured-reviews__head">
+    <div><span class="eyebrow">{{ 'general.social_proof.judgeme_label' | t }}</span><h2 id="FeaturedReviews-{{ section.id }}">{{ 'products.bible_band.review_heading' | t }}</h2></div>
+    {% render 'judgeme-star-rating', product: product %}
+  </div>
+  <div class="featured-reviews__grid">
+    {% for i in (1..3) %}
+      {% liquid
+        assign quote_key = 'review_quote_' | append: i
+        assign author_key = 'review_author_' | append: i
+        assign image_key = 'review_image_' | append: i
+        assign review_image = section.settings[image_key]
+        if review_image == blank
+          if i == 1
+            assign review_image = product.images[0]
+          elsif i == 2
+            assign review_image = product.images[4]
+          else
+            assign review_image = product.images[21]
+          endif
+          assign review_image = review_image | default: product.featured_image
+        endif
+      %}
+      <article class="featured-review">
+        <div class="featured-review__image">
+          {{ review_image | image_url: width: 900 | image_tag: widths: '320,520,720,900', loading: 'lazy', alt: product.title }}
+          <span>{% if section.settings[image_key] != blank %}{{ 'products.bible_band.customer_photo' | t }}{% else %}{{ 'products.bible_band.lifestyle_photo' | t }}{% endif %}</span>
+        </div>
+        <div class="featured-review__copy"><span aria-hidden="true">★★★★★</span><blockquote>“{{ section.settings[quote_key] }}”</blockquote><cite>— {{ section.settings[author_key] }}</cite></div>
+      </article>
+    {% endfor %}
+  </div>
+  <a class="featured-reviews__link" href="#judgeme_product_reviews">{{ 'general.social_proof.judgeme_link' | t }} ↓</a>
+</section>

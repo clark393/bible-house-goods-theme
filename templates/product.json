@@ -13,7 +13,7 @@
       "type": "main-product",
       "settings": {
         "show_bible_band_sections": true,
-        "problem_heading": "A rhythm you can remember",
+        "problem_heading": "Keep forgetting your time with God?",
         "problem_copy": "Quiet time is easy to plan—and easy to forget. The Bible Band keeps a simple reminder on your wrist: notice it, tap it, and today’s Scripture, devotion, and prayer are ready.",
         "show_demo_video": true,
         "demo_video": "shopify://files/videos/Copy of Untitled (TikTok Video) (1).mp4",
@@ -29,7 +29,7 @@
         "mark_testimonial_location": "Bernice, LA",
         "sample_kicker": "See What One Tap Opens",
         "sample_heading": "A Real Daily Devotion",
-        "sample_intro": "See the kind of Scripture, short reflection, and guided prayer your band opens each day.",
+        "sample_intro": "Watch a real sample day from TheBibleBand.com move from Scripture into a short devotion and guided prayer.",
         "enable_social_share": true
       }
     },
