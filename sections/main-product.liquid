@@ -187,6 +187,25 @@
       <a class="featured-reviews__link" href="#judgeme_product_reviews">{{ 'general.social_proof.judgeme_link' | t }} ↓</a>
     </div>
   </section>
+
+  <section class="mark-testimonial" aria-labelledby="MarkTestimonial-{{ section.id }}">
+    <div class="page-width mark-testimonial__layout">
+      <div class="mark-testimonial__image">
+        {% if section.settings.mark_testimonial_image != blank %}
+          {{ section.settings.mark_testimonial_image | image_url: width: 1200 | image_tag: widths: '360,560,760,1000,1200', loading: 'lazy', alt: section.settings.mark_testimonial_name }}
+        {% else %}
+          <img src="https://cdn.shopify.com/s/files/1/0966/1972/4984/files/mark-hatley-bible-band-testimonial.jpg?v=1785633674" loading="lazy" width="960" height="960" alt="{{ section.settings.mark_testimonial_name | escape }}">
+        {% endif %}
+      </div>
+      <div class="mark-testimonial__copy">
+        <span class="eyebrow">{{ 'products.bible_band.customer_story' | t }}</span>
+        <span class="mark-testimonial__stars" aria-label="5 out of 5 stars">★★★★★</span>
+        <blockquote id="MarkTestimonial-{{ section.id }}">“{{ section.settings.mark_testimonial_quote }}”</blockquote>
+        <p class="mark-testimonial__person"><strong>{{ section.settings.mark_testimonial_name }}</strong><span>{{ section.settings.mark_testimonial_location }}</span></p>
+        <a href="#judgeme_product_reviews">{{ 'products.bible_band.full_testimonial_link' | t }} ↓</a>
+      </div>
+    </div>
+  </section>
 {% endif %}
 
 <div class="mobile-purchase-bar" data-mobile-purchase-bar>
@@ -255,6 +274,11 @@
     { "type": "textarea", "id": "review_quote_3", "label": "Review 3", "default": "I got a good devotional, prayer and scripture. I highly recommend it!" },
     { "type": "text", "id": "review_author_3", "label": "Review 3 name", "default": "Arlene" },
     { "type": "image_picker", "id": "review_image_3", "label": "Review 3 customer photo" },
+    { "type": "header", "content": "Mark Hatley testimonial" },
+    { "type": "image_picker", "id": "mark_testimonial_image", "label": "Mark's photo" },
+    { "type": "textarea", "id": "mark_testimonial_quote", "label": "Featured excerpt", "default": "What can I say about the Bible Band except that, in my opinion, it's about as close to perfect as you can get. … With one tap using your smartphone, you're taken directly to Scripture, a daily devotional, and prayer. It only takes a few minutes each day, but the time you invest can have a lasting impact. … It has genuinely enriched my daily Bible reading, prayer time, and personal walk with the Lord." },
+    { "type": "text", "id": "mark_testimonial_name", "label": "Name", "default": "Mark Hatley" },
+    { "type": "text", "id": "mark_testimonial_location", "label": "Location", "default": "Bernice, LA" },
     { "type": "header", "content": "Cached daily devotion sample" },
     { "type": "text", "id": "sample_kicker", "label": "Kicker", "default": "See What One Tap Opens" },
     { "type": "text", "id": "sample_heading", "label": "Heading", "default": "A Real Daily Devotion" },
@@ -270,12 +294,13 @@
   .featured-reviews__head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:34px}.featured-reviews__head h2{margin:8px 0 0;font-size:clamp(40px,6vw,78px);letter-spacing:-.05em;line-height:.92;text-transform:uppercase}
   .featured-reviews__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.featured-review{display:flex;min-width:0;flex-direction:column;background:var(--cream);border:2px solid var(--ink)}.featured-review__image{position:relative;overflow:hidden;aspect-ratio:4/3;background:var(--brown)}.featured-review__image img{width:100%;height:100%;object-fit:cover}.featured-review__image>span{position:absolute;right:8px;bottom:8px;padding:6px 8px;background:var(--ink);color:var(--cream);font-size:8px;font-weight:900;letter-spacing:1px;text-transform:uppercase}.featured-review__copy{display:flex;flex:1;flex-direction:column;padding:22px}.featured-review__copy>span{color:var(--rust);font-size:13px;letter-spacing:2px}.featured-review blockquote{margin:12px 0 20px;font-size:16px;font-weight:750;line-height:1.55}.featured-review cite{margin-top:auto;font-size:10px;font-style:normal;font-weight:900;letter-spacing:1px;text-transform:uppercase}.featured-reviews__link{display:inline-block;margin-top:24px;font-size:11px;font-weight:950;letter-spacing:1px;text-transform:uppercase;text-underline-offset:5px}
   .band-at-a-glance{padding-top:22px}.band-at-a-glance__items{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.band-at-a-glance__items span{padding:9px 11px;border:1px solid var(--ink);font-size:9px;font-weight:950;letter-spacing:1px;text-transform:uppercase}
+  .mark-testimonial{padding:clamp(58px,7vw,96px) 0;background:var(--ink);color:var(--cream);border-block:2px solid var(--ink)}.mark-testimonial__layout{display:grid;grid-template-columns:minmax(300px,.72fr) minmax(0,1.28fr);gap:clamp(34px,7vw,96px);align-items:center}.mark-testimonial__image{overflow:hidden;aspect-ratio:1/1;border:2px solid var(--gold);box-shadow:12px 12px 0 var(--rust)}.mark-testimonial__image img{width:100%;height:100%;object-fit:cover}.mark-testimonial__copy .eyebrow{color:var(--gold)}.mark-testimonial__stars{display:block;color:var(--gold);font-size:16px;letter-spacing:3px}.mark-testimonial blockquote{max-width:850px;margin:18px 0 26px;font-family:var(--font-heading);font-size:clamp(27px,3.2vw,48px);font-weight:850;letter-spacing:-.035em;line-height:1.08}.mark-testimonial__person{display:flex;flex-direction:column;gap:5px;margin:0}.mark-testimonial__person strong{font-size:14px;letter-spacing:1px;text-transform:uppercase}.mark-testimonial__person span{color:var(--tan);font-size:12px}.mark-testimonial__copy>a{display:inline-block;margin-top:24px;color:var(--gold);font-size:10px;font-weight:950;letter-spacing:1px;text-transform:uppercase;text-underline-offset:5px}
   .product-guide-cta{display:flex;justify-content:center;margin-top:36px}
   .daily-preview{padding:clamp(64px,8vw,100px) 0;background:var(--cream);color:var(--ink);overflow:hidden}
   .daily-preview__layout{display:grid;grid-template-columns:minmax(0,.8fr) minmax(380px,1.2fr);gap:clamp(42px,7vw,100px);align-items:center}
   .daily-preview__intro .display-title{max-width:620px;margin-bottom:22px;font-size:clamp(46px,6vw,82px)}.daily-preview__intro>p{max-width:520px;font-size:18px;line-height:1.65}
   .daily-preview__included{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}.daily-preview__included span{padding:9px 12px;border:1px solid var(--ink);font-size:9px;font-weight:950;letter-spacing:1.2px;text-transform:uppercase}.daily-preview__intro .button{margin-top:26px}
   .daily-preview__device{width:min(100%,680px);justify-self:center}.daily-preview__device img{display:block;width:100%;height:auto;border:2px solid var(--ink);box-shadow:12px 14px 0 var(--gold)}
-  @media(max-width:900px){.featured-reviews__grid{grid-template-columns:1fr 1fr}.featured-review:last-child{grid-column:1/-1}.daily-preview__layout{grid-template-columns:1fr}.daily-preview__device{justify-self:start;margin-right:14px}}
-  @media(max-width:640px){.featured-reviews{padding-block:54px}.featured-reviews__head{display:grid;margin-bottom:24px}.featured-reviews__grid{display:flex;margin-right:-14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-right:14px}.featured-review{min-width:82vw;scroll-snap-align:start}.featured-review:last-child{grid-column:auto}.featured-review__copy{padding:18px}.featured-review blockquote{font-size:14px}.daily-preview__intro .display-title{font-size:46px}.daily-preview__device img{box-shadow:8px 9px 0 var(--gold)}}
+  @media(max-width:900px){.featured-reviews__grid{grid-template-columns:1fr 1fr}.featured-review:last-child{grid-column:1/-1}.mark-testimonial__layout,.daily-preview__layout{grid-template-columns:1fr}.mark-testimonial__image{width:min(100%,560px)}.daily-preview__device{justify-self:start;margin-right:14px}}
+  @media(max-width:640px){.featured-reviews{padding-block:54px}.featured-reviews__head{display:grid;margin-bottom:24px}.featured-reviews__grid{display:flex;margin-right:-14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-right:14px}.featured-review{min-width:82vw;scroll-snap-align:start}.featured-review:last-child{grid-column:auto}.featured-review__copy{padding:18px}.featured-review blockquote{font-size:14px}.mark-testimonial{padding-block:48px}.mark-testimonial__layout{gap:32px}.mark-testimonial__image{width:calc(100% - 8px);box-shadow:8px 8px 0 var(--rust)}.mark-testimonial blockquote{font-size:27px;line-height:1.12}.daily-preview__intro .display-title{font-size:46px}.daily-preview__device img{box-shadow:8px 9px 0 var(--gold)}}
 {% endstylesheet %}
