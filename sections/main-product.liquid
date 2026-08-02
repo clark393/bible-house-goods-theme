@@ -64,7 +64,6 @@
       {% endif %}
       {% form 'product', product, id: product_form_id, class: 'product-form', data-product-form: '' %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-        <input type="hidden" name="properties[Gift packaging]" value="Included free" disabled data-gift-packaging-property>
         {% unless product.has_only_default_variant %}
           <div>
             <label class="field-label{% if is_bible_band %} field-label--band-choice{% endif %}" for="Variant-{{ section.id }}">
@@ -251,11 +250,6 @@
     { "type": "text", "id": "sample_audio", "label": "Audio detail", "default": "Audio version available" },
     { "type": "text", "id": "sample_reading", "label": "Reading plan detail", "default": "1 Chron 25–26 · Acts 19:8–24 · Ps 87 · Prov 18:10–11" },
     { "type": "text", "id": "sample_source", "label": "Source note", "default": "Cached from Day 205 on TheBibleBand.com." },
-    { "type": "header", "content": "Give one, share one" },
-    { "type": "checkbox", "id": "enable_share_offer", "label": "Enable offer", "default": true },
-    { "type": "text", "id": "share_heading", "label": "Heading", "default": "Give one, share one" },
-    { "type": "textarea", "id": "share_copy", "label": "Description", "default": "Get two bands—one to wear and one to give—with gift-ready packaging for the one you share, included free." },
-    { "type": "text", "id": "share_badge", "label": "Badge", "default": "Free gift packaging" },
     { "type": "header", "content": "Social sharing" },
     { "type": "checkbox", "id": "enable_social_share", "label": "Show social share buttons", "default": true }
   ]

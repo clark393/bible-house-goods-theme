@@ -42,9 +42,7 @@ document.addEventListener('change', (event) => {
   if (bandTier) {
     const form = bandTier.closest('form');
     const quantity = form.querySelector('[data-band-quantity]');
-    const giftPackaging = form.querySelector('[data-gift-packaging-property]');
     quantity.value = bandTier.value;
-    if (giftPackaging) giftPackaging.disabled = Number(bandTier.value) < 2;
     trackStorefrontEvent('product_option_selected', { purchase_option: `${bandTier.value}_bands` });
     return;
   }
