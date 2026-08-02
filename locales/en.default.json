@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "cart": {
+    "keep_shopping": "Keep Shopping"
+  },
   "gempages": {
     "Carousel": {
       "no_slider": "No Slider"
@@ -84,6 +87,95 @@
       "etsy_link": "See Etsy testimonials"
     }
   },
+  "products": {
+    "bible_band": {
+      "choose_band": "Choose Your Band",
+      "quantity_heading": "Choose Your Quantity",
+      "tier_one": "1 band",
+      "tier_one_note": "One for you",
+      "tier_one_price": "$19.99",
+      "tier_two": "2 bands",
+      "tier_two_note": "Save $9.99",
+      "tier_two_price": "$29.99",
+      "tier_three": "3 bands",
+      "tier_three_note": "Save $19.98",
+      "tier_three_price": "$39.99",
+      "tier_four": "4 bands",
+      "tier_four_note": "Save $29.97",
+      "tier_four_price": "$49.99",
+      "quantity_note": "Bundle pricing is applied automatically in your cart. Choose Keep Shopping to add another color.",
+      "short_title": "The Bible Band™",
+      "problem_kicker": "Make quiet time easier to remember",
+      "tap_demo_kicker": "See it in seconds",
+      "tap_demo_heading": "Tap. Open. Begin.",
+      "tap_demo_copy": "See today’s Scripture and prayer open with one tap.",
+      "tap_demo_tap": "Tap",
+      "tap_demo_scripture": "Today’s Scripture",
+      "tap_demo_no_app": "No app needed",
+      "how_it_works": "How it works",
+      "discipleship_title": "Simple Daily Discipleship",
+      "wear_title": "Wear It",
+      "wear_copy": "Put on your Bible Band™ as a daily reminder.",
+      "tap_title": "Tap It",
+      "tap_copy": "Your compatible phone opens today's content.",
+      "read_title": "Read & Pray",
+      "read_copy": "Scripture, devotion, prayer, audio, and a Bible reading plan.",
+      "guide_link": "How to Use Your Bible Band",
+      "preview_kicker": "See What One Tap Opens",
+      "preview_title": "One Tap. A Moment With God.",
+      "preview_intro": "Every day, your Bible Band™ opens a fresh, pastor-written experience designed to help you slow down, hear from God, and take one faithful next step.",
+      "included_label": "Included in each daily experience",
+      "scripture_label": "Scripture",
+      "devotion_label": "Devotion",
+      "prayer_label": "Prayer",
+      "audio_label": "Audio",
+      "plan_label": "Bible Plan",
+      "sample_label": "Sample Daily Experience",
+      "sample_title": "Be Still",
+      "sample_verse": "Be still, and know that I am God.",
+      "sample_reference": "Psalm 46:10",
+      "sample_devotion": "Stillness is not the absence of responsibility. It is the choice to stop striving long enough to remember who is in control. Today, let God's presence become louder than the pressure around you.",
+      "sample_prayer": "God, quiet the noise within me. Help me release what I cannot control and rest in who You are. Make me attentive to Your presence and faithful in my next step. Amen.",
+      "preview_footer": "A fresh experience is waiting every day with The Bible Band™.",
+      "at_a_glance": "At a glance",
+      "details_heading": "Band details",
+      "details_copy": "Soft, water-resistant polyester elastic with an NTAG213 NFC chip. Adult: 170 × 20 mm. Kids: 160 × 20 mm. Adult XL: 178 × 20 mm (7.01 × 0.79 in).",
+      "compatibility_heading": "Phone compatibility",
+      "compatibility_copy": "Works with compatible iPhone and Android phones. No app, account, battery, charging, or subscription required.",
+      "shipping_heading": "Shipping & help",
+      "shipping_copy": "Free shipping on Bible Band orders. Delivery is typically 3–7 business days. Visit our FAQ or contact us if you need help.",
+      "review_heading": "Real rhythms. Real impact.",
+      "customer_photo": "Customer-submitted photo",
+      "lifestyle_photo": "Bible Band lifestyle image",
+      "preview_button": "Preview today’s devotion",
+      "customer_story": "A Bible Band customer story",
+      "full_testimonial_link": "Read Mark’s complete review",
+      "sample_video_label": "Watch a real Bible Band sample day with Scripture, devotion, and prayer"
+    },
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity"
+    },
+    "gallery": {
+      "previous": "Previous product image",
+      "next": "Next product image"
+    },
+    "share": {
+      "heading": "Share TheBibleBand™",
+      "copy": "Know someone who would love this? Send it their way.",
+      "message": "Take a look at {{ product }} from Bible House Goods.",
+      "share_button": "Share",
+      "facebook_label": "Share on Facebook",
+      "x_label": "Share on X",
+      "pinterest_label": "Share on Pinterest",
+      "email_label": "Share by email",
+      "email": "Email",
+      "copy_link": "Copy link",
+      "copied": "Link copied."
+    }
+  },
   "sections": {
     "bible_band_guide": {
       "eyebrow": "The Bible Band™",
@@ -152,98 +244,6 @@
       "faq_title": "Frequently Asked Questions",
       "we_are_here": "We’re here to help",
       "home_link": "See How to Use Your Bible Band"
-    }
-  },
-  "cart": {
-    "keep_shopping": "Keep Shopping"
-  },
-  "products": {
-    "bible_band": {
-      "choose_band": "Choose Your Band",
-      "quantity_heading": "Choose Your Quantity",
-      "tier_one": "1 band",
-      "tier_one_note": "One for you",
-      "tier_one_price": "$19.99",
-      "tier_two": "2 bands",
-      "tier_two_note": "Save $9.99",
-      "tier_two_price": "$29.99",
-      "tier_three": "3 bands",
-      "tier_three_note": "Save $19.98",
-      "tier_three_price": "$39.99",
-      "tier_four": "4 bands",
-      "tier_four_note": "Save $29.97",
-      "tier_four_price": "$49.99",
-      "quantity_note": "Bundle pricing is applied automatically in your cart. Choose Keep Shopping to add another color.",
-      "short_title": "The Bible Band™",
-      "problem_kicker": "Make quiet time easier to remember",
-      "tap_demo_kicker": "See it in seconds",
-      "tap_demo_heading": "Tap. Open. Begin.",
-      "tap_demo_copy": "See today’s Scripture and prayer open with one tap.",
-      "tap_demo_tap": "Tap",
-      "tap_demo_scripture": "Today’s Scripture",
-      "tap_demo_no_app": "No app needed",
-      "how_it_works": "How it works",
-      "discipleship_title": "Simple Daily Discipleship",
-      "wear_title": "Wear It",
-      "wear_copy": "Put on your Bible Band™ as a daily reminder.",
-      "tap_title": "Tap It",
-      "tap_copy": "Your compatible phone opens today's content.",
-      "read_title": "Read & Pray",
-      "read_copy": "Scripture, devotion, prayer, audio, and a Bible reading plan.",
-      "guide_link": "How to Use Your Bible Band",
-      "preview_kicker": "See What One Tap Opens",
-      "preview_title": "One Tap. A Moment With God.",
-      "preview_intro": "Every day, your Bible Band™ opens a fresh, pastor-written experience designed to help you slow down, hear from God, and take one faithful next step.",
-      "included_label": "Included in each daily experience",
-      "scripture_label": "Scripture",
-      "devotion_label": "Devotion",
-      "prayer_label": "Prayer",
-      "audio_label": "Audio",
-      "plan_label": "Bible Plan",
-      "sample_label": "Sample Daily Experience",
-      "sample_title": "Be Still",
-      "sample_verse": "Be still, and know that I am God.",
-      "sample_reference": "Psalm 46:10",
-      "sample_devotion": "Stillness is not the absence of responsibility. It is the choice to stop striving long enough to remember who is in control. Today, let God's presence become louder than the pressure around you.",
-      "sample_prayer": "God, quiet the noise within me. Help me release what I cannot control and rest in who You are. Make me attentive to Your presence and faithful in my next step. Amen.",
-      "preview_footer": "A fresh experience is waiting every day with The Bible Band™."
-      ,"at_a_glance": "At a glance",
-      "details_heading": "Band details",
-      "details_copy": "Soft, water-resistant polyester elastic with an NTAG213 NFC chip. Adult: 170 × 20 mm. Kids: 160 × 20 mm. Adult XL: 178 × 20 mm (7.01 × 0.79 in).",
-      "compatibility_heading": "Phone compatibility",
-      "compatibility_copy": "Works with compatible iPhone and Android phones. No app, account, battery, charging, or subscription required.",
-      "shipping_heading": "Shipping & help",
-      "shipping_copy": "Free shipping on Bible Band orders. Delivery is typically 3–7 business days. Visit our FAQ or contact us if you need help.",
-      "review_heading": "Real rhythms. Real impact.",
-      "customer_photo": "Customer-submitted photo",
-      "lifestyle_photo": "Bible Band lifestyle image",
-      "preview_button": "Preview today’s devotion"
-      ,"customer_story": "A Bible Band customer story",
-      "full_testimonial_link": "Read Mark’s complete review",
-      "sample_video_label": "Watch a real Bible Band sample day with Scripture, devotion, and prayer"
-    },
-    "product": {
-      "add_to_cart": "Add to cart",
-      "sold_out": "Sold out",
-      "unavailable": "Unavailable",
-      "quantity": "Quantity"
-    },
-    "gallery": {
-      "previous": "Previous product image",
-      "next": "Next product image"
-    },
-    "share": {
-      "heading": "Share TheBibleBand™",
-      "copy": "Know someone who would love this? Send it their way.",
-      "message": "Take a look at {{ product }} from Bible House Goods.",
-      "share_button": "Share",
-      "facebook_label": "Share on Facebook",
-      "x_label": "Share on X",
-      "pinterest_label": "Share on Pinterest",
-      "email_label": "Share by email",
-      "email": "Email",
-      "copy_link": "Copy link",
-      "copied": "Link copied."
     }
   }
 }

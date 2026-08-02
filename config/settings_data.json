@@ -9,39 +9,39 @@
  */
 {
   "current": {
-    "deep_black": "#0A0908",
-    "cream": "#EAE0D5",
-    "tan": "#C6AC8F",
-    "brown": "#5E503F",
-    "rust": "#C1440E",
-    "gold": "#E3A72B",
-    "heading_font": "assistant_n7",
-    "body_font": "sans_serif_n4",
-    "body_font_size": 16,
     "bible_band_review_count": 4,
     "bible_band_review_rating": 5,
-    "social_tiktok_url": "https://www.tiktok.com/@thebibleband.co",
-    "social_instagram_url": "https://www.instagram.com/biblehousegoods/",
-    "social_etsy_url": "https://www.etsy.com/shop/BibleHouseGoods#reviews",
-    "social_facebook_url": "https://www.facebook.com/profile.php?id=61591307435157",
-    "content_for_index": [],
     "blocks": {
-      "6478312753674380289": {
-        "type": "shopify://apps/gempages-builder/blocks/embed-gp-script-head/20b379d4-1b20-474c-a6ca-665c331919f3",
-        "disabled": false,
-        "settings": {}
-      },
       "14060646107696862457": {
-        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
-        "settings": {}
+        "settings": {},
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8"
+      },
+      "6478312753674380289": {
+        "disabled": false,
+        "settings": {},
+        "type": "shopify://apps/gempages-builder/blocks/embed-gp-script-head/20b379d4-1b20-474c-a6ca-665c331919f3"
       },
       "855628211100114053": {
-        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
-        "settings": {}
+        "settings": {},
+        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507"
       }
-    }
+    },
+    "body_font": "sans_serif_n4",
+    "body_font_size": 16,
+    "brown": "#5E503F",
+    "content_for_index": [],
+    "cream": "#EAE0D5",
+    "deep_black": "#0A0908",
+    "gold": "#E3A72B",
+    "heading_font": "assistant_n7",
+    "rust": "#C1440E",
+    "social_etsy_url": "https://www.etsy.com/shop/BibleHouseGoods#reviews",
+    "social_facebook_url": "https://www.facebook.com/profile.php?id=61591307435157",
+    "social_instagram_url": "https://www.instagram.com/biblehousegoods/",
+    "social_tiktok_url": "https://www.tiktok.com/@thebibleband.co",
+    "tan": "#C6AC8F"
   },
   "presets": {
     "Bible House Editorial": {}

@@ -11,10 +11,75 @@
   "sections": {
     "main": {
       "type": "main-product",
+      "settings": {
+        "show_bible_band_sections": true,
+        "problem_heading": "Keep forgetting your time with God?",
+        "problem_copy": "Quiet time is easy to plan—and easy to forget. The Bible Band keeps a simple reminder on your wrist: notice it, tap it, and today’s Scripture, devotion, and prayer are ready.",
+        "show_demo_video": true,
+        "demo_video": "shopify://files/videos/Copy of Untitled (TikTok Video) (1).mp4",
+        "review_quote_1": "Love this product and the camo design! It’s such an easy way to stay consistent with Scripture reading and devotion.",
+        "review_author_1": "Bible Band customer",
+        "review_quote_2": "This is the easiest way to get daily encouragement through the Word of God!",
+        "review_author_2": "Gina",
+        "review_quote_3": "I got a good devotional, prayer and scripture. I highly recommend it!",
+        "review_author_3": "Arlene",
+        "mark_testimonial_image": "shopify://shop_images/mark-hatley-bible-band-testimonial.jpg",
+        "mark_testimonial_quote": "What can I say about the Bible Band except that, in my opinion, it's about as close to perfect as you can get. … With one tap using your smartphone, you're taken directly to Scripture, a daily devotional, and prayer. It only takes a few minutes each day, but the time you invest can have a lasting impact. … It has genuinely enriched my daily Bible reading, prayer time, and personal walk with the Lord.",
+        "mark_testimonial_name": "Mark Hatley",
+        "mark_testimonial_location": "Bernice, LA",
+        "sample_kicker": "See What One Tap Opens",
+        "sample_heading": "A Real Daily Devotion",
+        "sample_intro": "Watch a real sample day from TheBibleBand.com move from Scripture into a short devotion and guided prayer.",
+        "enable_social_share": true
+      }
+    },
+    "17851870240ddcdab2": {
+      "type": "apps",
+      "blocks": {
+        "klaviyo_reviews_product_reviews_jRdWcf": {
+          "type": "shopify://apps/klaviyo-reviews/blocks/product-reviews/db20e365-d984-4ac4-9655-e1588d951ca9",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "klaviyo_reviews_product_reviews_jRdWcf"
+      ],
+      "settings": {}
+    },
+    "1785187044565dbc50": {
+      "type": "apps",
+      "settings": {}
+    },
+    "178518705968e94397": {
+      "type": "apps",
+      "blocks": {
+        "klaviyo_reviews_average_rating_enDhy7": {
+          "type": "shopify://apps/klaviyo-reviews/blocks/average-rating/db20e365-d984-4ac4-9655-e1588d951ca9",
+          "settings": {
+            "product": "{{product}}"
+          }
+        }
+      },
+      "block_order": [
+        "klaviyo_reviews_average_rating_enDhy7"
+      ],
+      "settings": {}
+    },
+    "1785187096a4263205": {
+      "type": "apps",
+      "settings": {}
+    },
+    "1785187097e6144838": {
+      "type": "apps",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "17851870240ddcdab2",
+    "1785187044565dbc50",
+    "178518705968e94397",
+    "1785187096a4263205",
+    "1785187097e6144838"
   ]
 }

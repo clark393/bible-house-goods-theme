@@ -36,7 +36,7 @@
         "collection1": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "devotionals",
             "heading": "Devotionals & Prayer",
             "copy": "Bible studies, prayer journals, and workbooks for deeper engagement with God's Word."
           }
@@ -44,7 +44,7 @@
         "collection2": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "printables",
             "heading": "Printables & Resources",
             "copy": "Downloadable guides for Bible study, family discipleship, and church leadership."
           }
@@ -52,9 +52,48 @@
         "collection3": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "faith-apparel",
             "heading": "Faith Apparel",
             "copy": "Christian apparel designed to spark conversations about Christ."
+          }
+        },
+        "socialpost1": {
+          "type": "social_post",
+          "settings": {
+            "platform": "TikTok",
+            "video": "shopify://files/videos/Copy of Untitled (TikTok Video) (1).mp4",
+            "caption": "See how The Bible Band™ brings Scripture, prayer, and devotion into the rhythm of an ordinary day.",
+            "link": "https://www.tiktok.com/@thebibleband.co/video/7662926359441706253"
+          }
+        },
+        "review1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "Clark was VERY helpful, generous and responsive. GREAT quality of work.",
+            "author": "Maria",
+            "source": "Christian Marriage Worksheets · Etsy",
+            "link": "https://www.etsy.com/shop/BibleHouseGoods#reviews"
+          }
+        },
+        "review2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "Delivery and instructions were perfect and quick!",
+            "author": "Missy",
+            "source": "Baby Dedication Certificate · Etsy",
+            "link": "https://www.etsy.com/shop/BibleHouseGoods#reviews"
+          }
+        },
+        "review3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "I love the cheat sheet with the biblical verses.",
+            "author": "Patricia",
+            "source": "Back to School Christian Printable · Etsy",
+            "link": "https://www.etsy.com/shop/BibleHouseGoods#reviews"
           }
         }
       },
@@ -64,7 +103,11 @@
         "feature3",
         "collection1",
         "collection2",
-        "collection3"
+        "collection3",
+        "socialpost1",
+        "review1",
+        "review2",
+        "review3"
       ],
       "settings": {
         "kicker": "Bible House Goods Presents · The Bible Band™",
@@ -72,16 +115,45 @@
         "copy": "Daily Scripture, prayer, and devotion on your wrist. One simple tap — no app, no subscription.",
         "button_label": "Get Your Bible Band™",
         "button_link": "shopify://products/the-bible-band",
+        "hero_testimonial": "I created the Bible Band to help people grow in their walk with God",
+        "hero_testimonial_cite": "Clark Whitney, founder and pastor",
+        "hero_scripture": "Fix these words of mine in your hearts and minds; tie them as symbols on your hands.",
+        "hero_scripture_cite": "Deuteronomy 11:18",
         "groups_link": "/pages/bible-band-church-packs",
         "groups_contact_link": "/pages/contact",
         "featured_product": "the-bible-band",
         "hero_video": "shopify://files/videos/Copy of Untitled (TikTok Video) (1).mp4",
+        "preview_kicker": "See What One Tap Opens",
+        "preview_heading": "A Real Daily Devotion",
+        "preview_intro": "This static sample from TheBibleBand.com shows the Scripture, pastor-written reflection, guided prayer, audio, and reading plan your band opens each day.",
+        "preview_includes_label": "Every daily experience includes",
+        "preview_sample_label": "Today’s Word",
+        "preview_date": "Friday, July 24",
+        "preview_day": "Day 205 of 365",
+        "preview_title": "Finish Strong",
+        "preview_scripture_label": "Scripture",
+        "preview_verse": "For it came to pass, when Solomon was old, that his wives turned away his heart after other gods: and his heart was not perfect with the LORD his God, as was the heart of David his father.",
+        "preview_reference": "1 Kings 11:4 · KJV",
+        "preview_devotion_label": "Devotion",
+        "preview_devotion": "In Super Bowl LI, the Atlanta Falcons led the New England Patriots 28–3 in the third quarter. Although the statistical models said their chance of winning was 99.8%, the Falcons let off the gas and the Patriots rallied to win in overtime. As the saying goes, it’s not how you start, it’s how you finish.\n\nAlthough King Solomon was the wisest and wealthiest man to ever live, he didn’t finish strong. God gave him many blessings, but Solomon took them for granted and allowed the people around him to lead him away from God. Are you on track to finish strong? Are the people around you helping you get closer to God or pushing you farther away from Him?",
+        "preview_prayer_label": "Prayer",
+        "preview_prayer": "Lord, help me be grateful for all the help You’ve given me. Thank You for the wisdom of Your Word. Bring that wisdom to life in me today, and bring good and godly influences into my life to help me along the path You’ve set before me. In Jesus’ name. Amen.",
+        "preview_audio_label": "Audio",
+        "preview_audio_detail": "Audio version available",
+        "preview_plan_label": "Bible Plan",
+        "preview_reading": "1 Chron 25–26 · Acts 19:8–24 · Ps 87 · Prov 18:10–11",
+        "preview_footer": "Cached from Day 205 on TheBibleBand.com.",
         "products_heading": "From Our Shop",
         "collection": "",
+        "social_kicker": "From the community",
+        "social_heading": "Faith in real life",
+        "social_copy": "See how people are using Bible House Goods, then hear what customers have to say.",
+        "guide_heading": "",
+        "guide_copy": "",
         "quote": "Keep God's Word close to your heart and carry it with you daily.",
         "quote_cite": "Deuteronomy 11:18",
         "founder_heading": "Started By A Pastor, Not A Company",
-        "founder_copy": "Bible House Goods was started by Clark Whitney — pastor, husband, and dad — to help families keep God's Word close in the middle of everyday life. Every product is built the same way: faithful, useful, and simple.",
+        "founder_copy": "Bible House Goods was started by Clark Whitney — pastor, professor, husband, and dad — to help families keep God's Word close in the middle of everyday life. Every product is built the same way: faithful, useful, and simple.",
         "founder_link": ""
       }
     }
