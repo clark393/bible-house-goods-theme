@@ -44,3 +44,8 @@
 
 .govx-discount{margin:18px 0 20px;text-align:left}.govx-discount>i{display:block;min-height:72px}
 @media(max-width:640px){.site-impact__inner{grid-template-columns:42px 1fr;gap:8px 12px;padding-block:14px}.site-impact__mark{width:40px;height:40px;grid-row:1/3;font-size:17px}.site-impact h2{font-size:20px}.site-impact__eyebrow{margin-bottom:4px;font-size:8px!important}.site-impact__inner>p:last-child{grid-column:2;font-size:11px;line-height:1.4}}
+
+/* Keep the product media and details continuous instead of reserving the full purchase-panel height. */
+@media(min-width:1001px){.product-layout{grid-template-rows:none;align-items:start}.product-media-column{grid-column:1;min-width:0}.product-info{grid-column:2;grid-row:auto}.product-details{grid-column:auto;grid-row:auto;margin-top:30px;padding-top:24px}}
+@media(max-width:1000px){.product-media-column{display:contents}.product-gallery-wrap{order:1}.product-info{order:2}.product-details{order:3}}
+@media(max-width:640px){.product-page{padding-top:22px}.product-layout{gap:24px}.product-details{padding-top:20px}.band-at-a-glance{padding-top:0}.band-at-a-glance__items{gap:6px}.band-at-a-glance__items span{flex:1 1 calc(50% - 6px);padding:9px 8px;text-align:center}.product-meta{margin-top:22px}.product-meta details{padding:15px 0}.product-meta summary{font-size:12px}.quiet-time-solution{padding:17px 16px}.tap-demo{grid-template-columns:minmax(0,1fr) 112px;gap:12px;padding:14px;box-shadow:5px 5px 0 var(--gold)}.tap-demo__heading h2{font-size:20px}.tap-demo__heading p{font-size:11px}.purchase-reassurance li{padding:10px}}

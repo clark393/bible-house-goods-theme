@@ -16,17 +16,37 @@
 %}
 <section class="product-page page-width">
   <div class="product-layout">
-    <div class="product-gallery-wrap" data-product-gallery>
-      <div class="product-gallery" data-product-gallery-track>
-        {% for media in product.media limit: gallery_limit %}<div class="product-gallery__item" data-product-gallery-slide data-media-id="{{ media.id }}">{% if media.media_type == 'image' %}{{ media | image_url: width: 1600 | image_tag: widths: '400,700,1000,1600', loading: 'lazy', alt: media.alt | default: product.title }}{% else %}{{ media | media_tag: image_size: '1600x' }}{% endif %}</div>{% else %}{{ 'product-1' | placeholder_svg_tag }}{% endfor %}
-      </div>
-      {% if gallery_count > 1 %}
-        <div class="product-gallery__controls">
-          <button class="product-gallery__button" type="button" data-gallery-previous aria-label="{{ 'products.gallery.previous' | t }}">&larr;</button>
-          <p class="product-gallery__counter" aria-live="polite"><span data-gallery-current>1</span> / {{ gallery_count }}</p>
-          <button class="product-gallery__button" type="button" data-gallery-next aria-label="{{ 'products.gallery.next' | t }}">&rarr;</button>
+    <div class="product-media-column">
+      <div class="product-gallery-wrap" data-product-gallery>
+        <div class="product-gallery" data-product-gallery-track>
+          {% for media in product.media limit: gallery_limit %}<div class="product-gallery__item" data-product-gallery-slide data-media-id="{{ media.id }}">{% if media.media_type == 'image' %}{{ media | image_url: width: 1600 | image_tag: widths: '400,700,1000,1600', loading: 'lazy', alt: media.alt | default: product.title }}{% else %}{{ media | media_tag: image_size: '1600x' }}{% endif %}</div>{% else %}{{ 'product-1' | placeholder_svg_tag }}{% endfor %}
         </div>
-      {% endif %}
+        {% if gallery_count > 1 %}
+          <div class="product-gallery__controls">
+            <button class="product-gallery__button" type="button" data-gallery-previous aria-label="{{ 'products.gallery.previous' | t }}">&larr;</button>
+            <p class="product-gallery__counter" aria-live="polite"><span data-gallery-current>1</span> / {{ gallery_count }}</p>
+            <button class="product-gallery__button" type="button" data-gallery-next aria-label="{{ 'products.gallery.next' | t }}">&rarr;</button>
+          </div>
+        {% endif %}
+      </div>
+      <div class="product-details">
+        {% if is_bible_band %}
+          <div class="band-at-a-glance">
+            <span class="eyebrow">{{ 'products.bible_band.at_a_glance' | t }}</span>
+            <div class="band-at-a-glance__items" aria-label="{{ 'products.bible_band.included_label' | t }}">
+              <span>{{ 'products.bible_band.scripture_label' | t }}</span><span>{{ 'products.bible_band.devotion_label' | t }}</span><span>{{ 'products.bible_band.prayer_label' | t }}</span><span>{{ 'products.bible_band.audio_label' | t }}</span><span>{{ 'products.bible_band.plan_label' | t }}</span>
+            </div>
+          </div>
+          <div class="product-meta">
+            <details><summary>{{ 'products.bible_band.details_heading' | t }}</summary><div class="rte"><p>{{ 'products.bible_band.details_copy' | t }}</p></div></details>
+            <details><summary>{{ 'products.bible_band.compatibility_heading' | t }}</summary><div class="rte"><p>{{ 'products.bible_band.compatibility_copy' | t }}</p></div></details>
+            <details><summary>{{ 'products.bible_band.shipping_heading' | t }}</summary><div class="rte"><p>{{ 'products.bible_band.shipping_copy' | t }}</p></div></details>
+          </div>
+        {% else %}
+          <div class="rte">{{ product.description }}</div>
+          <div class="product-meta"><details><summary>Shipping &amp; delivery</summary><div class="rte"><p>Shipping and delivery options are shown at checkout. Digital products are delivered according to their product description.</p></div></details><details><summary>Questions?</summary><div class="rte"><p>Visit our FAQ or contact Bible House Goods and we'll be glad to help.</p></div></details></div>
+        {% endif %}
+      </div>
     </div>
     <div class="product-info">
       {% if product.vendor != blank %}<span class="eyebrow">{{ product.vendor }}</span>{% endif %}
@@ -126,24 +146,6 @@
         {% render 'payment-options' %}
       {% endform %}
       {% if section.settings.enable_social_share and is_bible_band == false %}{% render 'product-share', product: product, share_url: canonical_url %}{% endif %}
-    </div>
-    <div class="product-details">
-      {% if is_bible_band %}
-        <div class="band-at-a-glance">
-          <span class="eyebrow">{{ 'products.bible_band.at_a_glance' | t }}</span>
-          <div class="band-at-a-glance__items" aria-label="{{ 'products.bible_band.included_label' | t }}">
-            <span>{{ 'products.bible_band.scripture_label' | t }}</span><span>{{ 'products.bible_band.devotion_label' | t }}</span><span>{{ 'products.bible_band.prayer_label' | t }}</span><span>{{ 'products.bible_band.audio_label' | t }}</span><span>{{ 'products.bible_band.plan_label' | t }}</span>
-          </div>
-        </div>
-        <div class="product-meta">
-          <details><summary>{{ 'products.bible_band.details_heading' | t }}</summary><div class="rte"><p>{{ 'products.bible_band.details_copy' | t }}</p></div></details>
-          <details><summary>{{ 'products.bible_band.compatibility_heading' | t }}</summary><div class="rte"><p>{{ 'products.bible_band.compatibility_copy' | t }}</p></div></details>
-          <details><summary>{{ 'products.bible_band.shipping_heading' | t }}</summary><div class="rte"><p>{{ 'products.bible_band.shipping_copy' | t }}</p></div></details>
-        </div>
-      {% else %}
-        <div class="rte">{{ product.description }}</div>
-        <div class="product-meta"><details><summary>Shipping &amp; delivery</summary><div class="rte"><p>Shipping and delivery options are shown at checkout. Digital products are delivered according to their product description.</p></div></details><details><summary>Questions?</summary><div class="rte"><p>Visit our FAQ or contact Bible House Goods and we'll be glad to help.</p></div></details></div>
-      {% endif %}
     </div>
   </div>
 </section>

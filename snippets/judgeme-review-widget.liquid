@@ -48,4 +48,38 @@ Renders the Judge.me product review widget and review submission form.
     padding-top: clamp(56px, 7vw, 96px);
     padding-bottom: clamp(72px, 9vw, 128px);
   }
+  #judgeme_product_reviews {
+    --jdgm-primary-color: var(--rust);
+    --jdgm-secondary-color: var(--gold);
+    --jm-primary-color: var(--rust);
+    --jm-accent-color: var(--gold);
+    accent-color: var(--rust);
+  }
+  #judgeme_product_reviews a,
+  #judgeme_product_reviews [class*="link"] {
+    color: var(--rust) !important;
+  }
+  #judgeme_product_reviews button,
+  #judgeme_product_reviews [role="button"] {
+    border-color: var(--rust) !important;
+  }
+  #judgeme_product_reviews button:not([disabled]),
+  #judgeme_product_reviews [role="button"]:not([aria-disabled="true"]) {
+    background-color: var(--rust) !important;
+    color: var(--cream) !important;
+  }
+  #judgeme_product_reviews [class*="star"] {
+    color: var(--gold) !important;
+  }
+  @media (max-width: 640px) {
+    .judgeme-reviews {
+      width: min(100% - 28px, 1400px);
+      padding-top: 48px;
+      padding-bottom: 96px;
+    }
+    #judgeme_product_reviews button,
+    #judgeme_product_reviews [role="button"] {
+      min-height: 44px;
+    }
+  }
 {% endstylesheet %}
