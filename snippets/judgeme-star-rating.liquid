@@ -11,17 +11,27 @@ Renders the Judge.me star rating badge for a product.
   {% liquid
     assign badge_markup = product.metafields.judgeme.badge | default: ''
     assign review_count = 0
+    assign review_rating = 0
     if badge_markup contains 'data-number-of-reviews="'
       assign review_count = badge_markup | split: 'data-number-of-reviews="' | last | split: '"' | first | plus: 0
     endif
+    if product.handle == 'the-bible-band' and review_count == 0 and settings.bible_band_review_count > 0
+      assign review_count = settings.bible_band_review_count
+      assign review_rating = settings.bible_band_review_rating
+    endif
   %}
-  {% if review_count > 0 %}
+  {% if badge_markup contains 'data-number-of-reviews="' and review_count > 0 and review_rating == 0 %}
     <div
       class="jdgm-widget jdgm-preview-badge"
       data-id="{{ product.id }}"
       data-auto-install="false"
     >
       {{ badge_markup }}
+    </div>
+  {% elsif review_count > 0 %}
+    <div class="judgeme-rating-fallback" aria-label="{{ review_rating }} out of 5 stars, {{ review_count }} reviews">
+      <span aria-hidden="true">★★★★★</span>
+      <small>{{ review_rating }} · {{ review_count }} {% if review_count == 1 %}{{ 'general.social_proof.review' | t }}{% else %}{{ 'general.social_proof.reviews' | t }}{% endif %}</small>
     </div>
   {% else %}
     <div class="judgeme-rating-empty" aria-label="{{ 'general.social_proof.no_verified_reviews' | t }}">
@@ -32,7 +42,7 @@ Renders the Judge.me star rating badge for a product.
 {% endif %}
 
 {% stylesheet %}
-  .judgeme-rating-empty{display:inline-flex;align-items:center;gap:8px;color:var(--rust)}
-  .judgeme-rating-empty>span{font-size:14px;letter-spacing:2px;line-height:1}
-  .judgeme-rating-empty small{color:var(--brown);font-size:10px;font-weight:900;letter-spacing:.8px;text-transform:uppercase}
+  .judgeme-rating-empty,.judgeme-rating-fallback{display:inline-flex;align-items:center;gap:8px;color:var(--rust)}
+  .judgeme-rating-empty>span,.judgeme-rating-fallback>span{font-size:14px;letter-spacing:2px;line-height:1}
+  .judgeme-rating-empty small,.judgeme-rating-fallback small{color:var(--brown);font-size:10px;font-weight:900;letter-spacing:.8px;text-transform:uppercase}
 {% endstylesheet %}

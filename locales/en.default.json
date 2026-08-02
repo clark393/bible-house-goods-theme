@@ -77,6 +77,8 @@
       "judgeme_copy": "The real Judge.me rating and count—never inflated.",
       "judgeme_link": "Read verified reviews",
       "no_verified_reviews": "0 verified reviews yet",
+      "review": "review",
+      "reviews": "reviews",
       "etsy_label": "More from our wider shop",
       "etsy_copy": "More Bible House Goods testimonials, clearly labeled by product and source.",
       "etsy_link": "See Etsy testimonials"
@@ -205,6 +207,17 @@
       "sample_devotion": "Stillness is not the absence of responsibility. It is the choice to stop striving long enough to remember who is in control. Today, let God's presence become louder than the pressure around you.",
       "sample_prayer": "God, quiet the noise within me. Help me release what I cannot control and rest in who You are. Make me attentive to Your presence and faithful in my next step. Amen.",
       "preview_footer": "A fresh experience is waiting every day with The Bible Band™."
+      ,"at_a_glance": "At a glance",
+      "details_heading": "Band details",
+      "details_copy": "Soft, water-resistant polyester elastic with an NTAG213 NFC chip. Adult: 170 × 20 mm. Kids: 160 × 20 mm. Adult XL: 178 × 20 mm (7.01 × 0.79 in).",
+      "compatibility_heading": "Phone compatibility",
+      "compatibility_copy": "Works with compatible iPhone and Android phones. No app, account, battery, charging, or subscription required.",
+      "shipping_heading": "Shipping & help",
+      "shipping_copy": "Free shipping on Bible Band orders. Delivery is typically 3–7 business days. Visit our FAQ or contact us if you need help.",
+      "review_heading": "Real rhythms. Real stories.",
+      "customer_photo": "Customer-submitted photo",
+      "lifestyle_photo": "Bible Band lifestyle image",
+      "preview_button": "Preview today’s devotion"
     },
     "product": {
       "add_to_cart": "Add to cart",
