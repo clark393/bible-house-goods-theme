@@ -32,54 +32,9 @@
         "sample_intro": "Watch a real sample day from TheBibleBand.com move from Scripture into a short devotion and guided prayer.",
         "enable_social_share": true
       }
-    },
-    "17851870240ddcdab2": {
-      "type": "apps",
-      "blocks": {
-        "klaviyo_reviews_product_reviews_jRdWcf": {
-          "type": "shopify://apps/klaviyo-reviews/blocks/product-reviews/db20e365-d984-4ac4-9655-e1588d951ca9",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "klaviyo_reviews_product_reviews_jRdWcf"
-      ],
-      "settings": {}
-    },
-    "1785187044565dbc50": {
-      "type": "apps",
-      "settings": {}
-    },
-    "178518705968e94397": {
-      "type": "apps",
-      "blocks": {
-        "klaviyo_reviews_average_rating_enDhy7": {
-          "type": "shopify://apps/klaviyo-reviews/blocks/average-rating/db20e365-d984-4ac4-9655-e1588d951ca9",
-          "settings": {
-            "product": "{{product}}"
-          }
-        }
-      },
-      "block_order": [
-        "klaviyo_reviews_average_rating_enDhy7"
-      ],
-      "settings": {}
-    },
-    "1785187096a4263205": {
-      "type": "apps",
-      "settings": {}
-    },
-    "1785187097e6144838": {
-      "type": "apps",
-      "settings": {}
     }
   },
   "order": [
-    "main",
-    "17851870240ddcdab2",
-    "1785187044565dbc50",
-    "178518705968e94397",
-    "1785187096a4263205",
-    "1785187097e6144838"
+    "main"
   ]
 }
